@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:shimmer="http://schemas.android.com/apk/res-auto">
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/ll_root"
+    android:orientation="vertical"
+    android:fillViewport="true">
+    <include
+        android:id="@+id/header_back"
+        layout="@layout/toolbar_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_top"
+            android:layout_marginLeft="@dimen/margin"
+            android:layout_marginRight="@dimen/margin"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/et_search"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/rounded_layout"
+                android:gravity="center"
+                android:hint="@string/search_activity"
+                android:padding="@dimen/margin_top"
+                android:textSize="@dimen/normal_text" />
+
+            <cbs.hreye.utilities.CustomTextView
+                android:id="@+id/txt_clear"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="@dimen/margin"
+                android:layout_weight="1.5"
+                android:background="@drawable/custom_button"
+                android:gravity="center"
+                android:padding="@dimen/margin_top"
+                android:text="@string/clear"
+                android:textColor="@color/white"
+                android:textSize="@dimen/normal_text" />
+
+        </LinearLayout>
+
+        <SearchView
+            android:id="@+id/search_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin_top"
+            android:layout_marginRight="@dimen/margin_top"
+            android:queryHint="Search Daily Activity"
+            android:visibility="gone" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="@dimen/margin_top"
+            android:background="@color/view_color" />
+
+
+        <com.facebook.shimmer.ShimmerFrameLayout
+            android:id="@+id/shimmer_view_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:orientation="vertical"
+            android:visibility="gone"
+            shimmer:duration="600">
+
+            <!-- Adding 7 rows of placeholders -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+                <include layout="@layout/placeholder_layout_activity_list" />
+                <include layout="@layout/placeholder_layout_activity_list" />
+                <include layout="@layout/placeholder_layout_activity_list" />
+                <include layout="@layout/placeholder_layout_activity_list" />
+                <include layout="@layout/placeholder_layout_activity_list" />
+                <include layout="@layout/placeholder_layout_activity_list" />
+                <include layout="@layout/placeholder_layout_activity_list" />
+                <include layout="@layout/placeholder_layout_activity_list" />
+                <include layout="@layout/placeholder_layout_activity_list" />
+                <include layout="@layout/placeholder_layout_activity_list" />
+                <include layout="@layout/placeholder_layout_activity_list" />
+                <include layout="@layout/placeholder_layout_activity_list" />
+                <include layout="@layout/placeholder_layout_activity_list" />
+                <include layout="@layout/placeholder_layout_activity_list" />
+                <include layout="@layout/placeholder_layout_activity_list" />
+                <include layout="@layout/placeholder_layout_activity_list" />
+
+            </LinearLayout>
+
+        </com.facebook.shimmer.ShimmerFrameLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+                <ListView
+                    android:id="@+id/lst_activities"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="@dimen/margin_top"/>
+
+            <ImageView
+                android:id="@+id/iv_scroll_up"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|center"
+                android:layout_marginBottom="@dimen/margin_plus"
+                android:background="@mipmap/ic_arrow_up"
+                android:contentDescription="@string/up_scroll" />
+
+            <ImageView
+                android:id="@+id/add_acti"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|end"
+                android:layout_marginBottom="@dimen/margin_plus"
+                android:layout_marginEnd="@dimen/margin_plus"
+                android:background="@mipmap/blue_plus"
+                android:contentDescription="@string/add"
+                android:visibility="visible" />
+        </FrameLayout>
+    </LinearLayout>
+</LinearLayout>
+
+</layout>
+

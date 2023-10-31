@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#536DFE</color>
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+    <color name="view_color">#BEBEBE</color>
+    <color name="orange">#f28d25</color>
+    <color name="trans">#80000000</color>
+    <color name="gray">#A0A0A0</color>
+    <color name="top_color">#c3c2c2</color>
+    <color name="bottom_color">#626262</color>
+    <color name="orange_button">#FF5D1B</color>
+    <color name="green_custom">#1d7d48</color>
+    <color name="reddish">#9F0402</color>
+    <color name="greenish">#A1D4BA</color>
+    <color name="blue">#2074F1</color>
+    <color name="transparent_background">#00FF0000</color>
+    <color name="tab">#F2F2F3</color>
+    <color name="DarkBlue">#0F2C61</color>
+    <color name="balance">#E18767</color>
+    <color name="availed">#3BEEEE</color>
+    <color name="subject">#111111</color>
+    <color name="from">#000000</color>
+    <color name="message">#7a7a7a</color>
+    <color name="background">#dddddd</color>
+</resources>

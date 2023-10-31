@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:shimmer="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/ll_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <include
+        layout="@layout/toolbar_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:id="@+id/shimmer_view_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:orientation="vertical"
+        android:visibility="gone"
+        shimmer:duration="600">
+
+        <!-- Adding 7 rows of placeholders -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <include layout="@layout/placeholder_layout_leave_list" />
+            <include layout="@layout/placeholder_layout_leave_list" />
+            <include layout="@layout/placeholder_layout_leave_list" />
+            <include layout="@layout/placeholder_layout_leave_list" />
+            <include layout="@layout/placeholder_layout_leave_list" />
+            <include layout="@layout/placeholder_layout_leave_list" />
+            <include layout="@layout/placeholder_layout_leave_list" />
+
+        </LinearLayout>
+
+    </com.facebook.shimmer.ShimmerFrameLayout>
+
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ListView
+            android:id="@+id/lst_lv_activities"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="none"
+            android:divider="@color/transparent_background" />
+
+
+        <ImageView
+            android:id="@+id/iv_scroll_up"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center"
+            android:layout_marginBottom="@dimen/margin_plus"
+            android:background="@mipmap/ic_arrow_up"
+            android:contentDescription="@string/up_scroll" />
+
+        <ImageView
+            android:id="@+id/add_lv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_marginEnd="@dimen/margin_plus"
+            android:layout_marginBottom="@dimen/margin_plus"
+            android:background="@mipmap/blue_plus"
+            android:visibility="visible" />
+    </FrameLayout>
+</LinearLayout>
+
+

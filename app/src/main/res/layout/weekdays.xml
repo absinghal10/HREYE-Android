@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal">
+
+
+    <cbs.hreye.utilities.CustomTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:padding="@dimen/margin_top"
+        android:text="Sun"
+        android:textColor="@color/DarkBlue"
+        android:textSize="@dimen/normal_text" />
+
+    <cbs.hreye.utilities.CustomTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:padding="@dimen/margin_top"
+        android:text="Mon"
+        android:textColor="@color/DarkBlue"
+        android:textSize="@dimen/normal_text" />
+
+    <cbs.hreye.utilities.CustomTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:padding="@dimen/margin_top"
+        android:text="Tue"
+        android:textColor="@color/DarkBlue"
+        android:textSize="@dimen/normal_text" />
+
+    <cbs.hreye.utilities.CustomTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:padding="@dimen/margin_top"
+        android:text="Wed"
+        android:textColor="@color/DarkBlue"
+        android:textSize="@dimen/normal_text" />
+
+    <cbs.hreye.utilities.CustomTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:padding="@dimen/margin_top"
+        android:text="Thu"
+        android:textColor="@color/DarkBlue"
+        android:textSize="@dimen/normal_text" />
+
+    <cbs.hreye.utilities.CustomTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:padding="@dimen/margin_top"
+        android:text="Fri"
+        android:textColor="@color/DarkBlue"
+        android:textSize="@dimen/normal_text" />
+
+    <cbs.hreye.utilities.CustomTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:padding="@dimen/margin_top"
+        android:text="Sat"
+        android:textColor="@color/DarkBlue"
+        android:textSize="@dimen/normal_text" />
+</LinearLayout>

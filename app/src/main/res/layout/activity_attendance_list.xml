@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ll_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:fillViewport="true">
+
+
+        <include
+            layout="@layout/toolbar_header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="@dimen/margin_top">
+
+            <cbs.hreye.utilities.CustomTextView
+                android:id="@+id/rec_srch"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:gravity="center"
+                android:padding="@dimen/margin_top"
+                android:text="@string/select_month"
+                android:textColor="@color/DarkBlue"
+                android:textSize="@dimen/normal_text"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/rec_date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_top"
+                android:layout_weight="1"
+                android:background="@drawable/rounded_layout"
+                android:gravity="center"
+                android:padding="@dimen/margin_top"
+                android:textColor="@color/black"
+                android:textSize="@dimen/normal_text" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_no_record"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/no_data"
+                android:src="@drawable/no_data" />
+
+            <cbs.hreye.utilities.CustomTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/no_record"
+                android:textColor="@color/DarkBlue"
+                android:textSize="@dimen/normal_text"
+                android:textStyle="normal" />
+
+        </LinearLayout>
+
+        <ListView
+            android:id="@+id/lst_attendac"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:divider="@color/transparent_background"
+            android:dividerHeight="@dimen/margin"
+            android:padding="@dimen/margin"
+            android:scrollbars="none" />
+
+</LinearLayout>
+
+

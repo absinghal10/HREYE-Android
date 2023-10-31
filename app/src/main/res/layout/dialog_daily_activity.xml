@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:orientation="horizontal">
+
+        <cbs.hreye.utilities.CustomTextView
+            android:id="@+id/tv_daily_act"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="start|center"
+            android:padding="@dimen/margin_top"
+            android:text="@string/daily_activity"
+            android:textColor="@color/white"
+            android:textSize="@dimen/normal_text_plus" />
+
+        <ImageView
+            android:id="@+id/dlg_cancel"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center"
+            android:background="@drawable/close"
+            android:gravity="end|center" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/margin_top">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <cbs.hreye.utilities.CustomTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.5"
+                android:text="@string/customer"
+                android:textColor="@color/DarkBlue"
+                android:textSize="@dimen/normal_text" />
+
+            <EditText
+                android:id="@+id/et_customer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="start"
+                android:imeOptions="actionNext"
+                android:inputType="text"
+                android:textSize="@dimen/normal_text"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <cbs.hreye.utilities.CustomTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.5"
+                android:text="@string/project_id"
+                android:textColor="@color/DarkBlue"
+                android:textSize="@dimen/normal_text" />
+
+            <EditText
+                android:id="@+id/et_project_id"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:cursorVisible="false"
+                android:focusable="false"
+                android:gravity="start"
+                android:imeOptions="actionNext"
+                android:inputType="text"
+                android:textSize="@dimen/normal_text" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <cbs.hreye.utilities.CustomTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.5"
+                android:text="@string/activity_id_star"
+                android:textColor="@color/DarkBlue"
+                android:textSize="@dimen/normal_text" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <Spinner
+                    android:id="@+id/spn_act_id"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginStart="3dp"
+                    android:background="@color/gray" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <Spinner
+                    android:id="@+id/spn_hours"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginEnd="@dimen/margin_top"
+                    android:background="@color/gray" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <Spinner
+                    android:id="@+id/spn_status"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginStart="@dimen/margin_top"
+                    android:background="@color/gray" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <cbs.hreye.utilities.CustomTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_top"
+            android:text="@string/activity_details_star"
+            android:textColor="@color/DarkBlue"
+            android:textSize="@dimen/normal_text" />
+
+        <EditText
+            android:id="@+id/et_details"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:imeOptions="actionNext"
+            android:inputType="text"
+            android:textSize="@dimen/normal_text" />
+
+        <cbs.hreye.utilities.CustomTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_top"
+            android:text="@string/remarks"
+            android:textColor="@color/DarkBlue"
+            android:textSize="@dimen/normal_text" />
+
+        <EditText
+            android:id="@+id/et_daily_act_remarks"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:imeOptions="actionDone"
+            android:inputType="text"
+            android:textSize="@dimen/normal_text" />
+
+        <Button
+            android:id="@+id/btn_add"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:background="@drawable/custom_button"
+            android:padding="@dimen/margin_top"
+            android:text="@string/add_to_list"
+            android:textColor="@color/white"
+            android:textSize="@dimen/normal_text"
+            />
+    </LinearLayout>
+</LinearLayout>
+

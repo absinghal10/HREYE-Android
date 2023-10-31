@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ll_root"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/custom_layout"
+    android:padding="@dimen/margin"
+    android:orientation="vertical">
+
+    <cbs.hreye.utilities.CustomTextView
+        android:id="@+id/tv_customer_id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/blue"
+        android:textSize="@dimen/normal_text"
+        tools:text="1MGTPL"/>
+
+    <TextView
+        android:id="@+id/tv_customer_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:textSize="@dimen/normal_text_minus1"
+        tools:text="1MG Technologies Private Limited"/>
+
+    <cbs.hreye.utilities.CustomTextView
+        android:id="@+id/tv_customer_pro_id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/blue"
+        android:textSize="@dimen/normal_text"
+        tools:text="SAP1MGTPL01" />
+
+    <TextView
+        android:id="@+id/tv_customer_pro_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:textSize="@dimen/normal_text_minus1"
+        tools:text="MISAP IMPLEMENTATION-A DESIGN" />
+
+</LinearLayout>

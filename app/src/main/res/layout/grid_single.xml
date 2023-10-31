@@ -1,0 +1,25 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="@dimen/margin_top">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/grid_image"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_top" />
+
+    <cbs.hreye.utilities.CustomTextView
+        android:id="@+id/grid_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/margin_top"
+        android:layout_marginTop="@dimen/margin_top"
+        android:gravity="center"
+        android:textColor="@color/black"
+        android:textSize="@dimen/normal_text" />
+</LinearLayout>

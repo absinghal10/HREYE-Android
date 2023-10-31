@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <RelativeLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/rl_root"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/bg_gradient"
+        android:scrollbarAlwaysDrawVerticalTrack="true">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/hr_eye"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/loginLayout"
+            android:layout_centerInParent="true"
+            android:layout_marginBottom="@dimen/margin_large"
+            android:drawableEnd="@drawable/bg_eye2"
+            android:drawablePadding="@dimen/margin_top"
+            android:text="@string/hr_eye"
+            android:textColor="@color/white"
+            android:textSize="@dimen/extra_large_text"
+            app:fontFamily="@font/audiowide" />
+
+
+        <RelativeLayout
+            android:id="@+id/loginLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true">
+
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/margin_plus"
+                android:layout_marginTop="70dp"
+                android:layout_marginRight="@dimen/margin_plus"
+                android:background="@drawable/round_linear"
+                android:elevation="4dp"
+                android:padding="@dimen/margin_plus">
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingTop="@dimen/margin_large"
+                    android:theme="@style/Theme.MaterialComponents.DayNight.DarkActionBar"
+                    >
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/user_id"
+                        android:id="@+id/til_user_id"
+                        android:layout_marginTop="@dimen/margin_large"
+                        app:boxStrokeColor="@color/colorPrimary"
+                        app:shapeAppearance="@style/Rounded"
+                        app:startIconDrawable="@drawable/user_id">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/et_user_id"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:imeOptions="actionNext"
+                            android:maxLines="1"
+                            android:inputType="text"/>
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin_top"
+                        android:id="@+id/til_password"
+                        android:hint="@string/password"
+                        app:endIconMode="password_toggle"
+                        app:endIconTint="@color/colorPrimary"
+                        app:boxStrokeColor="@color/colorPrimary"
+                        app:shapeAppearance="@style/Rounded"
+                        app:startIconDrawable="@drawable/lock">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/et_password"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:maxLines="1"
+                            android:inputType="textPassword"
+                        />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/til_server_ip"
+                        android:hint="@string/server_ip"
+                        android:layout_marginTop="@dimen/margin_top"
+                        app:boxStrokeColor="@color/colorPrimary"
+                        app:shapeAppearance="@style/Rounded"
+                        app:startIconDrawable="@drawable/company">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/et_server_ip"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:maxLines="1"
+                            android:inputType="textUri"/>
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <Button
+                        android:id="@+id/btn_login"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_gravity="end"
+                        android:layout_marginTop="@dimen/margin_plus"
+                        android:layout_weight="1"
+                        android:background="@drawable/custom_button"
+                        android:gravity="center"
+                        android:padding="@dimen/margin"
+                        android:text="@string/login"
+                        android:textAllCaps="false"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/normal_text"
+                        android:textStyle="normal" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tv_forgot_pass"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin_top"
+                        android:layout_gravity="end"
+                        android:text="@string/forgot_password"
+                        android:visibility="gone"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textSize="@dimen/normal_text1"/>
+
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/margin_plus"
+                android:elevation="4dp"
+                android:src="@drawable/profile" />
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/tvSupportEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_margin="@dimen/margin_plus"
+            android:autoLink="web"
+            android:gravity="center"
+            android:maxLines="2"
+            android:text="@string/for_any_enquiry"
+            android:textColor="@color/white"
+            android:textColorLink="@color/white"
+            android:textSize="@dimen/normal_text"
+            android:visibility="gone" />
+
+    </RelativeLayout>
+
+</layout>
+

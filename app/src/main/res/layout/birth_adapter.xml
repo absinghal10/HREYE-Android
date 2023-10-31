@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_small"
+        card_view:cardBackgroundColor="@android:color/transparent"
+        card_view:cardElevation="3dp">
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <cbs.hreye.utilities.CustomTextView
+        android:id="@+id/bday_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:gravity="center"
+        android:padding="@dimen/margin_small"
+        android:textColor="@color/white"
+        android:textSize="@dimen/normal_text" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/margin_top">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <cbs.hreye.utilities.CustomTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:gravity="start"
+                android:text="@string/date"
+                android:textColor="@color/DarkBlue"
+                android:textSize="@dimen/normal_text" />
+
+
+            <TextView
+                android:id="@+id/bday_date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="start"
+                android:textColor="@color/black"
+                android:textSize="@dimen/normal_text" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <cbs.hreye.utilities.CustomTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:gravity="start"
+                android:text="@string/occasion"
+                android:textColor="@color/DarkBlue"
+                android:textSize="@dimen/normal_text" />
+
+            <TextView
+                android:id="@+id/bday_occ"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="start"
+                android:textColor="@color/black"
+                android:textSize="@dimen/normal_text" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <cbs.hreye.utilities.CustomTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:gravity="start"
+                android:text="@string/email"
+                android:textColor="@color/DarkBlue"
+                android:textSize="@dimen/normal_text" />
+
+            <TextView
+                android:id="@+id/bday_mail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="start"
+                android:textColor="@color/black"
+                android:textSize="@dimen/normal_text" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <cbs.hreye.utilities.CustomTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:gravity="start"
+                android:text="@string/mobile_no"
+                android:textColor="@color/DarkBlue"
+                android:textSize="@dimen/normal_text" />
+
+            <TextView
+                android:id="@+id/bday_mob"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="start"
+                android:textColor="@color/black"
+                android:textSize="@dimen/normal_text" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <cbs.hreye.utilities.CustomTextView
+        android:id="@+id/ll_birth"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/custom_layout"
+        android:gravity="center"
+        android:padding="@dimen/margin_top"
+        android:text="@string/send_email"
+        android:textColor="@color/black"
+        android:textSize="@dimen/normal_text"
+        android:textStyle="bold"
+        android:visibility="gone" />
+</LinearLayout>
+</androidx.cardview.widget.CardView>
+</LinearLayout>

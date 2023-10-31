@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android">
+<LinearLayout
+    android:id="@+id/ll_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/header_back"
+        layout="@layout/toolbar_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center|top"
+        android:orientation="vertical"
+        android:padding="@dimen/margin_top">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <cbs.hreye.utilities.CustomTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="start"
+                android:text="Activity Date :"
+                android:textColor="@color/DarkBlue"
+                android:textSize="@dimen/normal_text" />
+
+            <TextView
+                android:id="@+id/act_date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_top"
+                android:layout_weight="1"
+                android:background="@drawable/rounded_layout"
+                android:gravity="center"
+                android:padding="@dimen/margin_top"
+                android:textColor="@color/black"
+                android:textSize="@dimen/normal_text" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:gravity="center|top"
+            android:orientation="horizontal">
+
+            <cbs.hreye.utilities.CustomTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="start"
+                android:text="Total Hours :"
+                android:textColor="@color/DarkBlue"
+                android:textSize="@dimen/normal_text" />
+
+            <TextView
+                android:id="@+id/act_hours"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_top"
+                android:layout_weight="1"
+                android:background="@drawable/rounded_layout"
+                android:gravity="center"
+                android:padding="@dimen/margin_top"
+                android:textColor="@color/black"
+                android:textSize="@dimen/normal_text" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_marginLeft="@dimen/margin"
+        android:layout_marginRight="@dimen/margin"
+        android:background="@color/colorPrimary" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="@dimen/margin_top">
+
+        <cbs.hreye.utilities.CustomTextView
+            android:id="@+id/txt_cl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/click_to_add_row"
+            android:textColor="@color/bottom_color"
+            android:textSize="@dimen/normal_text"
+            android:textStyle="bold" />
+
+        <ListView
+            android:id="@+id/lst_daily"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:divider="@color/transparent_background"
+            android:dividerHeight="@dimen/margin_top"
+            android:scrollbars="none" />
+    </LinearLayout>
+</LinearLayout>
+</layout>

@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ll_Repunch"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".activities.RePunchTestActivity">
+    <include
+        android:id="@+id/toolbar_layout"
+        layout="@layout/toolbar_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/update_location"
+            android:adjustViewBounds="true"/>
+
+        <ProgressBar
+            android:id="@+id/progress_update"
+            android:layout_width="80dp"
+            android:layout_height="70dp"
+            android:layout_marginTop="16dp"
+            android:layout_centerHorizontal="true"
+            android:indeterminate="true"
+            android:visibility="invisible"
+            android:indeterminateDrawable="@drawable/my_progress_indeterminate" />
+
+        <ImageView
+            android:id="@+id/iv_update"
+            android:layout_width="80dp"
+            android:layout_height="70dp"
+            android:layout_marginTop="16dp"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/location_prog"
+            android:visibility="visible"/>
+
+    </RelativeLayout>
+
+    <cbs.hreye.utilities.CustomTextView
+        android:id="@+id/tv_show_location"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:gravity="center"
+        android:layout_margin="@dimen/margin_top"
+        android:textColor="@color/DarkBlue"
+        android:background="@drawable/custom_layout"
+        android:textSize="@dimen/normal_text" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_marginTop="@dimen/margin_top"
+        android:padding="@dimen/margin_top">
+
+        <cbs.hreye.utilities.CustomTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/in_time"
+            android:textColor="@color/DarkBlue"
+            android:textSize="@dimen/normal_text"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_top"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/et_in_time"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/rounded_layout"
+                android:cursorVisible="false"
+                android:focusable="false"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:fontFamily="@font/digi_seven"
+                android:textSize="@dimen/normal_text_large" />
+
+            <Button
+                android:id="@+id/btn_in"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="@dimen/margin_top"
+                android:layout_weight="2"
+                android:background="@drawable/custom_button"
+                android:text="PUNCH"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="@dimen/normal_text" />
+        </LinearLayout>
+
+        <cbs.hreye.utilities.CustomTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_top"
+            android:text="@string/out_time"
+            android:textColor="@color/DarkBlue"
+            android:textSize="@dimen/normal_text"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_top"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/et_out_time"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/rounded_layout"
+                android:cursorVisible="false"
+                android:focusable="false"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:fontFamily="@font/digi_seven"
+                android:textSize="@dimen/normal_text_large" />
+
+            <Button
+                android:id="@+id/btn_out"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="@dimen/margin_top"
+                android:layout_weight="2"
+                android:background="@drawable/custom_button"
+                android:text="@string/save"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="@dimen/normal_text" />
+        </LinearLayout>
+    </LinearLayout>
+
+
+    </LinearLayout>
+
+</layout>

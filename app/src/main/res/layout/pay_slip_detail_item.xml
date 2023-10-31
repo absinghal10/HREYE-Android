@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+        <cbs.hreye.utilities.CustomTextView
+            android:id="@+id/tv_earnings"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="start"
+            android:text=""
+            android:textColor="@color/DarkBlue"
+            android:textSize="@dimen/normal_text"
+           android:maxLines="2"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tv_gross_amount"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text=""
+            android:textColor="@color/black"
+            android:textSize="@dimen/normal_text"
+            android:singleLine="true"/>
+
+        <TextView
+            android:id="@+id/tv_amount"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="end"
+            android:text=""
+            android:textColor="@color/black"
+            android:textSize="@dimen/normal_text"
+            android:singleLine="true" />
+
+</LinearLayout>

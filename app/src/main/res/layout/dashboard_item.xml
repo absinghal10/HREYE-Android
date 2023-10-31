@@ -1,0 +1,639 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android">
+<LinearLayout xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <cbs.hreye.utilities.CustomTextView
+        android:id="@+id/tv_marque_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ellipsize="marquee"
+        android:marqueeRepeatLimit="marquee_forever"
+        android:padding="@dimen/margin_top"
+        android:scrollHorizontally="true"
+        android:singleLine="true"
+        android:gravity="center"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="@dimen/normal_text"
+        android:textStyle="bold" />
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/margin_top">
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/gray" />
+
+            <LinearLayout
+                android:id="@+id/ll_pro"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:padding="@dimen/margin_top">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@mipmap/profile" />
+
+                    <cbs.hreye.utilities.CustomTextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/margin_top"
+                        android:layout_weight="1"
+                        android:gravity="start|center"
+                        android:text="@string/my_profile"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/normal_text"
+                        android:textStyle="bold"
+                        tools:ignore="NestedWeights" />
+                </LinearLayout>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@drawable/ic_keyboard_arrow_right_black_24dp" />
+            </LinearLayout>
+
+            <View
+                android:id="@+id/view_profile"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/gray" />
+
+            <LinearLayout
+                android:id="@+id/ll_act"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:padding="@dimen/margin_top">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@mipmap/activityy" />
+
+                    <cbs.hreye.utilities.CustomTextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/margin_top"
+                        android:layout_weight="1"
+                        android:gravity="start|center"
+                        android:text="@string/daily_activity"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/normal_text"
+                        android:textStyle="bold"
+                        tools:ignore="NestedWeights" />
+                </LinearLayout>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@drawable/ic_keyboard_arrow_right_black_24dp" />
+            </LinearLayout>
+
+            <View
+                android:id="@+id/view_activity"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/gray" />
+
+            <LinearLayout
+                android:id="@+id/ll_lv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:padding="@dimen/margin_top">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@mipmap/leave" />
+
+                    <cbs.hreye.utilities.CustomTextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/margin_top"
+                        android:layout_weight="1"
+                        android:gravity="start|center"
+                        android:text="@string/leave"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/normal_text"
+                        android:textStyle="bold"
+                        tools:ignore="NestedWeights" />
+                </LinearLayout>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@drawable/ic_keyboard_arrow_right_black_24dp" />
+            </LinearLayout>
+
+            <View
+                android:id="@+id/view_leave"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/gray" />
+
+            <LinearLayout
+                android:id="@+id/ll_leave_calendar"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:padding="@dimen/margin_top">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@mipmap/calendar" />
+
+                    <cbs.hreye.utilities.CustomTextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/margin_top"
+                        android:layout_weight="1"
+                        android:gravity="start|center"
+                        android:text="@string/leave_cal"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/normal_text"
+                        android:textStyle="bold"
+                        tools:ignore="NestedWeights" />
+                </LinearLayout>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@drawable/ic_keyboard_arrow_right_black_24dp" />
+            </LinearLayout>
+
+            <View
+                android:id="@+id/view_leave_calendar"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/gray" />
+
+            <LinearLayout
+                android:id="@+id/ll_ls"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:padding="@dimen/margin_top">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@mipmap/status" />
+
+                    <cbs.hreye.utilities.CustomTextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/margin_top"
+                        android:layout_weight="1"
+                        android:gravity="start|center"
+                        android:text="@string/leave_status"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/normal_text"
+                        android:textStyle="bold"
+                        tools:ignore="NestedWeights" />
+                </LinearLayout>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@drawable/ic_keyboard_arrow_right_black_24dp" />
+            </LinearLayout>
+
+            <View
+                android:id="@+id/view_ls"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/gray"
+                android:visibility="gone" />
+
+            <LinearLayout
+                android:id="@+id/ll_grant_reject"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:padding="@dimen/margin_top"
+                android:visibility="gone">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@mipmap/joining" />
+
+                    <cbs.hreye.utilities.CustomTextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/margin_top"
+                        android:layout_weight="1"
+                        android:gravity="start|center"
+                        android:text="@string/leave_grant_rejection"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/normal_text"
+                        android:textStyle="bold"
+                        tools:ignore="NestedWeights" />
+                </LinearLayout>
+
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@drawable/ic_keyboard_arrow_right_black_24dp" />
+            </LinearLayout>
+
+            <View
+                android:id="@+id/view_grant_reject"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/gray" />
+
+            <LinearLayout
+                android:id="@+id/ll_holidays"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:padding="@dimen/margin_top">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@mipmap/holi" />
+
+                    <cbs.hreye.utilities.CustomTextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/margin_top"
+                        android:layout_weight="1"
+                        android:gravity="start|center"
+                        android:text="@string/holiday_list"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/normal_text"
+                        android:textStyle="bold"
+                        tools:ignore="NestedWeights" />
+                </LinearLayout>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@drawable/ic_keyboard_arrow_right_black_24dp" />
+            </LinearLayout>
+
+            <View
+                android:id="@+id/view_holidyas"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/gray" />
+
+            <LinearLayout
+                android:id="@+id/ll_birth"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:padding="@dimen/margin_top">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center|start"
+                    android:orientation="horizontal">
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@mipmap/birthday" />
+
+                    <cbs.hreye.utilities.CustomTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/margin_top"
+                        android:gravity="start|center"
+                        android:text="@string/birthday"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/normal_text"
+                        android:textStyle="bold" />
+                </LinearLayout>
+                <FrameLayout
+                    android:id="@+id/fl_bday_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/normal_text"
+                    android:layout_gravity="center"
+                    android:visibility="invisible">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:src="@drawable/birthday" />
+
+                    <TextView
+                        android:id="@+id/bday_count"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="start|top"
+                        android:background="@drawable/rounded_textview"
+                        android:gravity="center"
+                        android:layout_marginBottom="@dimen/margin_large"
+                        android:layout_marginStart="@dimen/margin_large"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/smallest_text"
+                        android:scaleType="fitStart" />
+
+                </FrameLayout>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@drawable/ic_keyboard_arrow_right_black_24dp" />
+            </LinearLayout>
+
+            <View
+                android:id="@+id/view_bday"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/gray" />
+
+            <LinearLayout
+                android:id="@+id/ll_join"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:padding="@dimen/margin_top">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@mipmap/joining" />
+
+                    <cbs.hreye.utilities.CustomTextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/margin_top"
+                        android:layout_weight="1"
+                        android:gravity="start|center"
+                        android:text="@string/new_joining"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/normal_text"
+                        android:textStyle="bold"
+                        tools:ignore="NestedWeights" />
+                </LinearLayout>
+
+
+                <FrameLayout
+                    android:id="@+id/fl_join_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/normal_text"
+                    android:layout_gravity="center"
+                    android:visibility="invisible">
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/new_joining" />
+
+                    <TextView
+                        android:id="@+id/join_count"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="start|top"
+                        android:background="@drawable/rounded_textview"
+                        android:gravity="center"
+                        android:layout_marginTop="@dimen/margin_large"
+                        android:layout_marginStart="@dimen/margin_large"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/smallest_text"
+                        android:scaleType="fitStart" />
+
+                </FrameLayout>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@drawable/ic_keyboard_arrow_right_black_24dp" />
+            </LinearLayout>
+
+            <View
+                android:id="@+id/view_join"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/gray" />
+
+            <LinearLayout
+                android:id="@+id/ll_att"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:padding="@dimen/margin_top">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@mipmap/attendence" />
+
+                    <cbs.hreye.utilities.CustomTextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/margin_top"
+                        android:layout_weight="1"
+                        android:gravity="start|center"
+                        android:text="@string/attendance"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/normal_text"
+                        android:textStyle="bold"
+                        tools:ignore="NestedWeights" />
+                </LinearLayout>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@drawable/ic_keyboard_arrow_right_black_24dp" />
+            </LinearLayout>
+
+            <View
+                android:id="@+id/view_att"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/gray" />
+
+            <LinearLayout
+                android:id="@+id/ll_att_list"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:padding="@dimen/margin_top">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@mipmap/list" />
+
+                    <cbs.hreye.utilities.CustomTextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/margin_top"
+                        android:layout_weight="1"
+                        android:gravity="start|center"
+                        android:text="@string/atten_records"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/normal_text"
+                        android:textStyle="bold"
+                        tools:ignore="NestedWeights" />
+                </LinearLayout>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@drawable/ic_keyboard_arrow_right_black_24dp" />
+            </LinearLayout>
+
+            <View
+                android:id="@+id/view_att_list"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/gray" />
+
+            <LinearLayout
+                android:id="@+id/ll_pay_slip"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:padding="@dimen/margin_top"
+                android:visibility="visible">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@mipmap/pay_slip" />
+
+                    <cbs.hreye.utilities.CustomTextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/margin_top"
+                        android:layout_weight="1"
+                        android:gravity="start|center"
+                        android:text="@string/salary_slip"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/normal_text"
+                        android:textStyle="bold"
+                        tools:ignore="NestedWeights" />
+                </LinearLayout>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@drawable/ic_keyboard_arrow_right_black_24dp" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+
+</LinearLayout>
+
+</layout>

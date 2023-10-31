@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:orientation="horizontal">
+
+        <cbs.hreye.utilities.CustomTextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginStart="@dimen/margin"
+            android:background="@color/colorPrimary"
+            android:layout_gravity="center|start"
+            android:text="@string/select_record"
+            android:textColor="@color/white"
+            android:textSize="@dimen/normal_text_plus" />
+
+        <ImageView
+            android:id="@+id/dlg_close"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center|end"
+            android:background="@drawable/close"
+            android:padding="@dimen/margin" />
+
+    </FrameLayout>
+
+
+    <SearchView
+        android:id="@+id/search_client"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:imeOptions="actionSearch" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/gray" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ListView
+            android:id="@+id/customer_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/margin"
+            android:dividerHeight="@dimen/margin" />
+
+        <ImageView
+            android:id="@+id/iv_scroll_up"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center"
+            android:layout_marginBottom="@dimen/margin_plus"
+            android:background="@mipmap/ic_arrow_up"
+            android:contentDescription="@string/up_scroll" />
+
+    </FrameLayout>
+
+</LinearLayout>

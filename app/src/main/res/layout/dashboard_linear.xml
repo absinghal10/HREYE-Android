@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/ll_root"
+    android:orientation="vertical">
+
+
+    <LinearLayout
+        android:id="@+id/dsProfile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_gradient"
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/iv_profile"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/margin_top"
+                android:src="@drawable/profile" />
+<!--
+            <TextView
+                android:id="@+id/tv_notification"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:padding="@dimen/margin"
+                android:drawableLeft="@drawable/notification_icon"
+                android:textColor="@color/white" />-->
+
+        </FrameLayout>
+
+        <cbs.hreye.utilities.CustomTextView
+            android:id="@+id/ass_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/margin_top"
+            android:layout_marginTop="@dimen/margin_top"
+            android:gravity="center"
+            android:text="Jawed Warsi"
+            android:textColor="@color/white"
+            android:textSize="@dimen/normal_text" />
+    </LinearLayout>
+
+    <cbs.hreye.utilities.CustomTextView
+        android:id="@+id/marque_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/custom_layout"
+        android:ellipsize="marquee"
+        android:marqueeRepeatLimit="marquee_forever"
+        android:padding="@dimen/margin_plus"
+        android:scrollHorizontally="true"
+        android:singleLine="true"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="@dimen/normal_text"
+        android:textStyle="bold" />
+
+    <include layout="@layout/dashboard_item" />
+
+</LinearLayout>

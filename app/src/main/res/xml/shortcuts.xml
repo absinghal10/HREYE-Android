@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shortcuts xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- SETTINGS SHORTCUT -->
+    <shortcut
+        android:shortcutId="daily_activity"
+        android:enabled="true"
+        android:icon="@mipmap/activityy"
+        android:shortcutShortLabel="@string/shortcut_daily_activity"
+        android:shortcutLongLabel="@string/shortcut_daily_activity">
+
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetPackage="cbs.hreye"
+            android:targetClass="cbs.hreye.activities.DailyActivity"/>
+    </shortcut>
+
+
+    <shortcut
+        android:shortcutId="leave_apply"
+        android:enabled="true"
+        android:icon="@mipmap/leave"
+        android:shortcutShortLabel="@string/shortcut_daily_leave"
+        android:shortcutLongLabel="@string/shortcut_daily_leave">
+
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetPackage="cbs.hreye"
+            android:targetClass="cbs.hreye.activities.Leave"/>
+    </shortcut>
+
+
+</shortcuts>

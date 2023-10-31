@@ -1,0 +1,185 @@
+<resources>
+    <string name="app_name">HR Eye</string>
+    <string name="title_item_detail">Item Detail</string>
+    <string name="please_wait">Please wait&#8230;</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_leave_list">LeaveList</string>
+    <string name="title_activity_authorize_leave">AuthorizeLeave</string>
+    <string name="net">Internet/wi-fi not available</string>
+
+    <!--Login-->
+    <string name="user_name">User name</string>
+    <string name="user_id">User Id</string>
+    <string name="password">Password</string>
+    <string name="server_ip">Server IP</string>
+    <string name="login">Login</string>
+    <string name="for_any_enquiry"><a href="http://support.cogniscient.in/">For Support \nVisit us at <u>support.cogniscient.in</u></a></string>
+
+    <!--Dashboard-->
+    <string name="my_profile">My Profile</string>
+    <string name="daily_activity">Daily Activity</string>
+    <string name="leave">Leave</string>
+    <string name="leaves">Leaves</string>
+    <string name="leave_cal">Leave Calendar</string>
+    <string name="leave_status">Leave Status</string>
+    <string name="holiday_list">Holiday List</string>
+    <string name="birthday">Birthday</string>
+    <string name="new_joining">New Joining</string>
+    <string name="atten_records">Attendance Records</string>
+    <string name="salary_slip">Salary Slip</string>
+    <string name="auth_activity">Authorized Activity</string>
+    <string name="fresh_activity">Fresh Activity</string>
+    <string name="grant_rejection">Grant/Rejection"</string>
+    <string name="hr_news">HR News"</string>
+
+    <!--Profile-->
+    <string name="ass_code">Associate Code</string>
+    <string name="ass_name_full">Associate Name</string>
+    <string name="email_id">Email ID</string>
+    <string name="camera">Camera</string>
+    <string name="gallery">Gallery</string>
+    <string name="remove">Remove</string>
+    <string name="old_pass">Old Password</string>
+    <string name="new_pass">New Password</string>
+    <string name="retype_pass">Retype Password</string>
+
+
+    <!--Daily activity-->
+    <string name="search_activity">Search activity</string>
+    <string name="clear">Clear</string>
+    <string name="click_to_add_row">-- Click on plus(+) button --\n-- To fill your Daily Activity Report--</string>
+    <string name="customer_id">Customer ID</string>
+    <string name="activity_id">Activity ID</string>
+    <string name="hours">Hours</string>
+    <string name="status">Status</string>
+    <string name="activity_details">Activity Details</string>
+    <string name="remark">Remarks</string>
+    <string name="activities">Activities</string>
+    <string name="authorize">Authorize</string>
+    <string name="modify">Modify</string>
+
+    <!--Leave details-->
+    <string name="ass_name">Ass. Name</string>
+    <string name="rpt_name">Rpt. Person</string>
+    <string name="leave_type">Leave type</string>
+    <string name="balanced">Balanced</string>
+    <string name="from_date">From Date</string>
+    <string name="to_date">To Date</string>
+    <string name="session">Session</string>
+    <string name="emp_reason">Employee Reason *</string>
+    <string name="apply_leave">Apply Leave</string>
+    <string name="emp_code">Emp Code</string>
+    <string name="apply_date">Apply Date</string>
+    <string name="duration">Duration</string>
+    <string name="total_days">Total Days</string>
+    <string name="reason">Reason</string>
+    <string name="remark_star">Remarks *</string>
+    <string name="modify_leave">Modify Leave</string>
+    <string name="authorize_leave">Authorize Leave</string>
+    <string name="submit_leave">Submit Leave</string>
+    <string name="submit">Submit</string>
+    <string name="leave_pending">Leave Pending</string>
+    <string name="leave_modified">Leave modified successfully</string>
+    <string name="leave_authorized">Leave authorized successfully</string>
+    <string name="leave_submitted">Leave submitted successfully</string>
+    <string name="leave_apply">Leave applied successfully</string>
+
+    <!--birthday/newJoining-->
+    <string name="date">Date</string>
+    <string name="occasion">Occasion</string>
+    <string name="email">Email</string>
+    <string name="mobile_no">Mobile No.</string>
+    <string name="day">Day</string>
+
+
+    <!--Attendance-->
+    <string name="attendance">Attendance</string>
+    <string name="in_time">IN TIME</string>
+    <string name="out_time">OUT TIME</string>
+    <string name="save">Save</string>
+    <string name="select_month">Select Month</string>
+    <string name="in_time_records">In Time Record</string>
+    <string name="punch_time_records">Punch Time Record</string>
+    <string name="re_punch">Repunch</string>
+    <string name="out_time_records">Out Time Record</string>
+
+    <!--pay slip-->
+    <string name="personal_details">Personal Details</string>
+    <string name="emp_ID">Emp ID</string>
+    <string name="name">Name</string>
+    <string name="designation">Designation</string>
+    <string name="pf_acc_no">PF A/C No</string>
+    <string name="uan_no">UAN No</string>
+    <string name="department">Department</string>
+    <string name="location">Location</string>
+    <string name="payable_days">Payable Days</string>
+    <string name="esi_ac_no">ESI A/C No</string>
+    <string name="bank_name">Bank Name</string>
+    <string name="bank_ac_no">Bank A/C No</string>
+    <string name="earnings">Earnings</string>
+    <string name="gross_amt">Gross Amt</string>
+    <string name="amount">Amount</string>
+    <string name="deductions">Deductions</string>
+    <string name="Total">Total</string>
+    <string name="net_payable">Net Payable :</string>
+    <string name="amt_in_words">Amt in Words :\u0020</string>
+
+    <!--Notifications-->
+    <string name="dummy_txt">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged</string>
+    <string name="notifications">Notifications</string>
+    <string name="notification">Notification</string>
+    <string name="delete">Delete</string>
+    <string name="read_more">Read more</string>
+    <string name="read_less">Read less</string>
+    <string name="shortcut_daily_activity">Daily Activity</string>
+    <string name="shortcut_daily_leave">Leave Apply</string>
+    <string name="no_record">No Record !</string>
+    <string name="select_record">Select customer</string>
+    <string name="add_to_list">ADD TO LIST</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="change_password">Change Password</string>
+    <string name="hr_eye">HR EYE</string>
+    <string name="reporting_person">Reporting Person</string>
+    <string name="send_email">SEND EMAIL</string>
+
+    <string name="activity_authorized">Activity Authorized successfully</string>
+    <string name="activity_modified">Activity Modified successfully</string>
+    <string name="add_to_activity">Sure to add Activity?</string>
+    <string name="okay">Okay</string>
+    <string name="edit_list">EDIT TO LIST</string>
+    <string name="punched">Punched</string>
+    <string name="punch">Punch</string>
+    <string name="re_punched">Re Punched</string>
+    <string name="add">Add</string>
+    <string name="no_data">No Data</string>
+    <string name="update">Update</string>
+    <string name="select_p_photo">Select profile photo</string>
+    <string name="are_you_sure_logout">Are you sure want to logout?</string>
+    <string name="please_update_app">Old version has been obsolete \nPlease update your app.</string>
+    <string name="enter_minimum_record">Please enter minimum one record</string>
+    <string name="want_auth_modify">Do you want to Authorize/Modify?</string>
+    <string name="sure_cancel_leave">Sure to cancel leave?</string>
+    <string name="choose_action">Choose your action !</string>
+    <string name="leave_canceled_suc">Leave cancelled successfully</string>
+    <string name="authorized">Authorized</string>
+    <string name="fresh">Fresh</string>
+    <string name="not_available">Not available</string>
+    <string name="leave_grant_rejection">Leave Grant/Rejection</string>
+    <string name="cancel">Cancel</string>
+    <string name="customer">Customer *</string>
+    <string name="project_id">Project ID *</string>
+    <string name="activity_id_star">Activity ID *</string>
+    <string name="activity_details_star">Activity Details *</string>
+    <string name="up_scroll">Up Scroll</string>
+    <string name="update_location">Your location is updating here. please wait up to 20 seconds</string>
+    <string name="forgot_password">Forgot Password?</string>
+    <string name="forgot_password1">Forgot Password</string>
+    <string name="forgetPasswordText">A confirmation mail will be sent to your registered email address to allow you to reset new password.</string>
+    <string name="sentForgetPasswordText">Please check your email Mo******@co******.in for reset password link to set your new password</string>
+    <string name="update_profile">Update profile</string>
+    <string name="attach_file">Attach File</string>
+    <string name="remarks">Remarks</string>
+</resources>

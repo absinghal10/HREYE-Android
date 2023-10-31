@@ -1,0 +1,347 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:id="@+id/ll_root"
+    android:background="#FFFFFF">
+
+    <include
+        layout="@layout/toolbar_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="@dimen/margin_top">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin_top"
+                        android:orientation="horizontal">
+
+                        <cbs.hreye.utilities.CustomTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2"
+                            android:gravity="start"
+                            android:text="@string/ass_name"
+                            android:textColor="@color/DarkBlue"
+                            android:textSize="@dimen/normal_text" />
+
+                        <EditText
+                            android:id="@+id/txt_emp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:cursorVisible="false"
+                            android:focusable="false"
+                            android:gravity="start"
+                            android:textColor="@color/DarkBlue"
+                            android:textSize="@dimen/normal_text" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <cbs.hreye.utilities.CustomTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2"
+                            android:gravity="start"
+                            android:text="@string/rpt_name"
+                            android:textColor="@color/DarkBlue"
+                            android:textSize="@dimen/normal_text" />
+
+                        <EditText
+                            android:id="@+id/txt_rep"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:cursorVisible="false"
+                            android:focusable="false"
+                            android:gravity="start"
+                            android:textColor="@color/DarkBlue"
+                            android:textSize="@dimen/normal_text" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="wrap_content"
+                    android:layout_height="2dp"
+                    android:layout_marginLeft="@dimen/margin"
+                    android:layout_marginRight="@dimen/margin"
+                    android:background="@color/colorPrimary" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="@dimen/margin_top">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <cbs.hreye.utilities.CustomTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="bottom"
+                            android:layout_weight="1"
+                            android:gravity="center|start"
+                            android:text="@string/leave_type"
+                            android:textColor="@color/DarkBlue"
+                            android:textSize="@dimen/normal_text" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <Spinner
+                                android:id="@+id/spn_auth_type"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content" />
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:background="@color/gray" />
+
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <cbs.hreye.utilities.CustomTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="start|center"
+                            android:text="@string/balanced"
+                            android:textColor="@color/DarkBlue"
+                            android:textSize="@dimen/normal_text" />
+
+                        <EditText
+                            android:id="@+id/et_bal"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/margin_top"
+                            android:layout_weight="1"
+                            android:cursorVisible="false"
+                            android:focusable="false"
+                            android:gravity="start"
+                            android:padding="@dimen/margin_top"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/normal_text" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin_top"
+                        android:orientation="horizontal">
+
+                        <cbs.hreye.utilities.CustomTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="start"
+                            android:text="@string/from_date"
+                            android:textColor="@color/DarkBlue"
+                            android:textSize="@dimen/normal_text" />
+
+                        <cbs.hreye.utilities.CustomTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/margin_top"
+                            android:layout_weight="1"
+                            android:gravity="start"
+                            android:text="@string/to_date"
+                            android:textColor="@color/DarkBlue"
+                            android:textSize="@dimen/normal_text" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/txt_auth_from"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:background="@drawable/rounded_layout"
+                            android:gravity="center"
+                            android:padding="@dimen/margin_top"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/normal_text" />
+
+                        <TextView
+                            android:id="@+id/txt_auth_to"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/margin_top"
+                            android:layout_weight="1"
+                            android:background="@drawable/rounded_layout"
+                            android:gravity="center"
+                            android:padding="@dimen/margin_top"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/normal_text" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin_top"
+                        android:orientation="horizontal">
+
+                        <cbs.hreye.utilities.CustomTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="start"
+                            android:text="@string/session"
+                            android:textColor="@color/DarkBlue"
+                            android:textSize="@dimen/normal_text" />
+
+                        <cbs.hreye.utilities.CustomTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/margin_top"
+                            android:layout_weight="1"
+                            android:gravity="start"
+                            android:text="@string/session"
+                            android:textColor="@color/DarkBlue"
+                            android:textSize="@dimen/normal_text" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <Spinner
+                                android:id="@+id/spn_auth_one"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content" />
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:background="@color/gray" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/margin_top"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <Spinner
+                                android:id="@+id/spn_auth_two"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content" />
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:background="@color/gray" />
+
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <cbs.hreye.utilities.CustomTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin_top"
+                        android:text="@string/emp_reason"
+                        android:textColor="@color/DarkBlue"
+                        android:textSize="@dimen/normal_text" />
+
+                    <EditText
+                        android:id="@+id/et_auth_rsn"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:imeOptions="actionDone"
+                        android:inputType="text"
+                        android:textSize="@dimen/normal_text" />
+
+
+                    <!--<cbs.hreye.utilities.CustomTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin_top"
+                        android:text="Employee Reason"
+                        android:visibility="gone"
+                        android:textColor="@color/DarkBlue"
+                        android:textSize="@dimen/normal_text" />
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:cursorVisible="false"
+                        android:focusable="false"
+                        android:visibility="gone"
+                        android:gravity="right"
+                        android:imeOptions="actionDone"
+                        android:inputType="text"
+                        android:textSize="@dimen/normal_text" />-->
+
+
+                    <Button
+                        android:id="@+id/btn_lv_auth"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin_top"
+                        android:background="@drawable/custom_button"
+                        android:padding="@dimen/margin_top"
+                        android:textAllCaps="false"
+                        android:text="@string/apply_leave"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/normal_text"/>
+
+                </LinearLayout>
+            </LinearLayout>
+        </ScrollView>
+    </FrameLayout>
+    </ScrollView>
+</LinearLayout>

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ll_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/custom_layout"
+    android:gravity="center|top"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <cbs.hreye.utilities.CustomTextView
+            android:id="@+id/tv_customer_id"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.5"
+            android:gravity="start|top"
+            android:paddingLeft="@dimen/margin_top"
+            android:textColor="@color/blue"
+            android:textSize="@dimen/normal_text"  />
+
+        <TextView
+            android:id="@+id/tv_customer_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="start|top"
+            android:paddingLeft="@dimen/margin_top"
+            android:textColor="@color/black"
+            android:textSize="@dimen/normal_text" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <cbs.hreye.utilities.CustomTextView
+            android:id="@+id/tv_customer_pro_id"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.5"
+            android:gravity="start|top"
+            android:paddingLeft="@dimen/margin_top"
+            android:textColor="@color/blue"
+            android:textSize="@dimen/normal_text" />
+
+        <TextView
+            android:id="@+id/tv_customer_pro_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="start|top"
+            android:paddingLeft="@dimen/margin_top"
+            android:textColor="@color/black"
+            android:textSize="@dimen/normal_text" />
+
+    </LinearLayout>
+</LinearLayout>

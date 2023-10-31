@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/root_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="@dimen/normal_text_minus"
+            android:src="@drawable/profile" />
+
+        <cbs.hreye.utilities.CustomTextView
+            android:id="@+id/ass_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/normal_text_minus"
+            android:layout_marginTop="@dimen/margin_top"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:textSize="@dimen/normal_text_minus" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/marque_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/custom_layout"
+        android:ellipsize="marquee"
+        android:marqueeRepeatLimit="marquee_forever"
+        android:padding="@dimen/normal_text_minus"
+        android:scrollHorizontally="true"
+        android:singleLine="true"
+        android:textColor="@color/colorPrimary"
+        android:textSize="@dimen/normal_text_minus"
+        android:textStyle="bold" />
+
+    <!--<ScrollView-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="0dp"-->
+    <!--android:layout_gravity="center"-->
+    <!--android:layout_weight="1">-->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <GridView
+            android:id="@+id/grid"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:columnWidth="100dp"
+            android:gravity="center"
+            android:numColumns="auto_fit"
+            android:stretchMode="columnWidth" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/logout"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:gravity="center"
+        android:padding="@dimen/margin_top"
+        android:text="LOG OUT"
+        android:textColor="@color/white"
+        android:textSize="@dimen/normal_text_minus"
+        android:textStyle="bold" />
+</LinearLayout>

@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/margin_top">
+
+    <LinearLayout
+        android:id="@+id/ll_message_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <RelativeLayout
+                android:id="@+id/icon_container"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+               <!-- <RelativeLayout
+                    android:id="@+id/icon_back"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fillAfter="false"
+                    android:fillEnabled="false">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/rounded" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:src="@drawable/select_notis" />
+                </RelativeLayout>-->
+
+                <RelativeLayout
+                    android:id="@+id/icon_front"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fillAfter="false"
+                    android:fillEnabled="false">
+
+                    <ImageView
+                        android:id="@+id/icon_profile"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/rounded_select"/>
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/icon_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:textColor="@android:color/white"
+                        android:textSize="22sp"
+                        android:textStyle="bold"
+                        app:fontFamily="@font/audiowide" />
+                </RelativeLayout>
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/ll_message_read_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="@dimen/margin"
+            android:orientation="vertical">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <cbs.hreye.utilities.CustomTextView
+                    android:id="@+id/tv_tittle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ellipsize="end"
+                    android:text="@string/leave_pending"
+                    android:textColor="@color/DarkBlue"
+                    android:maxLines="2"
+                    android:textSize="@dimen/normal_text"
+                    android:textStyle="normal" />
+
+                <TextView
+                    android:id="@+id/tv_date_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="12:34 PM"
+                    android:textColor="@color/DarkBlue"
+                    android:textSize="@dimen/smallest_text" />
+
+            </LinearLayout>
+
+
+            <TextView
+                android:id="@+id/tv_desc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:maxLines="2"
+                android:text="@string/dummy_txt"
+                android:textColor="@color/black"
+                android:textSize="@dimen/normal_text_minus"
+                android:textStyle="normal" />
+
+
+            <TextView
+                android:id="@+id/tv_read_more"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textColor="@color/DarkBlue"
+                android:textSize="@dimen/normal_text_minus1"
+                android:textStyle="normal"
+                android:visibility="visible"/>
+
+            <TextView
+                android:id="@+id/tv_read_less"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/read_less"
+                android:textColor="@color/DarkBlue"
+                android:textSize="@dimen/normal_text_minus1"
+                android:textStyle="normal"
+                android:visibility="gone"/>
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</LinearLayout>

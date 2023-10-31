@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/white">
+
+    <LinearLayout
+        android:id="@+id/ll_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:orientation="horizontal">
+
+        <cbs.hreye.utilities.CustomTextView
+            android:id="@+id/tv_daily_act"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="start|center"
+            android:layout_weight="1"
+            android:padding="@dimen/margin_top"
+            android:text="DAILY ACTIVITY"
+            android:textColor="@color/white"
+            android:textSize="@dimen/normal_text"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/dlg_cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/close"
+            android:padding="20dp"
+            android:gravity="end|center" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ll_header"
+        android:orientation="vertical"
+        android:padding="@dimen/margin_top">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <cbs.hreye.utilities.CustomTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.5"
+                        android:text="Customer *"
+                        android:textColor="@color/DarkBlue"
+                        android:textSize="@dimen/normal_text" />
+
+                    <AutoCompleteTextView
+                        android:id="@+id/et_customer"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:focusable="false"
+                        android:imeOptions="actionNext"
+                        android:inputType="text"
+                        android:textSize="@dimen/normal_text" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <cbs.hreye.utilities.CustomTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.5"
+                        android:text="Project ID *"
+                        android:textColor="@color/DarkBlue"
+                        android:textSize="@dimen/normal_text" />
+
+                    <EditText
+                        android:id="@+id/et_project_id"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:focusable="false"
+                        android:imeOptions="actionNext"
+                        android:inputType="text"
+                        android:textSize="@dimen/normal_text" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <cbs.hreye.utilities.CustomTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1.5"
+                        android:text="Activity Id *"
+                        android:textColor="@color/DarkBlue"
+                        android:textSize="@dimen/normal_text" />
+
+                    <Spinner
+                        android:id="@+id/spn_auth_activity"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/gray" />
+                </LinearLayout>
+
+                  <cbs.hreye.utilities.CustomTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_top"
+                    android:text="Activity Details *"
+                    android:textColor="@color/DarkBlue"
+                    android:textSize="@dimen/normal_text" />
+
+                <EditText
+                    android:id="@+id/et_details"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:imeOptions="actionNext"
+                    android:inputType="text"
+                    android:textSize="@dimen/normal_text" />
+
+                <cbs.hreye.utilities.CustomTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_top"
+                    android:text="@string/remarks"
+                    android:textColor="@color/DarkBlue"
+                    android:textSize="@dimen/normal_text" />
+
+                <EditText
+                    android:id="@+id/et_daily_act_remarks"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:imeOptions="actionDone"
+                    android:inputType="text"
+                    android:textSize="@dimen/normal_text" />
+
+                <Button
+                    android:id="@+id/btn_add"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_top"
+                    android:background="@drawable/custom_button"
+                    android:padding="@dimen/margin_top"
+                    android:text="@string/add_to_list"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/normal_text"
+                    android:textStyle="bold" />
+            </LinearLayout>
+        </ScrollView>
+
+    </LinearLayout>
+</RelativeLayout>
