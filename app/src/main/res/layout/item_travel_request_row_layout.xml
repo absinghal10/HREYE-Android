@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <LinearLayout
+        android:id="@+id/item_travel_request_root_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="@dimen/margin_top">
+
+            <cbs.hreye.utilities.CustomTextView
+                android:id="@+id/travel_request_tran_no_textview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.2"
+                android:gravity="start"
+                android:padding="@dimen/margin_top"
+                android:textColor="@color/black"
+                android:textSize="@dimen/normal_text"
+                android:textStyle="bold" />
+
+            <cbs.hreye.utilities.CustomTextView
+                android:id="@+id/travel_request_date_textview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="start"
+                android:padding="@dimen/margin_top"
+                android:textColor="@color/black"
+                android:textSize="@dimen/normal_text"
+                android:textStyle="bold" />
+
+            <cbs.hreye.utilities.CustomTextView
+                android:id="@+id/travel_request_doc_status_textview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="start"
+                android:padding="@dimen/margin_top"
+                android:textColor="@color/black"
+                android:textSize="@dimen/normal_text"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/DarkBlue" />
+    </LinearLayout>
+
+</layout>

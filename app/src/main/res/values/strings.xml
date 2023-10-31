@@ -29,6 +29,8 @@
     <string name="new_joining">New Joining</string>
     <string name="atten_records">Attendance Records</string>
     <string name="salary_slip">Salary Slip</string>
+    <string name="travel_request_textview">Travel Request</string>
+    <string name="travel_granted_or_rejected_textview">Travel Granted/Rejected</string>
     <string name="auth_activity">Authorized Activity</string>
     <string name="fresh_activity">Fresh Activity</string>
     <string name="grant_rejection">Grant/Rejection"</string>
@@ -182,4 +184,25 @@
     <string name="update_profile">Update profile</string>
     <string name="attach_file">Attach File</string>
     <string name="remarks">Remarks</string>
+
+<!--    Travel Request Detail Screen TextView-->
+    <!-- Labels for Travel Request Detail Screen -->
+    <string name="travel_request_detail_sr_no">Sr No</string>
+    <string name="travel_request_detail_associate_code">Associate Code</string>
+    <string name="travel_request_detail_name">Name</string>
+    <string name="travel_request_detail_tran_no">Tran No</string>
+    <string name="travel_request_detail_travel_mode">Travel Mode</string>
+    <string name="travel_request_detail_from_date">From Date</string>
+    <string name="travel_request_detail_to_date">To Date</string>
+    <string name="travel_request_detail_hotel_required">Hotel Required</string>
+    <string name="travel_request_detail_hotel_from_date">Hotel From Date</string>
+    <string name="travel_request_detail_hotel_to_date">Hotel To Date</string>
+    <string name="travel_request_detail_travel_from">Travel From</string>
+    <string name="travel_request_detail_travel_to">Travel To</string>
+    <string name="travel_request_detail_gr_remarks">G/R Remarks</string>
+    <string name="travel_request_detail_desk_remarks">Desk Remarks</string>
+    <string name="travel_request_detail_status">Status</string>
+
+
+
 </resources>

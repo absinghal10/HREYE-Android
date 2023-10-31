@@ -36,6 +36,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import cbs.hreye.R;
+import cbs.hreye.activities.travelRequest.TravelRequestActivity;
 import cbs.hreye.databinding.ActivityDashboardBinding;
 import cbs.hreye.utilities.CommonMethods;
 import cbs.hreye.utilities.ConsURL;
@@ -178,6 +179,25 @@ public class DashBoardMain extends AppCompatActivity implements ActivityCompat.O
                 overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_left);
             }
         });
+
+        // Add Two New Field Travel Request and travel Granted/Rejected
+        activityDashboardBinding.dashboardItem.travelRequestRootLinearLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(context, TravelRequestActivity.class));
+                overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_left);
+            }
+        });
+
+
+        activityDashboardBinding.dashboardItem.travelGrantedOrRejectedRootLinearLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+//                startActivity(new Intent(context, PaySlipActivity.class));
+//                overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_left);
+            }
+        });
+
     }
 
     private void hrNewsApi() {
