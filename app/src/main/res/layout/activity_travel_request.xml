@@ -16,6 +16,60 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
+        <LinearLayout
+            android:id="@+id/search_view_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/toolbar_header_layout"
+            android:layout_marginTop="@dimen/margin_top"
+            android:layout_marginLeft="@dimen/margin"
+            android:layout_marginRight="@dimen/margin"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/et_search"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/rounded_layout"
+                android:gravity="center"
+                android:hint="@string/search_travel_request"
+                android:padding="@dimen/margin_top"
+                android:textSize="@dimen/normal_text" />
+
+            <cbs.hreye.utilities.CustomTextView
+                android:id="@+id/txt_clear"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="@dimen/margin"
+                android:layout_weight="1.5"
+                android:background="@drawable/custom_button"
+                android:gravity="center"
+                android:padding="@dimen/margin_top"
+                android:text="@string/clear"
+                android:textColor="@color/white"
+                android:textSize="@dimen/normal_text" />
+
+        </LinearLayout>
+
+        <SearchView
+            android:id="@+id/search_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin_top"
+            android:layout_marginRight="@dimen/margin_top"
+            android:queryHint="Search Daily Activity"
+            android:visibility="gone" />
+
+
+        <View
+            android:id="@+id/bottom_horizontal_line_view"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="@dimen/margin_top"
+            android:layout_below="@+id/search_view_layout"
+            android:background="@color/view_color" />
+
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/travel_request_recycler_view"
@@ -23,7 +77,7 @@
             android:layout_height="match_parent"
             android:layout_margin="@dimen/padding_10"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            android:layout_below="@+id/toolbar_header_layout"
+            android:layout_below="@+id/bottom_horizontal_line_view"
             tools:listitem="@layout/item_travel_request_row_layout" />
 
     </RelativeLayout>
