@@ -32,6 +32,9 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="m">
         <activity
+            android:name=".activities.travelRequest.AddTravelRequestFormDataActivity"
+            android:exported="false" />
+        <activity
             android:name=".activities.travelRequest.TravelRequestDataDetailActivity"
             android:exported="false" />
         <activity

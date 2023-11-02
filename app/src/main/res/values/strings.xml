@@ -185,7 +185,7 @@
     <string name="attach_file">Attach File</string>
     <string name="remarks">Remarks</string>
 
-<!--    Travel Request Detail Screen TextView-->
+    <!--    Travel Request Detail Screen TextView-->
     <!-- Labels for Travel Request Detail Screen -->
     <string name="travel_request_detail_sr_no">Sr No</string>
     <string name="travel_request_detail_associate_code">Associate Code</string>
@@ -204,6 +204,26 @@
     <string name="travel_request_detail_status">Status</string>
     <string name="search_travel_request">Search travel request</string>
 
+
+    <!--    Travel Request Input Dialog text-->
+
+    <string name="travel_request_type_of_employee_text">Type Of Employee *</string>
+    <string name="travel_request_associate_code">Associate Code *</string>
+    <string name="travel_request_associate_name">Associate Name *</string>
+    <string name="travel_request_name_as_per_doc">Name as per Govt. Doc *</string>
+    <string name="travel_request_age">Age *</string>
+    <string name="travel_request_age_text">Trip *</string>
+    <string name="travel_request_travel_date_text">Travel Date *</string>
+    <string name="travel_request_return_date_text">Return Date *</string>
+    <string name="travel_request_travel_mode_text">Travel Mode *</string>
+    <string name="travel_request_travel_reason_text">Reason for Travel *</string>
+    <string name="travel_request_hotel_required_text">Hotel Required *</string>
+    <string name="travel_request_hotel_from_text">Hotel from *</string>
+    <string name="travel_request_hotel_to_text">Hotel To *</string>
+    <string name="travel_request_location_from_text">From Location *</string>
+    <string name="travel_request_location_to_text">To Location *</string>
+    <string name="travel_request_passport_text">Passport *</string>
+    <string name="travel_request_validity_text">Validity *</string>
 
 
 </resources>

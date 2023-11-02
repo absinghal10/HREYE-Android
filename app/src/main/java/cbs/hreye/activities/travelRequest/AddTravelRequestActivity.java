@@ -3,8 +3,11 @@ package cbs.hreye.activities.travelRequest;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.Dialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -45,7 +48,6 @@ public class AddTravelRequestActivity extends AppCompatActivity implements OnTra
         transactionDateTextView.setText(CommonMethods.changeDateFromyyyyMMdd(CommonMethods.mobileCurrentDate()));
 
         travelRequestPostList =new ArrayList<>();
-        // Add dummy data to the ArrayList
         travelRequestPostList.add(new TravelRequestResponseData("1", "ABC123", "Abhishek","TR123", "01/10/2023", "Air", "2023-11-01", "2023-11-10", "Yes", "2023-11-01", "2023-11-10", "City A", "City B", "Approved", "Great trip!", "Approved"));
         travelRequestPostList.add(new TravelRequestResponseData("2", "XYZ456","Abhishek", "TR124", "02/10/2023", "Train", "2023-12-01", "2023-12-15", "No", "", "", "City X", "City Y", "Pending", "Review needed", "Pending"));
         travelRequestPostList.add(new TravelRequestResponseData("3", "DEF789","Abhishek", "TR125", "03/11/2023", "Car", "2023-12-20", "2023-12-27", "Yes", "2023-12-20", "2023-12-27", "City C", "City D", "Rejected", "Not enough information", "Rejected"));
@@ -80,7 +82,8 @@ public class AddTravelRequestActivity extends AppCompatActivity implements OnTra
         toolbarAddDataImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(AddTravelRequestActivity.this,"Data",Toast.LENGTH_SHORT).show();
+                Intent intent=new Intent(AddTravelRequestActivity.this, AddTravelRequestFormDataActivity.class);
+                startActivity(intent);
             }
         });
 
