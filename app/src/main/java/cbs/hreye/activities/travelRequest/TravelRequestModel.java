@@ -1,27 +1,49 @@
 package cbs.hreye.activities.travelRequest;
 
+import com.google.gson.annotations.SerializedName;
+
 public class TravelRequestModel {
 
-    String srNo;
 
+    @SerializedName("srNo")
+    String srNo;
+    @SerializedName("transactionNo")
     String transactionNo;
+    @SerializedName("typeOfEmpolyee")
     String typeOfEmpolyee;
+    @SerializedName("associateCode")
     String associateCode;
+    @SerializedName("associateName")
     String associateName;
+    @SerializedName("nameAsPerGovtDoc")
     String nameAsPerGovtDoc;
+    @SerializedName("age")
     String age;
+    @SerializedName("customer")
     String customer;
+    @SerializedName("trip")
     String trip;
+    @SerializedName("travelData")
     String travelData;
+    @SerializedName("returnDate")
     String returnDate;
+    @SerializedName("travelMode")
     String travelMode;
+    @SerializedName("reasonForTravel")
     String reasonForTravel;
+    @SerializedName("hotelRequired")
     String hotelRequired;
+    @SerializedName("hotelfrom")
     String 	hotelfrom;
+    @SerializedName("hotelto")
     String hotelto;
+    @SerializedName("fromLocation")
     String fromLocation;
+    @SerializedName("ToLocation")
     String ToLocation;
+    @SerializedName("passport")
     String passport;
+    @SerializedName("validity")
     String validity;
 
 

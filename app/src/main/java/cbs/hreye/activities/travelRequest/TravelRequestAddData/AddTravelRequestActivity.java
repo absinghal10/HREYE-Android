@@ -1,13 +1,11 @@
-package cbs.hreye.activities.travelRequest;
+package cbs.hreye.activities.travelRequest.TravelRequestAddData;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.view.Window;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -16,9 +14,11 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 import cbs.hreye.R;
+import cbs.hreye.activities.travelRequest.AddTravelRequestFormData.AddTravelRequestFormDataActivity;
+import cbs.hreye.activities.travelRequest.TravelRequestResponseData;
 import cbs.hreye.utilities.CommonMethods;
 
-public class AddTravelRequestActivity extends AppCompatActivity implements OnTravelRequestItemClickListener {
+public class AddTravelRequestActivity extends AppCompatActivity implements OnTravelRequestItemClickListener,TravelRequestAddDataMvpView {
 
 
     private TextView toolBarHeaderTextView;
@@ -36,6 +36,8 @@ public class AddTravelRequestActivity extends AppCompatActivity implements OnTra
 
     private TravelRequestAddDataAdapter travelRequestAddDataAdapter;
 
+    private TravelRequestAddDataPresenter travelRequestAddDataPresenter;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +54,7 @@ public class AddTravelRequestActivity extends AppCompatActivity implements OnTra
         travelRequestPostList.add(new TravelRequestResponseData("2", "XYZ456","Abhishek", "TR124", "02/10/2023", "Train", "2023-12-01", "2023-12-15", "No", "", "", "City X", "City Y", "Pending", "Review needed", "Pending"));
         travelRequestPostList.add(new TravelRequestResponseData("3", "DEF789","Abhishek", "TR125", "03/11/2023", "Car", "2023-12-20", "2023-12-27", "Yes", "2023-12-20", "2023-12-27", "City C", "City D", "Rejected", "Not enough information", "Rejected"));
 
+        travelRequestAddDataPresenter=new TravelRequestAddDataPresenter(this,AddTravelRequestActivity.this);
         travelRequestAddDataAdapter=new TravelRequestAddDataAdapter(this,travelRequestPostList,AddTravelRequestActivity.this);
         travelRequestPostDataRecyclerView.setAdapter(travelRequestAddDataAdapter);
 
@@ -103,5 +106,15 @@ public class AddTravelRequestActivity extends AppCompatActivity implements OnTra
     }
 
 
+    @Override
+    public void postTravelRequestDataStatus(String status) {
+        if(status.equalsIgnoreCase("Success")){
+            Toast.makeText(this,"Data insert successfully",Toast.LENGTH_SHORT).show();
+        }
+    }
 
+    @Override
+    public void errorMessage(String msg) {
+        Toast.makeText(this,msg,Toast.LENGTH_SHORT).show();
+    }
 }

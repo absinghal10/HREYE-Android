@@ -3,24 +3,43 @@ package cbs.hreye.activities.travelRequest;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.io.Serializable;
 
 public class TravelRequestResponseData implements Parcelable {
+    @SerializedName("srNo")
     String SrNo;
+    @SerializedName("associateCode")
     String associateCode;
+    @SerializedName("name")
     String name;
+    @SerializedName("transactionNo")
     String transactionNo;
+    @SerializedName("transactionDate")
     String transactionDate;
+    @SerializedName("travelMode")
     String travelMode;
+    @SerializedName("fromDate")
     String fromDate;
+    @SerializedName("toDate")
     String toDate;
+
+    @SerializedName("hotelRequired")
     String hotelRequired;
+    @SerializedName("hotelFromDate")
     String hotelFromDate;
+    @SerializedName("hotelToDate")
     String hotelToDate;
+    @SerializedName("travelFrom")
     String travelFrom;
+    @SerializedName("travelTo")
     String travelTo;
+    @SerializedName("grantOrRejectRemarks")
     String grantOrRejectRemarks;
+    @SerializedName("deskRemarks")
     String deskRemarks;
+    @SerializedName("status")
     String status;
 
     public TravelRequestResponseData(String srNo, String associateCode, String name, String transactionNo, String transactionDate, String travelMode, String fromDate, String toDate, String hotelRequired, String hotelFromDate, String hotelToDate, String travelFrom, String travelTo, String grantOrRejectRemarks, String deskRemarks, String status) {

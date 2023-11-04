@@ -192,8 +192,8 @@
     <string name="travel_request_detail_name">Name</string>
     <string name="travel_request_detail_tran_no">Tran No</string>
     <string name="travel_request_detail_travel_mode">Travel Mode</string>
-    <string name="travel_request_detail_from_date">From Date</string>
-    <string name="travel_request_detail_to_date">To Date</string>
+    <string name="travel_request_detail_from_date">Travel Date</string>
+    <string name="travel_request_detail_to_date">Return Date</string>
     <string name="travel_request_detail_hotel_required">Hotel Required</string>
     <string name="travel_request_detail_hotel_from_date">Hotel From Date</string>
     <string name="travel_request_detail_hotel_to_date">Hotel To Date</string>

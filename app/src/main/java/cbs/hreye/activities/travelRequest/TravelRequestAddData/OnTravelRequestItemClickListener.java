@@ -1,4 +1,4 @@
-package cbs.hreye.activities.travelRequest;
+package cbs.hreye.activities.travelRequest.TravelRequestAddData;
 
 public interface OnTravelRequestItemClickListener {
 

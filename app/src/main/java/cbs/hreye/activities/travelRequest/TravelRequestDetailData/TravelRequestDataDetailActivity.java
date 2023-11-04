@@ -1,4 +1,4 @@
-package cbs.hreye.activities.travelRequest;
+package cbs.hreye.activities.travelRequest.TravelRequestDetailData;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
@@ -7,14 +7,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.List;
 
 import cbs.hreye.R;
+import cbs.hreye.activities.travelRequest.TravelRequestResponseData;
 
-public class TravelRequestDataDetailActivity extends AppCompatActivity {
+public class TravelRequestDataDetailActivity extends AppCompatActivity implements TravelRequestDataDetailMvpView {
 
     private TextView toolBarHeaderTextView;
     private ImageView backButtonImageView;
@@ -54,4 +54,13 @@ public class TravelRequestDataDetailActivity extends AppCompatActivity {
     }
 
 
+    @Override
+    public void getTravelRequestDetailData() {
+
+    }
+
+    @Override
+    public void errorMessage(String msg) {
+        Toast.makeText(this, msg,Toast.LENGTH_SHORT).show();
+    }
 }

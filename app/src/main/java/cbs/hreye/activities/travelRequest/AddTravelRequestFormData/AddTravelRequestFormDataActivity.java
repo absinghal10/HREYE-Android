@@ -1,4 +1,4 @@
-package cbs.hreye.activities.travelRequest;
+package cbs.hreye.activities.travelRequest.AddTravelRequestFormData;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -19,10 +19,13 @@ import android.widget.Toast;
 import java.util.Calendar;
 
 import cbs.hreye.R;
+import cbs.hreye.activities.travelRequest.TravelRequestAddData.TravelRequestAddDataMvpView;
+import cbs.hreye.activities.travelRequest.TravelRequestAddData.TravelRequestAddDataPresenter;
+import cbs.hreye.activities.travelRequest.TravelRequestModel;
 import cbs.hreye.utilities.CommonMethods;
 import cbs.hreye.utilities.CustomTextView;
 
-public class AddTravelRequestFormDataActivity extends AppCompatActivity {
+public class AddTravelRequestFormDataActivity extends AppCompatActivity implements TravelRequestAddFormDataMvpView {
 
     private TextView toolBarHeaderTextView;
     private ImageView backButtonImageView;
@@ -60,12 +63,17 @@ public class AddTravelRequestFormDataActivity extends AppCompatActivity {
     String[] hotelRequiredSpinnerData = {"Select","Yes","No"};
 
 
+    private TravelRequestAddFormDataPresenter travelRequestAddFormDataPresenter;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_travel_request_form_data);
         getViewByFindViewById();
         setToolBarTitle();
+
+        travelRequestAddFormDataPresenter=new TravelRequestAddFormDataPresenter(this,AddTravelRequestFormDataActivity.this);
 
         // Set up the spinners
         setupSpinner(tripSpinner, tripSpinnerData);
@@ -276,4 +284,13 @@ public class AddTravelRequestFormDataActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    public void getdata() {
+
+    }
+
+    @Override
+    public void errorMessage(String msg) {
+        Toast.makeText(this,msg,Toast.LENGTH_SHORT).show();
+    }
 }

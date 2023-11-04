@@ -36,7 +36,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import cbs.hreye.R;
-import cbs.hreye.activities.travelRequest.TravelRequestActivity;
+import cbs.hreye.activities.travelRequest.travelRequestData.TravelRequestActivity;
 import cbs.hreye.databinding.ActivityDashboardBinding;
 import cbs.hreye.utilities.CommonMethods;
 import cbs.hreye.utilities.ConsURL;

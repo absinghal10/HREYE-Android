@@ -1,53 +1,34 @@
-package cbs.hreye.activities.travelRequest;
+package cbs.hreye.activities.travelRequest.TravelRequestDetailData;
 
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import java.util.ArrayList;
-
 import cbs.hreye.R;
+import cbs.hreye.activities.travelRequest.TravelRequestResponseData;
 
-public class TravelRequestAddDataAdapter extends RecyclerView.Adapter<TravelRequestAddDataAdapter.MyViewHolder> {
+public class TravelRequestDataDetailAdapter extends RecyclerView.Adapter<TravelRequestDataDetailAdapter.MyViewHolder> {
     private Context context;
     private ArrayList<TravelRequestResponseData> travelRequestDataList;
 
-    private OnTravelRequestItemClickListener onTravelRequestItemClickListener;
-    public TravelRequestAddDataAdapter(Context context,  ArrayList<TravelRequestResponseData> travelRequestResponseData, OnTravelRequestItemClickListener onTravelRequestItemClickListener) {
+    public TravelRequestDataDetailAdapter(Context context,  ArrayList<TravelRequestResponseData> travelRequestResponseData) {
         this.context = context;
         this.travelRequestDataList = travelRequestResponseData;
-        this.onTravelRequestItemClickListener=onTravelRequestItemClickListener;
     }
-
-    public void replaceData(ArrayList<TravelRequestResponseData> travelRequestResponseDataArrayList){
-        // Create a new list to avoid modifying the original list
-        ArrayList<TravelRequestResponseData> newList = new ArrayList<>();
-
-        if (travelRequestResponseDataArrayList != null) {
-            newList.addAll(travelRequestResponseDataArrayList);
-        }
-
-        travelRequestDataList.clear();
-        travelRequestDataList.addAll(newList);
-        notifyDataSetChanged();
-    }
-
 
     @NonNull
     @Override
-    public TravelRequestAddDataAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.item_row_travel_request_add_layout,parent,false);
-        return new MyViewHolder(view);
+    public TravelRequestDataDetailAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.item_row_travel_request_detail_layout,parent,false);
+       return new MyViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull TravelRequestAddDataAdapter.MyViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull TravelRequestDataDetailAdapter.MyViewHolder holder, int position) {
         TravelRequestResponseData data = travelRequestDataList.get(position);
 
         holder.srNoTextView.setText("S.No :"+data.getSrNo());
@@ -65,23 +46,6 @@ public class TravelRequestAddDataAdapter extends RecyclerView.Adapter<TravelRequ
         holder.grRemarksTextView.setText(data.getGrantOrRejectRemarks());
         holder.deskRemarksTextView.setText(data.getDeskRemarks());
         holder.statusTextView.setText(data.getStatus());
-
-
-        holder.editDataImageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onTravelRequestItemClickListener.onEditItem(position);
-            }
-        });
-
-        holder.deleteDataImageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onTravelRequestItemClickListener.onDeleteItem(position);
-            }
-        });
-
-
     }
 
     @Override
@@ -106,8 +70,6 @@ public class TravelRequestAddDataAdapter extends RecyclerView.Adapter<TravelRequ
         TextView grRemarksTextView;
         TextView deskRemarksTextView;
         TextView statusTextView;
-        ImageView editDataImageView;
-        ImageView deleteDataImageView;
 
 
         public MyViewHolder(@NonNull View itemView) {
@@ -127,8 +89,9 @@ public class TravelRequestAddDataAdapter extends RecyclerView.Adapter<TravelRequ
             grRemarksTextView = itemView.findViewById(R.id.travel_request_detail_gr_remarks);
             deskRemarksTextView = itemView.findViewById(R.id.travel_request_detail_desk_remarks);
             statusTextView = itemView.findViewById(R.id.travel_request_detail_status);
-            editDataImageView = itemView.findViewById(R.id.travel_request_detail_edit_imageview);
-            deleteDataImageView = itemView.findViewById(R.id.travel_request_detail_delete_imageview);
         }
     }
 }
+
+
+

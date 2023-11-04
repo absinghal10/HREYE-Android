@@ -1,4 +1,4 @@
-package cbs.hreye.activities.travelRequest;
+package cbs.hreye.activities.travelRequest.travelRequestData;
 
 import android.content.Context;
 import android.content.Intent;
@@ -13,6 +13,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import cbs.hreye.R;
+import cbs.hreye.activities.travelRequest.TravelRequestDetailData.TravelRequestDataDetailActivity;
+import cbs.hreye.activities.travelRequest.TravelRequestResponseData;
 
 public class TravelRequestDataAdapter extends RecyclerView.Adapter<TravelRequestDataAdapter.MyViewHolder> implements Filterable {
     private Context context;
@@ -44,7 +46,7 @@ public class TravelRequestDataAdapter extends RecyclerView.Adapter<TravelRequest
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent travelRequestintent=new Intent(context,TravelRequestDataDetailActivity.class);
+                Intent travelRequestintent=new Intent(context, TravelRequestDataDetailActivity.class);
                 Bundle bundle = new Bundle();
                 bundle.putSerializable("travelRequestData",travelRequestDataList);
                 travelRequestintent.putExtras(bundle);

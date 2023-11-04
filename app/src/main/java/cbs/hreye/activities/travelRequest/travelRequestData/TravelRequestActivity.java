@@ -1,7 +1,6 @@
-package cbs.hreye.activities.travelRequest;
+package cbs.hreye.activities.travelRequest.travelRequestData;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.DatePickerDialog;
@@ -14,23 +13,24 @@ import android.widget.Filter;
 import android.widget.ImageView;
 import android.widget.SearchView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Calendar;
 
 import cbs.hreye.R;
-import cbs.hreye.activities.ActivityList;
-import cbs.hreye.adapters.ActivitiesAdapter;
+import cbs.hreye.activities.travelRequest.TravelRequestAddData.AddTravelRequestActivity;
+import cbs.hreye.activities.travelRequest.TravelRequestResponseData;
 import cbs.hreye.utilities.CommonMethods;
 import cbs.hreye.utilities.CustomTextView;
 
-public class TravelRequestActivity extends AppCompatActivity {
+public class TravelRequestActivity extends AppCompatActivity implements TravelRequestDataMvpView{
 
     private TextView toolBarHeaderTextView;
     private ImageView backButtonImageView;
     private ImageView addNewTravelRequestFloatingImageView;
     private ArrayList<TravelRequestResponseData> travelrequestResponseDataList;
-    private  TravelRequestDataAdapter travelRequestDataAdapter;
+    private TravelRequestDataAdapter travelRequestDataAdapter;
     private RecyclerView travelRequestDataRecyclerView;
     private EditText searchEditText;
     private CustomTextView clearTextView;
@@ -44,16 +44,21 @@ public class TravelRequestActivity extends AppCompatActivity {
     private int filterLength = 0;
 
 
+    private  TravelRequestDataPresenter travelRequestDataPresenter;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_travel_request);
         findViewIds();
+
+        travelRequestDataPresenter=new TravelRequestDataPresenter(this,TravelRequestActivity.this);
         setToolBarTitle();
-
         openDatePickerDialog();
-
         clearSearchView();
+
+//        travelRequestDataPresenter.fetchTravelRequestData();
 
 
 
@@ -170,4 +175,13 @@ public class TravelRequestActivity extends AppCompatActivity {
         backButtonImageView.setOnClickListener(v -> onBackPressed());
     }
 
+    @Override
+    public void getTravelRequestData() {
+
+    }
+
+    @Override
+    public void errorMessage(String msg) {
+        Toast.makeText(this,msg.toString(),Toast.LENGTH_SHORT).show();
+    }
 }
