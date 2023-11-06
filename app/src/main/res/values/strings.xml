@@ -226,4 +226,14 @@
     <string name="travel_request_validity_text">Validity *</string>
 
 
+
+<!--    Travel Add Request Label-->
+    <string name="travel_request_add_type_of_employee_text">Type Of Employee</string>
+    <string name="travel_request_add_associate_name_text">Associate Name</string>
+
+
+
+
+
+
 </resources>

@@ -2,9 +2,9 @@ package cbs.hreye.activities.travelRequest;
 
 import com.google.gson.annotations.SerializedName;
 
-public class TravelRequestModel {
+import java.io.Serializable;
 
-
+public class TravelRequestModel implements Serializable {
     @SerializedName("srNo")
     String srNo;
     @SerializedName("transactionNo")

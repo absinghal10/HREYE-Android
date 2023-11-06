@@ -80,6 +80,44 @@
             android:layout_below="@+id/bottom_horizontal_line_view"
             tools:listitem="@layout/item_travel_request_row_layout" />
 
+
+
+        <com.facebook.shimmer.ShimmerFrameLayout
+            android:id="@+id/shimmer_view_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <!-- Adding 7 rows of placeholders -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+                <include layout="@layout/placeholder_layout_activity_list" />
+                <include layout="@layout/placeholder_layout_activity_list" />
+                <include layout="@layout/placeholder_layout_activity_list" />
+                <include layout="@layout/placeholder_layout_activity_list" />
+                <include layout="@layout/placeholder_layout_activity_list" />
+                <include layout="@layout/placeholder_layout_activity_list" />
+                <include layout="@layout/placeholder_layout_activity_list" />
+                <include layout="@layout/placeholder_layout_activity_list" />
+                <include layout="@layout/placeholder_layout_activity_list" />
+                <include layout="@layout/placeholder_layout_activity_list" />
+                <include layout="@layout/placeholder_layout_activity_list" />
+                <include layout="@layout/placeholder_layout_activity_list" />
+                <include layout="@layout/placeholder_layout_activity_list" />
+                <include layout="@layout/placeholder_layout_activity_list" />
+                <include layout="@layout/placeholder_layout_activity_list" />
+                <include layout="@layout/placeholder_layout_activity_list" />
+
+            </LinearLayout>
+
+        </com.facebook.shimmer.ShimmerFrameLayout>
+
+
+
     </RelativeLayout>
 
     <ImageView
@@ -92,5 +130,7 @@
         android:background="@mipmap/blue_plus"
         android:contentDescription="@string/add"
         android:visibility="visible" />
+
+
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

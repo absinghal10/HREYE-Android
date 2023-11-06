@@ -3,6 +3,7 @@ package cbs.hreye.activities.travelRequest.AddTravelRequestFormData;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -16,6 +17,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.Serializable;
 import java.util.Calendar;
 
 import cbs.hreye.R;
@@ -59,11 +61,13 @@ public class AddTravelRequestFormDataActivity extends AppCompatActivity implemen
     String[] tripSpinnerData = {"Select", "Singe trip", "Round trip"};
     String[] typeOfEmployeeSpinnerData = {"Select","Employee", "Non-Employee",};
     String[] travelModeSpinnerData = {"Select","Bus", "Train","Flight"};
-    String[] travelReasonSpinnerData = {"Select","Sales", "Client Visit","Relocation","SAP Meeting"};
+    String[] travelReasonSpinnerData = {"Select","Sales", "Client Visit","Relocation","SAP Meeting","Others"};
     String[] hotelRequiredSpinnerData = {"Select","Yes","No"};
 
 
     private TravelRequestAddFormDataPresenter travelRequestAddFormDataPresenter;
+
+    private  String travelTypeValue="";
 
 
     @Override
@@ -73,37 +77,50 @@ public class AddTravelRequestFormDataActivity extends AppCompatActivity implemen
         getViewByFindViewById();
         setToolBarTitle();
 
+
+        travelTypeValue=getIntent().getStringExtra("travelTypeValue");
+
         travelRequestAddFormDataPresenter=new TravelRequestAddFormDataPresenter(this,AddTravelRequestFormDataActivity.this);
 
         // Set up the spinners
-        setupSpinner(tripSpinner, tripSpinnerData);
-        setupSpinner(typeOfEmployeeSpinner, typeOfEmployeeSpinnerData);
-        setupSpinner(travelModeSpinner, travelModeSpinnerData);
-        setupSpinner(travelReasonSpinner, travelReasonSpinnerData);
-        setupSpinner(hotelRequiredSpinner,hotelRequiredSpinnerData);
+        setupSpinner(tripSpinner, tripSpinnerData,"tripSpinner");
+        setupSpinner(typeOfEmployeeSpinner, typeOfEmployeeSpinnerData,"typeOfEmployeeSpinner");
+        setupSpinner(travelModeSpinner, travelModeSpinnerData,"travelModeSpinner");
+        setupSpinner(travelReasonSpinner, travelReasonSpinnerData,"travelReasonSpinner");
+        setupSpinner(hotelRequiredSpinner,hotelRequiredSpinnerData,"hotelRequiredSpinner");
 
         openDatePickerDialog(travelDateEditText);
         openDatePickerDialog(travelReturnDateEditText);
-        openDatePickerDialog(hotelFromEditText);
-        openDatePickerDialog(hotelToEditText);
+
+
+        passportAndValidityEdittextValidation(travelTypeValue,passportEditText);
+        passportAndValidityEdittextValidation(travelTypeValue,validityEditText);
+
 
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (inputFieldValidation() && validateSpinners()) {
                     Toast.makeText(AddTravelRequestFormDataActivity.this,"Validate",Toast.LENGTH_SHORT).show();
-
                     bindDataToModel();
-
                 }else{
                     Toast.makeText(AddTravelRequestFormDataActivity.this,"Not Validate",Toast.LENGTH_SHORT).show();
                 }
             }
         });
 
+    }
 
-
-
+    private void passportAndValidityEdittextValidation(String value,EditText editText) {
+        if(value.equalsIgnoreCase("Domestic")){
+            editText.setFocusable(false);
+            editText.setCursorVisible(false);
+            editText.setAlpha(0.6f);
+        }else{
+            editText.setFocusable(true);
+            editText.setCursorVisible(true);
+            editText.setAlpha(1.0f);
+        }
     }
 
     private void bindDataToModel() {
@@ -146,6 +163,12 @@ public class AddTravelRequestFormDataActivity extends AppCompatActivity implemen
                 passport,
                 validity
         );
+
+
+        Intent intent = new Intent();
+        intent.putExtra("inputRequest",requestModel);
+        setResult(RESULT_OK, intent);
+        finish();
     }
 
 
@@ -197,12 +220,13 @@ public class AddTravelRequestFormDataActivity extends AppCompatActivity implemen
     }
 
 
-    private void setupSpinner(Spinner spinner, String[] data) {
+    private void setupSpinner(Spinner spinner, String[] data,String spinnerType) {
         // Create an ArrayAdapter using the sample data and a default spinner layout
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, data);
 
         // Set the layout for the dropdown items
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
 
         // Set the adapter for the Spinner
         spinner.setAdapter(adapter);
@@ -213,6 +237,12 @@ public class AddTravelRequestFormDataActivity extends AppCompatActivity implemen
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
                 // Handle the selected item
                 String selectedItem = (String) parentView.getItemAtPosition(position);
+
+                if(spinnerType.equalsIgnoreCase("hotelRequiredSpinner")){
+                        hotetFromAndHotelToValidation(selectedItem,hotelFromEditText);
+                        hotetFromAndHotelToValidation(selectedItem,hotelToEditText);
+                }
+
             }
 
             @Override
@@ -222,7 +252,23 @@ public class AddTravelRequestFormDataActivity extends AppCompatActivity implemen
         });
     }
 
-
+    private void hotetFromAndHotelToValidation(String value,EditText editText) {
+        if(value.equalsIgnoreCase("No")){
+            editText.setFocusable(false);
+            editText.setCursorVisible(false);
+            editText.setAlpha(0.6f);
+            editText.setClickable(false);
+            editText.setOnClickListener(null);
+            editText.setText("");
+        }else{
+            editText.setFocusable(true);
+            editText.setCursorVisible(true);
+            editText.setAlpha(1.0f);
+            editText.setClickable(true);
+            openDatePickerDialog(hotelFromEditText);
+            openDatePickerDialog(hotelToEditText);
+        }
+    }
 
 
     private void getViewByFindViewById() {

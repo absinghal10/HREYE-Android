@@ -13,22 +13,23 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
 import cbs.hreye.R;
+import cbs.hreye.activities.travelRequest.TravelRequestModel;
 import cbs.hreye.activities.travelRequest.TravelRequestResponseData;
 
 public class TravelRequestAddDataAdapter extends RecyclerView.Adapter<TravelRequestAddDataAdapter.MyViewHolder> {
     private Context context;
-    private ArrayList<TravelRequestResponseData> travelRequestDataList;
+    private ArrayList<TravelRequestModel> travelRequestDataList;
 
     private OnTravelRequestItemClickListener onTravelRequestItemClickListener;
-    public TravelRequestAddDataAdapter(Context context,  ArrayList<TravelRequestResponseData> travelRequestResponseData, OnTravelRequestItemClickListener onTravelRequestItemClickListener) {
+    public TravelRequestAddDataAdapter(Context context,  ArrayList<TravelRequestModel> travelRequestResponseData, OnTravelRequestItemClickListener onTravelRequestItemClickListener) {
         this.context = context;
         this.travelRequestDataList = travelRequestResponseData;
         this.onTravelRequestItemClickListener=onTravelRequestItemClickListener;
     }
 
-    public void replaceData(ArrayList<TravelRequestResponseData> travelRequestResponseDataArrayList){
+    public void replaceData(ArrayList<TravelRequestModel> travelRequestResponseDataArrayList){
         // Create a new list to avoid modifying the original list
-        ArrayList<TravelRequestResponseData> newList = new ArrayList<>();
+        ArrayList<TravelRequestModel> newList = new ArrayList<>();
 
         if (travelRequestResponseDataArrayList != null) {
             newList.addAll(travelRequestResponseDataArrayList);
@@ -49,24 +50,27 @@ public class TravelRequestAddDataAdapter extends RecyclerView.Adapter<TravelRequ
 
     @Override
     public void onBindViewHolder(@NonNull TravelRequestAddDataAdapter.MyViewHolder holder, int position) {
-        TravelRequestResponseData data = travelRequestDataList.get(position);
+        TravelRequestModel data = travelRequestDataList.get(position);
 
+        holder.typeOfEmpolyee.setText(data.getTypeOfEmpolyee());
         holder.srNoTextView.setText("S.No :"+data.getSrNo());
         holder.associateCodeTextView.setText(data.getAssociateCode());
-        holder.nameTextView.setText(data.getName());
-        holder.tranNoTextView.setText(data.getTransactionNo());
+        holder.associateNameTextView.setText(data.getAssociateName());
+        holder.nameTextView.setText(data.getNameAsPerGovtDoc());
+        holder.ageTextView.setText(data.getAge());
+        holder.customerTextView.setText(data.getCustomer());
+        holder.tripTextView.setText(data.getTrip());
+        holder.travelReasonTextView.setText(data.getReasonForTravel());
         holder.travelModeTextView.setText(data.getTravelMode());
-        holder.fromDateTextView.setText(data.getFromDate());
-        holder.toDateTextView.setText(data.getToDate());
+        holder.fromDateTextView.setText(data.getTravelData());
+        holder.toDateTextView.setText(data.getReturnDate());
         holder.hotelRequiredTextView.setText(data.getHotelRequired());
-        holder.hotelFromDateTextView.setText(data.getHotelFromDate());
-        holder.hotelToDateTextView.setText(data.getHotelToDate());
-        holder.travelFromTextView.setText(data.getTravelFrom());
-        holder.travelToTextView.setText(data.getTravelTo());
-        holder.grRemarksTextView.setText(data.getGrantOrRejectRemarks());
-        holder.deskRemarksTextView.setText(data.getDeskRemarks());
-        holder.statusTextView.setText(data.getStatus());
-
+        holder.hotelFromDateTextView.setText(data.getHotelfrom());
+        holder.hotelToDateTextView.setText(data.getHotelto());
+        holder.travelFromLocationTextView.setText(data.getFromLocation());
+        holder.travelToLocationTextView.setText(data.getToLocation());
+        holder.passportTextView.setText(data.getPassport());
+        holder.validityTextView.setText(data.getValidity());
 
         holder.editDataImageView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -93,20 +97,24 @@ public class TravelRequestAddDataAdapter extends RecyclerView.Adapter<TravelRequ
     public static class MyViewHolder extends RecyclerView.ViewHolder {
 
         TextView srNoTextView;
+        TextView typeOfEmpolyee;
         TextView associateCodeTextView;
+        TextView associateNameTextView;
         TextView nameTextView;
-        TextView tranNoTextView;
+        TextView travelReasonTextView;
+        TextView ageTextView;
+        TextView customerTextView;
+        TextView tripTextView;
         TextView travelModeTextView;
         TextView fromDateTextView;
         TextView toDateTextView;
         TextView hotelRequiredTextView;
         TextView hotelFromDateTextView;
         TextView hotelToDateTextView;
-        TextView travelFromTextView;
-        TextView travelToTextView;
-        TextView grRemarksTextView;
-        TextView deskRemarksTextView;
-        TextView statusTextView;
+        TextView travelFromLocationTextView;
+        TextView travelToLocationTextView;
+        TextView passportTextView;
+        TextView validityTextView;
         ImageView editDataImageView;
         ImageView deleteDataImageView;
 
@@ -114,20 +122,24 @@ public class TravelRequestAddDataAdapter extends RecyclerView.Adapter<TravelRequ
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             srNoTextView = itemView.findViewById(R.id.travel_request_detail_sr_no);
+            typeOfEmpolyee = itemView.findViewById(R.id.travel_request_add_type_of_employee_textview);
             associateCodeTextView = itemView.findViewById(R.id.travel_request_detail_associate_code);
+            associateNameTextView = itemView.findViewById(R.id.travel_request_add_associate_name_textview);
             nameTextView = itemView.findViewById(R.id.travel_request_detail_name);
-            tranNoTextView = itemView.findViewById(R.id.travel_request_detail_tran_no);
+            ageTextView = itemView.findViewById(R.id.travel_request_add_age_textview);
+            customerTextView = itemView.findViewById(R.id.travel_request_add_customer_textview);
+            tripTextView = itemView.findViewById(R.id.travel_request_add_trip_textview);
+            travelReasonTextView = itemView.findViewById(R.id.travel_request_add_travel_reason);
             travelModeTextView = itemView.findViewById(R.id.travel_request_detail_travel_mode);
             fromDateTextView = itemView.findViewById(R.id.travel_request_detail_from_date);
             toDateTextView = itemView.findViewById(R.id.travel_request_detail_to_date);
             hotelRequiredTextView = itemView.findViewById(R.id.travel_request_detail_hotel_required);
             hotelFromDateTextView = itemView.findViewById(R.id.travel_request_detail_hotel_from_date);
             hotelToDateTextView = itemView.findViewById(R.id.travel_request_detail_hotel_to_date);
-            travelFromTextView = itemView.findViewById(R.id.travel_request_detail_travel_from);
-            travelToTextView = itemView.findViewById(R.id.travel_request_detail_travel_to);
-            grRemarksTextView = itemView.findViewById(R.id.travel_request_detail_gr_remarks);
-            deskRemarksTextView = itemView.findViewById(R.id.travel_request_detail_desk_remarks);
-            statusTextView = itemView.findViewById(R.id.travel_request_detail_status);
+            travelFromLocationTextView = itemView.findViewById(R.id.travel_request_detail_travel_from_location);
+            travelToLocationTextView = itemView.findViewById(R.id.travel_request_detail_travel_to_location);
+            passportTextView = itemView.findViewById(R.id.travel_request_detail_add_passport_textview);
+            validityTextView = itemView.findViewById(R.id.travel_request_detail_add_validity);
             editDataImageView = itemView.findViewById(R.id.travel_request_detail_edit_imageview);
             deleteDataImageView = itemView.findViewById(R.id.travel_request_detail_delete_imageview);
         }
