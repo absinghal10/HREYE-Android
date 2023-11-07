@@ -3,29 +3,43 @@ package cbs.hreye.activities.travelRequest.AddTravelRequestFormData;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.view.Window;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ListView;
+import android.widget.SearchView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 import cbs.hreye.R;
 import cbs.hreye.activities.travelRequest.TravelRequestAddData.TravelRequestAddDataMvpView;
 import cbs.hreye.activities.travelRequest.TravelRequestAddData.TravelRequestAddDataPresenter;
 import cbs.hreye.activities.travelRequest.TravelRequestModel;
+import cbs.hreye.adapters.CustomerDetailsAdapter;
+import cbs.hreye.pojo.ADetail;
+import cbs.hreye.pojo.AssociateResponseDataModel;
+import cbs.hreye.pojo.ProjectPojo;
 import cbs.hreye.utilities.CommonMethods;
+import cbs.hreye.utilities.ConsURL;
 import cbs.hreye.utilities.CustomTextView;
+import cbs.hreye.utilities.LogMsg;
+import cbs.hreye.utilities.PrefrenceKey;
 
 public class AddTravelRequestFormDataActivity extends AppCompatActivity implements TravelRequestAddFormDataMvpView {
 
@@ -69,6 +83,8 @@ public class AddTravelRequestFormDataActivity extends AppCompatActivity implemen
 
     private  String travelTypeValue="";
 
+    int iLength = 0;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,9 +93,7 @@ public class AddTravelRequestFormDataActivity extends AppCompatActivity implemen
         getViewByFindViewById();
         setToolBarTitle();
 
-
         travelTypeValue=getIntent().getStringExtra("travelTypeValue");
-
         travelRequestAddFormDataPresenter=new TravelRequestAddFormDataPresenter(this,AddTravelRequestFormDataActivity.this);
 
         // Set up the spinners
@@ -95,6 +109,19 @@ public class AddTravelRequestFormDataActivity extends AppCompatActivity implemen
 
         passportAndValidityEdittextValidation(travelTypeValue,passportEditText);
         passportAndValidityEdittextValidation(travelTypeValue,validityEditText);
+
+
+        customerDataEditText.setFocusable(false);
+        customerDataEditText.setCursorVisible(false);
+        customerDataEditText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+              travelRequestAddFormDataPresenter.fetchCustomerAndProjectList();
+            }
+        });
+
+        associateCodeEditText.setCursorVisible(false);
+        associateCodeEditText.setFocusable(false);
 
 
         addButton.setOnClickListener(new View.OnClickListener() {
@@ -205,6 +232,67 @@ public class AddTravelRequestFormDataActivity extends AppCompatActivity implemen
         String passport = passportEditText.getText().toString();
         String validity = validityEditText.getText().toString();
 
+
+        if(TextUtils.isEmpty(associateName)){
+            associateNameEditText.setError("Please enter your associate name");
+            associateNameEditText.requestFocus();
+            return false;
+        }
+
+        if(TextUtils.isEmpty(nameAsPerDoc)){
+            nameAsPerDocEditText.setError("Please enter your name as per gov. doc");
+            nameAsPerDocEditText.requestFocus();
+            return false;
+        }
+
+
+        if(TextUtils.isEmpty(age)){
+            ageEditText.setError("Please enter your age");
+            ageEditText.requestFocus();
+            return false;
+        }
+
+
+        if(TextUtils.isEmpty(customerData)){
+            customerDataEditText.setError("Please select your customer data");
+            customerDataEditText.requestFocus();
+            return false;
+        }
+
+
+        if(TextUtils.isEmpty(fromLocation)){
+            fromLocationEditText.setError("Please enter location");
+            fromLocationEditText.requestFocus();
+            return false;
+        }
+
+        if(TextUtils.isEmpty(toLocation)){
+            toLocationEditText.setError("Please enter location");
+            toLocationEditText.requestFocus();
+            return false;
+        }
+
+
+        if(TextUtils.isEmpty(passport)){
+            passportEditText.setError("Please enter your passport number");
+            passportEditText.requestFocus();
+            return false;
+        }
+
+
+        if(TextUtils.isEmpty(validity)){
+            validityEditText.setError("Please enter your validity");
+            validityEditText.requestFocus();
+            return false;
+        }
+
+
+
+
+
+
+
+
         // Perform validation checks using TextUtils
         if (TextUtils.isEmpty(associateCode) || TextUtils.isEmpty(associateName) || TextUtils.isEmpty(nameAsPerDoc)
                 || TextUtils.isEmpty(age) || TextUtils.isEmpty(customerData) || TextUtils.isEmpty(travelDate)
@@ -243,6 +331,10 @@ public class AddTravelRequestFormDataActivity extends AppCompatActivity implemen
                         hotetFromAndHotelToValidation(selectedItem,hotelToEditText);
                 }
 
+                if(spinnerType.equalsIgnoreCase("typeOfEmployeeSpinner")){
+                    associateValidation();
+                }
+
             }
 
             @Override
@@ -251,6 +343,25 @@ public class AddTravelRequestFormDataActivity extends AppCompatActivity implemen
             }
         });
     }
+
+    private void associateValidation() {
+        if(typeOfEmployeeSpinner.getSelectedItem().toString().equalsIgnoreCase("Non-employee")){
+            associateCodeEditText.setClickable(false);
+            associateCodeEditText.setOnClickListener(null);
+            associateCodeEditText.setAlpha(0.6f);
+            associateCodeEditText.setText("");
+        }else{
+            associateCodeEditText.setClickable(true);
+            associateCodeEditText.setAlpha(1.0f);
+            associateCodeEditText.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    travelRequestAddFormDataPresenter.fetchAssociateData();
+                }
+            });
+        }
+    }
+
 
     private void hotetFromAndHotelToValidation(String value,EditText editText) {
         if(value.equalsIgnoreCase("No")){
@@ -334,6 +445,201 @@ public class AddTravelRequestFormDataActivity extends AppCompatActivity implemen
     public void getdata() {
 
     }
+
+    @Override
+    public void getProjectAndCustomerData(List<ProjectPojo> customerAndProjectList) {
+        if(customerAndProjectList!=null){
+            openCustomerSelectionDialog(customerAndProjectList);
+        }
+    }
+
+    @Override
+    public void getAssociateData(List<AssociateResponseDataModel> associateResponseDataModelList) {
+        if(associateResponseDataModelList!=null){
+            openAssociateSelectionDialog(associateResponseDataModelList);
+        }
+    }
+
+    private void openAssociateSelectionDialog(List<AssociateResponseDataModel> associateResponseDataModelList) {
+        try {
+            final Dialog custDialog = new Dialog(this);
+            custDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+            custDialog.setContentView(R.layout.customer_details);
+            custDialog.setCancelable(false);
+
+            final SearchView mSearch = custDialog.findViewById(R.id.search_client);
+            final ListView custList = custDialog.findViewById(R.id.customer_list);
+            ImageView ivClose = custDialog.findViewById(R.id.dlg_close);
+            final ImageView ivScrollUp = custDialog.findViewById(R.id.iv_scroll_up);
+
+            TextView titleTextView=custDialog.findViewById(R.id.title_textview);
+            titleTextView.setText("Select associate code");
+
+
+            AssociateDetailAdapter mDet = new AssociateDetailAdapter(this, (ArrayList<AssociateResponseDataModel>) associateResponseDataModelList);
+            custList.setAdapter(mDet);
+            mDet.notifyDataSetChanged();
+
+            ivClose.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    custDialog.dismiss();
+                }
+            });
+
+            ivScrollUp.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    custList.smoothScrollToPosition(0);
+                }
+            });
+
+            custList.setOnScrollListener(new AbsListView.OnScrollListener() {
+                @Override
+                public void onScrollStateChanged(AbsListView view, int scrollState) {
+                }
+
+                @Override
+                public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+                    if (firstVisibleItem < 10) {
+                        ivScrollUp.setVisibility(View.INVISIBLE);
+                    } else {
+                        ivScrollUp.setVisibility(View.VISIBLE);
+                    }
+                }
+            });
+
+            custList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position,
+                                        long id) {
+
+                    if (iLength != 0) {
+                        associateCodeEditText.setText(AssociateDetailAdapter.filters.get(position).getAssoCode());
+                        associateNameEditText.setText(AssociateDetailAdapter.filters.get(position).getName());
+                    } else {
+                        associateCodeEditText.setText(associateResponseDataModelList.get(position).getAssoCode());
+                        associateNameEditText.setText(associateResponseDataModelList.get(position).getName());
+                    }
+
+                    iLength = 0;
+                    custDialog.dismiss();
+                }
+            });
+            mSearch.setQueryHint("Search associate code");
+            mSearch.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+                @Override
+                public boolean onQueryTextSubmit(String arg0) {
+                    // TODO Auto-generated method stub
+                    mSearch.clearFocus();
+                    return true;
+                }
+
+                @Override
+                public boolean onQueryTextChange(String query) {
+                    // TODO Auto-generated method stub
+                    iLength = query.length();
+                    mDet.getFilter().filter(query);
+                    return false;
+                }
+            });
+
+            custDialog.show();
+            int height = (int) (getResources().getDisplayMetrics().heightPixels * 0.90);
+            int width = (int) (getResources().getDisplayMetrics().widthPixels * 0.90);
+            custDialog.getWindow().setLayout(width, height);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void openCustomerSelectionDialog(List<ProjectPojo> customerAndProjectList) {
+            try {
+                final Dialog custDialog = new Dialog(this);
+                custDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                custDialog.setContentView(R.layout.customer_details);
+
+                final SearchView mSearch = custDialog.findViewById(R.id.search_client);
+                final ListView custList = custDialog.findViewById(R.id.customer_list);
+                ImageView ivClose = custDialog.findViewById(R.id.dlg_close);
+                final ImageView ivScrollUp = custDialog.findViewById(R.id.iv_scroll_up);
+
+
+                final CustomerDetailsAdapter mDet = new CustomerDetailsAdapter(this, (ArrayList<ProjectPojo>) customerAndProjectList);
+                custList.setAdapter(mDet);
+                mDet.notifyDataSetChanged();
+
+                ivClose.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        custDialog.dismiss();
+                    }
+                });
+
+                ivScrollUp.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        custList.smoothScrollToPosition(0);
+                    }
+                });
+
+                custList.setOnScrollListener(new AbsListView.OnScrollListener() {
+                    @Override
+                    public void onScrollStateChanged(AbsListView view, int scrollState) {
+                    }
+
+                    @Override
+                    public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+                        if (firstVisibleItem < 10) {
+                            ivScrollUp.setVisibility(View.INVISIBLE);
+                        } else {
+                            ivScrollUp.setVisibility(View.VISIBLE);
+                        }
+                    }
+                });
+
+                custList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position,
+                                            long id) {
+
+                        if (iLength != 0) {
+                            customerDataEditText.setText(CustomerDetailsAdapter.filters.get(position).getCUSTOMER_ID().replaceAll("\\s+", ""));
+                        } else {
+                            customerDataEditText.setText(customerAndProjectList.get(position).getCUSTOMER_ID().replaceAll("\\s+", ""));
+                        }
+
+                        iLength = 0;
+                        custDialog.dismiss();
+                    }
+                });
+                mSearch.setQueryHint("Search customer");
+                mSearch.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+                    @Override
+                    public boolean onQueryTextSubmit(String arg0) {
+                        // TODO Auto-generated method stub
+                        mSearch.clearFocus();
+                        return true;
+                    }
+
+                    @Override
+                    public boolean onQueryTextChange(String query) {
+                        // TODO Auto-generated method stub
+                        iLength = query.length();
+                        mDet.getFilter().filter(query);
+                        return false;
+                    }
+                });
+
+                custDialog.show();
+                int height = (int) (getResources().getDisplayMetrics().heightPixels * 0.90);
+                int width = (int) (getResources().getDisplayMetrics().widthPixels * 0.90);
+                custDialog.getWindow().setLayout(width, height);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+    }
+
 
     @Override
     public void errorMessage(String msg) {

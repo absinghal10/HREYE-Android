@@ -23,7 +23,7 @@ public class TravelRequestDataDetailPresenter {
 
 
     void fetchTravelRequestDetailData() {
-        RetrofitClient.getInstance().getMyApi().geTravelRequestDetailResponseDataCall("abc","djf").enqueue(new Callback<Response<List<TravelRequestResponseData>>>() {
+        RetrofitClient.getInstance(context).getMyApi().geTravelRequestDetailResponseDataCall("abc","djf").enqueue(new Callback<Response<List<TravelRequestResponseData>>>() {
             @Override
             public void onResponse(Call<Response<List<TravelRequestResponseData>>> call, Response<Response<List<TravelRequestResponseData>>> response) {
                 if(response.code()==200){

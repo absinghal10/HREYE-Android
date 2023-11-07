@@ -58,8 +58,7 @@ public class TravelRequestActivity extends AppCompatActivity implements TravelRe
         openDatePickerDialog();
         clearSearchView();
 
-//        travelRequestDataPresenter.fetchTravelRequestData();
-
+        travelRequestDataPresenter.fetchTravelRequestData();
 
 
         addNewTravelRequestFloatingImageView.setOnClickListener(v -> {
