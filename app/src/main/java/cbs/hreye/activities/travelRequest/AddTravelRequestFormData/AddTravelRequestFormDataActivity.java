@@ -24,6 +24,7 @@ import android.widget.Toast;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.List;
 
@@ -72,7 +73,7 @@ public class AddTravelRequestFormDataActivity extends AppCompatActivity implemen
 
     String searchDate="";
 
-    String[] tripSpinnerData = {"Select", "Singe trip", "Round trip"};
+    String[] tripSpinnerData = {"Select", "Single trip", "Round trip"};
     String[] typeOfEmployeeSpinnerData = {"Select","Employee", "Non-Employee",};
     String[] travelModeSpinnerData = {"Select","Bus", "Train","Flight"};
     String[] travelReasonSpinnerData = {"Select","Sales", "Client Visit","Relocation","SAP Meeting","Others"};
@@ -86,6 +87,11 @@ public class AddTravelRequestFormDataActivity extends AppCompatActivity implemen
     int iLength = 0;
 
 
+    private String isNavigate="";
+    private int position;
+    private TravelRequestModel editDataModel;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -94,6 +100,11 @@ public class AddTravelRequestFormDataActivity extends AppCompatActivity implemen
         setToolBarTitle();
 
         travelTypeValue=getIntent().getStringExtra("travelTypeValue");
+        isNavigate=getIntent().getStringExtra("isNavigate");
+        position=getIntent().getIntExtra("position",0);
+        editDataModel= (TravelRequestModel) getIntent().getSerializableExtra("editdataModel");
+
+
         travelRequestAddFormDataPresenter=new TravelRequestAddFormDataPresenter(this,AddTravelRequestFormDataActivity.this);
 
         // Set up the spinners
@@ -104,11 +115,16 @@ public class AddTravelRequestFormDataActivity extends AppCompatActivity implemen
         setupSpinner(hotelRequiredSpinner,hotelRequiredSpinnerData,"hotelRequiredSpinner");
 
         openDatePickerDialog(travelDateEditText);
-        openDatePickerDialog(travelReturnDateEditText);
-
 
         passportAndValidityEdittextValidation(travelTypeValue,passportEditText);
         passportAndValidityEdittextValidation(travelTypeValue,validityEditText);
+
+        addButton.setText("Add to list");
+
+        // edit case if it come from edit button
+
+
+        editTravelRequestForm();
 
 
         customerDataEditText.setFocusable(false);
@@ -135,6 +151,95 @@ public class AddTravelRequestFormDataActivity extends AppCompatActivity implemen
                 }
             }
         });
+
+    }
+
+    private void editTravelRequestForm() {
+        if(isNavigate.equalsIgnoreCase("FromEdit")){
+            addButton.setText("Update");
+            if(editDataModel!=null){
+                associateCodeEditText.setText(editDataModel.getAssociateCode());
+                associateNameEditText.setText(editDataModel.getAssociateName());
+                nameAsPerDocEditText.setText(editDataModel.getNameAsPerGovtDoc());
+                ageEditText.setText(editDataModel.getAge());
+                customerDataEditText.setText(editDataModel.getCustomer());
+                travelDateEditText.setText(editDataModel.getTravelData());
+                travelReturnDateEditText.setText(editDataModel.getReturnDate());
+                hotelFromEditText.setText(editDataModel.getHotelfrom());
+                hotelToEditText.setText(editDataModel.getHotelfrom());
+                fromLocationEditText.setText(editDataModel.getFromLocation());
+                toLocationEditText.setText(editDataModel.getToLocation());
+                if(travelTypeValue.equalsIgnoreCase("International")){
+                    passportEditText.setText(editDataModel.getPassport());
+                    validityEditText.setText(editDataModel.getValidity());
+                }
+
+
+
+                // Find the position of the selected value in your Spinner array
+                int position = Arrays.asList(travelModeSpinnerData).indexOf(editDataModel.getTravelMode());
+                if (position >= 0) {
+                    // Set the Spinner's selection to the position if the value exists in the array
+                    travelModeSpinner.setSelection(position);
+                } else {
+                    // The selected value doesn't exist in the array, so you can set a default selection, e.g., "Select"
+                    travelModeSpinner.setSelection(0); // 0 corresponds to "Select" in your array
+                }
+
+                // Find the position of the selected value in your Spinner array
+                int position1 = Arrays.asList(typeOfEmployeeSpinnerData).indexOf(editDataModel.getTypeOfEmpolyee());
+                if (position1 >= 0) {
+                    // Set the Spinner's selection to the position if the value exists in the array
+                    typeOfEmployeeSpinner.setSelection(position1);
+                } else {
+                    // The selected value doesn't exist in the array, so you can set a default selection, e.g., "Select"
+                    typeOfEmployeeSpinner.setSelection(0); // 0 corresponds to "Select" in your array
+                }
+
+                // Find the position of the selected value in your Spinner array
+                int position2 = Arrays.asList(tripSpinnerData).indexOf(editDataModel.getTrip());
+                if (position2 >= 0) {
+                    // Set the Spinner's selection to the position if the value exists in the array
+                    tripSpinner.setSelection(position2);
+                } else {
+                    // The selected value doesn't exist in the array, so you can set a default selection, e.g., "Select"
+                    tripSpinner.setSelection(0); // 0 corresponds to "Select" in your array
+                }
+
+
+                // Find the position of the selected value in your Spinner array
+                int position3 = Arrays.asList(travelModeSpinnerData).indexOf(editDataModel.getTravelMode());
+                if (position3 >= 0) {
+                    // Set the Spinner's selection to the position if the value exists in the array
+                    travelModeSpinner.setSelection(position3);
+                } else {
+                    // The selected value doesn't exist in the array, so you can set a default selection, e.g., "Select"
+                    travelModeSpinner.setSelection(0); // 0 corresponds to "Select" in your array
+                }
+
+                // Find the position of the selected value in your Spinner array
+                int position4 = Arrays.asList(travelReasonSpinnerData).indexOf(editDataModel.getReasonForTravel());
+                if (position4 >= 0) {
+                    // Set the Spinner's selection to the position if the value exists in the array
+                    travelReasonSpinner.setSelection(position4);
+                } else {
+                    // The selected value doesn't exist in the array, so you can set a default selection, e.g., "Select"
+                    travelReasonSpinner.setSelection(0); // 0 corresponds to "Select" in your array
+                }
+
+
+                // Find the position of the selected value in your Spinner array
+                int position5 = Arrays.asList(hotelRequiredSpinnerData).indexOf(editDataModel.getHotelRequired());
+                if (position5 >= 0) {
+                    // Set the Spinner's selection to the position if the value exists in the array
+                    hotelRequiredSpinner.setSelection(position5);
+                } else {
+                    // The selected value doesn't exist in the array, so you can set a default selection, e.g., "Select"
+                    hotelRequiredSpinner.setSelection(0); // 0 corresponds to "Select" in your array
+                }
+
+            }
+        }
 
     }
 
@@ -169,8 +274,8 @@ public class AddTravelRequestFormDataActivity extends AppCompatActivity implemen
 
         // Create a TravelRequestModel instance by passing the values
         TravelRequestModel requestModel = new TravelRequestModel(
-                "1", // Replace with the actual value for srNo
-                "TX123", // Replace with the actual value for transactionNo
+                "",
+                "",
                 typeOfEmployeeSpinner.getSelectedItem().toString(), // Get the selected value from the typeOfEmployeeSpinner
                 associateCode,
                 associateName,
@@ -202,14 +307,29 @@ public class AddTravelRequestFormDataActivity extends AppCompatActivity implemen
     private boolean validateSpinners() {
         String selectText = "Select"; // The string to compare with
 
-        if (typeOfEmployeeSpinner.getSelectedItem().toString().equalsIgnoreCase(selectText) ||
-                tripSpinner.getSelectedItem().toString().equalsIgnoreCase(selectText) ||
-                travelModeSpinner.getSelectedItem().toString().equalsIgnoreCase(selectText) ||
-                travelReasonSpinner.getSelectedItem().toString().equalsIgnoreCase(selectText) ||
-                hotelRequiredSpinner.getSelectedItem().toString().equalsIgnoreCase(selectText)) {
 
-            // Show an error message or toast indicating that all spinners need to be selected
-            Toast.makeText(this, "Please select values for all spinners", Toast.LENGTH_SHORT).show();
+        if (typeOfEmployeeSpinner.getSelectedItem().toString().equalsIgnoreCase(selectText)){
+            Toast.makeText(this, "Please select type of employee", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        if (tripSpinner.getSelectedItem().toString().equalsIgnoreCase(selectText)){
+            Toast.makeText(this, "Please select your trip type", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        if (travelModeSpinner.getSelectedItem().toString().equalsIgnoreCase(selectText)){
+            Toast.makeText(this, "Please select type of travel mode", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        if (travelReasonSpinner.getSelectedItem().toString().equalsIgnoreCase(selectText)){
+            Toast.makeText(this, "Please select type of your travel reason", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        if (hotelRequiredSpinner.getSelectedItem().toString().equalsIgnoreCase(selectText)){
+            Toast.makeText(this, "Please select hotel required type", Toast.LENGTH_SHORT).show();
             return false;
         }
 
@@ -233,6 +353,12 @@ public class AddTravelRequestFormDataActivity extends AppCompatActivity implemen
         String validity = validityEditText.getText().toString();
 
 
+
+        if(TextUtils.isEmpty(associateCode)&& typeOfEmployeeSpinner.getSelectedItem().toString().equalsIgnoreCase("Employee")){
+            Toast.makeText(this,"Please select your associate code",Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
         if(TextUtils.isEmpty(associateName)){
             associateNameEditText.setError("Please enter your associate name");
             associateNameEditText.requestFocus();
@@ -245,7 +371,6 @@ public class AddTravelRequestFormDataActivity extends AppCompatActivity implemen
             return false;
         }
 
-
         if(TextUtils.isEmpty(age)){
             ageEditText.setError("Please enter your age");
             ageEditText.requestFocus();
@@ -254,11 +379,32 @@ public class AddTravelRequestFormDataActivity extends AppCompatActivity implemen
 
 
         if(TextUtils.isEmpty(customerData)){
-            customerDataEditText.setError("Please select your customer data");
-            customerDataEditText.requestFocus();
+            Toast.makeText(this,"Please select your customer data",Toast.LENGTH_SHORT).show();
             return false;
         }
 
+        if(TextUtils.isEmpty(travelDate)){
+            Toast.makeText(this,"Please select your travel date",Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+
+        if(TextUtils.isEmpty(travelReturnDate)&& tripSpinner.getSelectedItem().toString().equalsIgnoreCase("Round trip")){
+            Toast.makeText(this,"Please select your return date",Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+
+        if(TextUtils.isEmpty(hotelFrom)&& hotelRequiredSpinner.getSelectedItem().toString().equalsIgnoreCase("Yes")){
+            Toast.makeText(this,"Please select your hotel from date",Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+
+        if(TextUtils.isEmpty(hotelTo)&& hotelRequiredSpinner.getSelectedItem().toString().equalsIgnoreCase("Yes")){
+            Toast.makeText(this,"Please select your hotel to date",Toast.LENGTH_SHORT).show();
+            return false;
+        }
 
         if(TextUtils.isEmpty(fromLocation)){
             fromLocationEditText.setError("Please enter location");
@@ -273,35 +419,19 @@ public class AddTravelRequestFormDataActivity extends AppCompatActivity implemen
         }
 
 
-        if(TextUtils.isEmpty(passport)){
-            passportEditText.setError("Please enter your passport number");
-            passportEditText.requestFocus();
-            return false;
-        }
+        if(travelTypeValue.equalsIgnoreCase("International")){
+            if(TextUtils.isEmpty(passport)){
+                passportEditText.setError("Please enter your passport number");
+                passportEditText.requestFocus();
+                return false;
+            }
 
 
-        if(TextUtils.isEmpty(validity)){
-            validityEditText.setError("Please enter your validity");
-            validityEditText.requestFocus();
-            return false;
-        }
-
-
-
-
-
-
-
-
-        // Perform validation checks using TextUtils
-        if (TextUtils.isEmpty(associateCode) || TextUtils.isEmpty(associateName) || TextUtils.isEmpty(nameAsPerDoc)
-                || TextUtils.isEmpty(age) || TextUtils.isEmpty(customerData) || TextUtils.isEmpty(travelDate)
-                || TextUtils.isEmpty(travelReturnDate) || TextUtils.isEmpty(hotelFrom) || TextUtils.isEmpty(hotelTo)
-                || TextUtils.isEmpty(fromLocation) || TextUtils.isEmpty(toLocation) || TextUtils.isEmpty(passport)
-                || TextUtils.isEmpty(validity)) {
-            // Show an error message or toast indicating that all fields are required
-            Toast.makeText(this, "All fields are required", Toast.LENGTH_SHORT).show();
-            return false;
+            if(TextUtils.isEmpty(validity)){
+                validityEditText.setError("Please enter your validity");
+                validityEditText.requestFocus();
+                return false;
+            }
         }
 
         return true; // Validation passed
@@ -335,6 +465,10 @@ public class AddTravelRequestFormDataActivity extends AppCompatActivity implemen
                     associateValidation();
                 }
 
+                if(spinnerType.equalsIgnoreCase("tripSpinner")){
+                    tripValueValidation();
+                }
+
             }
 
             @Override
@@ -342,6 +476,23 @@ public class AddTravelRequestFormDataActivity extends AppCompatActivity implemen
                 // Do nothing here, but you can add logic if needed
             }
         });
+    }
+
+    private void tripValueValidation() {
+       if(tripSpinner.getSelectedItem().toString().equalsIgnoreCase("Single trip")){
+           travelReturnDateEditText.setFocusable(false);
+           travelReturnDateEditText.setCursorVisible(false);
+           travelReturnDateEditText.setAlpha(0.6f);
+           travelReturnDateEditText.setText("");
+           travelReturnDateEditText.setClickable(false);
+           travelReturnDateEditText.setOnClickListener(null);
+       }else{
+           travelReturnDateEditText.setFocusable(true);
+           travelReturnDateEditText.setCursorVisible(true);
+           travelReturnDateEditText.setAlpha(1.0f);
+           travelReturnDateEditText.setClickable(true);
+           openDatePickerDialog(travelReturnDateEditText);
+       }
     }
 
     private void associateValidation() {
@@ -537,7 +688,6 @@ public class AddTravelRequestFormDataActivity extends AppCompatActivity implemen
 
                 @Override
                 public boolean onQueryTextChange(String query) {
-                    // TODO Auto-generated method stub
                     iLength = query.length();
                     mDet.getFilter().filter(query);
                     return false;

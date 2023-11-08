@@ -33,13 +33,13 @@ public class AddTravelRequestActivity extends AppCompatActivity implements OnTra
     private TextView toolBarHeaderTextView;
     private TextView transactionDateTextView;
     private TextView remarkTextView;
-
     private Spinner travelTypeSpinner;
     private ImageView backButtonImageView;
     private ImageView toolbarAddDataImageView;
     private ImageView toolbarUploadDataImageView;
     private LinearLayout toolbarIconLayout;
     private int ADD_TRAVEL_REQUEST_FORM_CODE=1289;
+    private int EDIT_TRAVEL_REQUEST_FORM_CODE=1290;
 
     private RecyclerView travelRequestPostDataRecyclerView;
     private ArrayList<TravelRequestModel> travelRequestPostList;
@@ -71,9 +71,9 @@ public class AddTravelRequestActivity extends AppCompatActivity implements OnTra
         openDatePickerDialog(transactionDateTextView);
 
         travelRequestPostList =new ArrayList<>();
-        travelRequestPostList.add(new TravelRequestModel("1", "ABC123", "Emp","TR123", "Abhi","Abhi","30","Maa Infra","01/10/2023", "Air", "2023-11-01", "2023-11-10", "Yes", "2023-11-01", "2023-11-10", "City A", "City B", "Approved", "yes", "Approved"));
-        travelRequestPostList.add(new TravelRequestModel("2", "ABC123", "Non-Emp","TR123", "Abhi","Abhi","30","Maa Infra","01/10/2023", "Air", "2023-11-01", "2023-11-10", "Yes", "2023-11-01", "2023-11-10", "City A", "City B", "Approved", "No", "Approved"));
-        travelRequestPostList.add(new TravelRequestModel("3", "ABC1234", "Emp","TR123", "Abhi","Abhi","30","Maa Infra","01/10/2023", "Air", "2023-11-01", "2023-11-10", "Yes", "2023-11-01", "2023-11-10", "City A", "City B", "Approved", "yes", "Approved"));
+        travelRequestPostList.add(new TravelRequestModel("1", "ABC123", "Employee","TR123", "Abhi","Abhi","30","Maa Infra","Single trip", "Air", "2023-11-01", "Bus", "Sales", "Yes", "2023-11-10", "City A", "City B", "Approved", "yes", "Approved"));
+        travelRequestPostList.add(new TravelRequestModel("2", "ABC123", "Non-Employee","TR123", "Abhi","Abhi","30","Maa Infra","Round trip", "Air", "2023-11-01", "Train", "Sales", "No", "2023-11-10", "City A", "City B", "Approved", "No", "Approved"));
+        travelRequestPostList.add(new TravelRequestModel("3", "ABC1234", "Employee","TR123", "Abhi","Abhi","30","Maa Infra","01/10/2023", "Air", "2023-11-01", "Flight", "Sales", "No", "2023-11-10", "City A", "City B", "Approved", "yes", "Approved"));
 
         travelRequestAddDataPresenter=new TravelRequestAddDataPresenter(this,AddTravelRequestActivity.this);
         travelRequestAddDataAdapter=new TravelRequestAddDataAdapter(this,travelRequestPostList,AddTravelRequestActivity.this);
@@ -143,6 +143,7 @@ public class AddTravelRequestActivity extends AppCompatActivity implements OnTra
 
                 Intent intent=new Intent(AddTravelRequestActivity.this, AddTravelRequestFormDataActivity.class);
                 intent.putExtra("travelTypeValue",travelTypeValue);
+                intent.putExtra("isNavigate","FromAdd");
                 startActivityForResult(intent,ADD_TRAVEL_REQUEST_FORM_CODE);
             }
         });
@@ -157,6 +158,7 @@ public class AddTravelRequestActivity extends AppCompatActivity implements OnTra
             if (data != null) {
                 TravelRequestModel travelRequestModel= (TravelRequestModel) data.getSerializableExtra("inputRequest");
                 if(travelRequestModel!=null){
+                    travelRequestModel.setSrNo(String.valueOf(travelRequestPostList.size()+1));
                     travelRequestPostList.add(travelRequestModel);
                     travelRequestAddDataAdapter.replaceData(travelRequestPostList);
                     int lastPosition = travelRequestAddDataAdapter.getItemCount() - 1;
@@ -164,15 +166,34 @@ public class AddTravelRequestActivity extends AppCompatActivity implements OnTra
                         travelRequestPostDataRecyclerView.scrollToPosition(lastPosition);
                     }
                 }
-
             }
         }
+
+        if(requestCode==EDIT_TRAVEL_REQUEST_FORM_CODE&&resultCode==RESULT_OK){
+
+            if (data != null) {
+
+            }
+
+        }
+
     }
 
 
     @Override
     public void onEditItem(int position) {
-        Toast.makeText(this,"Edit"+position,Toast.LENGTH_SHORT).show();
+
+        if(travelTypeValue.equalsIgnoreCase("Select")){
+            Toast.makeText(AddTravelRequestActivity.this,"Please select travel type",Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        Intent intent=new Intent(AddTravelRequestActivity.this, AddTravelRequestFormDataActivity.class);
+        intent.putExtra("travelTypeValue",travelTypeValue);
+        intent.putExtra("editdataModel",travelRequestPostList.get(position));
+        intent.putExtra("position",position);
+        intent.putExtra("isNavigate","FromEdit");
+        startActivityForResult(intent,EDIT_TRAVEL_REQUEST_FORM_CODE);
     }
 
     @Override
