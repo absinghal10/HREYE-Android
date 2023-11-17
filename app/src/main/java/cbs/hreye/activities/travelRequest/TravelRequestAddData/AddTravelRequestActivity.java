@@ -5,11 +5,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.DatePickerDialog;
+import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -27,7 +32,9 @@ import cbs.hreye.R;
 import cbs.hreye.activities.travelRequest.AddTravelRequestFormData.AddTravelRequestFormDataActivity;
 import cbs.hreye.activities.travelRequest.TravelRequestModel;
 import cbs.hreye.activities.travelRequest.TravelRequestResponseData;
+import cbs.hreye.pojo.TravelRequestPostDataModel;
 import cbs.hreye.utilities.CommonMethods;
+import cbs.hreye.utilities.PrefrenceKey;
 
 public class AddTravelRequestActivity extends AppCompatActivity implements OnTravelRequestItemClickListener,TravelRequestAddDataMvpView {
     private TextView toolBarHeaderTextView;
@@ -71,10 +78,6 @@ public class AddTravelRequestActivity extends AppCompatActivity implements OnTra
         openDatePickerDialog(transactionDateTextView);
 
         travelRequestPostList =new ArrayList<>();
-        travelRequestPostList.add(new TravelRequestModel("1", "ABC123", "Employee","TR123", "Abhi","Abhi","30","Maa Infra","Single trip", "Air", "2023-11-01", "Bus", "Sales", "Yes", "2023-11-10", "City A", "City B", "Approved", "yes", "Approved"));
-        travelRequestPostList.add(new TravelRequestModel("2", "ABC123", "Non-Employee","TR123", "Abhi","Abhi","30","Maa Infra","Round trip", "Air", "2023-11-01", "Train", "Sales", "No", "2023-11-10", "City A", "City B", "Approved", "No", "Approved"));
-        travelRequestPostList.add(new TravelRequestModel("3", "ABC1234", "Employee","TR123", "Abhi","Abhi","30","Maa Infra","01/10/2023", "Air", "2023-11-01", "Flight", "Sales", "No", "2023-11-10", "City A", "City B", "Approved", "yes", "Approved"));
-
         travelRequestAddDataPresenter=new TravelRequestAddDataPresenter(this,AddTravelRequestActivity.this);
         travelRequestAddDataAdapter=new TravelRequestAddDataAdapter(this,travelRequestPostList,AddTravelRequestActivity.this);
         travelRequestPostDataRecyclerView.setAdapter(travelRequestAddDataAdapter);
@@ -128,7 +131,55 @@ public class AddTravelRequestActivity extends AppCompatActivity implements OnTra
         toolbarUploadDataImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(AddTravelRequestActivity.this,"Data",Toast.LENGTH_SHORT).show();
+
+                String companyName=CommonMethods.getPrefsData(AddTravelRequestActivity.this, PrefrenceKey.COMPANY_NO, "");
+                String locationNo=CommonMethods.getPrefsData(AddTravelRequestActivity.this, PrefrenceKey.LOCATION_NO, "");
+
+                TravelRequestPostDataModel travelRequestPostDataModel=new TravelRequestPostDataModel();
+                travelRequestPostDataModel.setTravelRequestList(travelRequestPostList);
+                travelRequestPostDataModel.setTran_No("");
+                travelRequestPostDataModel.setTransMode("1");
+                travelRequestPostDataModel.setStatus("Fresh");
+                travelRequestPostDataModel.setCompanyNo(companyName);
+                travelRequestPostDataModel.setLocationNo(locationNo);
+                travelRequestPostDataModel.setTravel(travelTypeSpinner.getSelectedItem().toString());
+                travelRequestPostDataModel.setRemarks(remarkTextView.getText().toString());
+                travelRequestPostDataModel.setTransactionDate(CommonMethods.changeDateTOyyyyMMdd(transactionDateTextView.getText().toString()));
+
+                if(travelRequestPostList.size()==0){
+                    Toast.makeText(AddTravelRequestActivity.this,getString(R.string.enter_minimum_record),Toast.LENGTH_SHORT).show();
+                }else{
+
+                    Dialog dialog = new Dialog(AddTravelRequestActivity.this);
+                    dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                    dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                    dialog.setCancelable(false);
+                    dialog.setContentView(R.layout.logout);
+                    TextView txtMsg = dialog.findViewById(R.id.dlg_msg);
+                    txtMsg.setText(R.string.add_to_activity);
+                    Button cancel = dialog.findViewById(R.id.cancel);
+                    Button yes = dialog.findViewById(R.id.yes);
+                    yes.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            dialog.dismiss();
+                            if (CommonMethods.isOnline(AddTravelRequestActivity.this)) {
+                                travelRequestAddDataPresenter.postTravelRequest(travelRequestPostDataModel);
+                            } else {
+                                Toast.makeText(AddTravelRequestActivity.this,getString(R.string.net),Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
+
+                    cancel.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            dialog.dismiss();
+                        }
+                    });
+                    dialog.show();
+                }
+
             }
         });
 
@@ -170,11 +221,16 @@ public class AddTravelRequestActivity extends AppCompatActivity implements OnTra
         }
 
         if(requestCode==EDIT_TRAVEL_REQUEST_FORM_CODE&&resultCode==RESULT_OK){
-
             if (data != null) {
-
+                int position=data.getIntExtra("position",0);
+                TravelRequestModel travelRequestModel= (TravelRequestModel) data.getSerializableExtra("inputRequest");
+                travelRequestPostList.set(position,travelRequestModel);
+                travelRequestAddDataAdapter.replaceData(travelRequestPostList);
+                int lastPosition = travelRequestAddDataAdapter.getItemCount() - 1;
+                if (lastPosition >= 0) {
+                    travelRequestPostDataRecyclerView.scrollToPosition(lastPosition);
+                }
             }
-
         }
 
     }
@@ -199,24 +255,22 @@ public class AddTravelRequestActivity extends AppCompatActivity implements OnTra
     @Override
     public void onDeleteItem(int position) {
         travelRequestPostList.remove(position);
-
         travelRequestAddDataAdapter.replaceData(travelRequestPostList);
-        Toast.makeText(this,"clicked"+position,Toast.LENGTH_SHORT).show();
     }
 
 
     @Override
     public void postTravelRequestDataStatus(String status) {
-        if(status.equalsIgnoreCase("Success")){
-            Toast.makeText(this,"Data insert successfully",Toast.LENGTH_SHORT).show();
-        }
+        Toast.makeText(this,status,Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent();
+        setResult(RESULT_OK, intent);
+        finish();
     }
 
     @Override
     public void errorMessage(String msg) {
         Toast.makeText(this,msg,Toast.LENGTH_SHORT).show();
     }
-
 
 
     private void openDatePickerDialog(TextView textView) {

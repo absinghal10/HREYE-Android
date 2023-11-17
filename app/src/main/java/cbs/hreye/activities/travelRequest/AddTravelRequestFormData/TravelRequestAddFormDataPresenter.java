@@ -15,6 +15,7 @@ import cbs.hreye.pojo.ProjectResponseRootDataModel;
 import cbs.hreye.utilities.CommonMethods;
 import cbs.hreye.utilities.CustomProgressbar;
 import cbs.hreye.utilities.PrefrenceKey;
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -28,26 +29,6 @@ public class TravelRequestAddFormDataPresenter {
     public TravelRequestAddFormDataPresenter(Context context, TravelRequestAddFormDataMvpView travelRequestDataMvpView) {
         this.context = context;
         this.travelRequestDataMvpView = travelRequestDataMvpView;
-    }
-
-
-    void fetchTravelRequestData() {
-        RetrofitClient.getInstance(context).getMyApi().geTravelRequestResponseDataCall("abc","djf").enqueue(new Callback<Response<List<TravelRequestResponseData>>>() {
-            @Override
-            public void onResponse(Call<Response<List<TravelRequestResponseData>>> call, Response<Response<List<TravelRequestResponseData>>> response) {
-                if(response.code()==200){
-                    if(response.body()!=null){
-                     travelRequestDataMvpView.getdata();
-                    }
-                }
-            }
-
-            @Override
-            public void onFailure(Call<Response<List<TravelRequestResponseData>>> call, Throwable t) {
-                  travelRequestDataMvpView.errorMessage(t.getMessage());
-            }
-        });
-
     }
 
 
@@ -93,8 +74,6 @@ public class TravelRequestAddFormDataPresenter {
         String companyName=CommonMethods.getPrefsData(context, PrefrenceKey.COMPANY_NO, "");
         String locationNo=CommonMethods.getPrefsData(context, PrefrenceKey.LOCATION_NO, "");
 
-
-
         RetrofitClient.getInstance(context).getMyApi().getAssociateDataList(companyName,locationNo,"","").enqueue(new Callback<AssociateRootDataModel>() {
             @Override
             public void onResponse(Call<AssociateRootDataModel> call, Response<AssociateRootDataModel> response) {
@@ -103,7 +82,6 @@ public class TravelRequestAddFormDataPresenter {
                     travelRequestDataMvpView.getAssociateData(response.body().getAssociateResult().getResponseDataModelList());
                 }
             }
-
             @Override
             public void onFailure(Call<AssociateRootDataModel> call, Throwable t) {
                 Toast.makeText(context,t.getMessage(),Toast.LENGTH_SHORT).show();

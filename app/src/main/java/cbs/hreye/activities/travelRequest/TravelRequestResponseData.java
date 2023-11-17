@@ -7,10 +7,10 @@ import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
 
-public class TravelRequestResponseData implements Parcelable {
+public class TravelRequestResponseData implements Serializable {
     @SerializedName("srNo")
     String SrNo;
-    @SerializedName("associateCode")
+    @SerializedName("AssociateCode")
     String associateCode;
     @SerializedName("name")
     String name;
@@ -61,36 +61,6 @@ public class TravelRequestResponseData implements Parcelable {
         this.status = status;
     }
 
-    protected TravelRequestResponseData(Parcel in) {
-        SrNo = in.readString();
-        associateCode = in.readString();
-        name=in.readString();
-        transactionNo = in.readString();
-        transactionDate = in.readString();
-        travelMode = in.readString();
-        fromDate = in.readString();
-        toDate = in.readString();
-        hotelRequired = in.readString();
-        hotelFromDate = in.readString();
-        hotelToDate = in.readString();
-        travelFrom = in.readString();
-        travelTo = in.readString();
-        grantOrRejectRemarks = in.readString();
-        deskRemarks = in.readString();
-        status = in.readString();
-    }
-
-    public static final Creator<TravelRequestResponseData> CREATOR = new Creator<TravelRequestResponseData>() {
-        @Override
-        public TravelRequestResponseData createFromParcel(Parcel in) {
-            return new TravelRequestResponseData(in);
-        }
-
-        @Override
-        public TravelRequestResponseData[] newArray(int size) {
-            return new TravelRequestResponseData[size];
-        }
-    };
 
     public String getSrNo() {
         return SrNo;
@@ -212,12 +182,6 @@ public class TravelRequestResponseData implements Parcelable {
         this.transactionDate = transactionDate;
     }
 
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-
     public String getName() {
         return name;
     }
@@ -226,23 +190,4 @@ public class TravelRequestResponseData implements Parcelable {
         this.name = name;
     }
 
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(SrNo);
-        dest.writeString(associateCode);
-        dest.writeString(name);
-        dest.writeString(transactionNo);
-        dest.writeString(transactionDate);
-        dest.writeString(travelMode);
-        dest.writeString(fromDate);
-        dest.writeString(toDate);
-        dest.writeString(hotelRequired);
-        dest.writeString(hotelFromDate);
-        dest.writeString(hotelToDate);
-        dest.writeString(travelFrom);
-        dest.writeString(travelTo);
-        dest.writeString(grantOrRejectRemarks);
-        dest.writeString(deskRemarks);
-        dest.writeString(status);
-    }
 }

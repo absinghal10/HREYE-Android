@@ -6,7 +6,11 @@ import java.util.List;
 
 import cbs.hreye.activities.travelRequest.TravelRequestResponseData;
 import cbs.hreye.network.RetrofitClient;
+import cbs.hreye.pojo.TravelRequestGetResponseModel;
+import cbs.hreye.pojo.TravelRequestGetRootModel;
+import cbs.hreye.utilities.CommonMethods;
 import cbs.hreye.utilities.CustomProgressbar;
+import cbs.hreye.utilities.PrefrenceKey;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -24,19 +28,22 @@ public class TravelRequestDataPresenter {
 
 
     void fetchTravelRequestData() {
-        RetrofitClient.getInstance(context).getMyApi().geTravelRequestResponseDataCall("abc","djf").enqueue(new Callback<Response<List<TravelRequestResponseData>>>() {
+
+        String companyName= CommonMethods.getPrefsData(context, PrefrenceKey.COMPANY_NO, "");
+        String locationNo=CommonMethods.getPrefsData(context, PrefrenceKey.LOCATION_NO, "");
+
+
+        RetrofitClient.getInstance(context).getMyApi().getTravelRequestData(companyName,locationNo).enqueue(new Callback<TravelRequestGetRootModel>() {
             @Override
-            public void onResponse(Call<Response<List<TravelRequestResponseData>>> call, Response<Response<List<TravelRequestResponseData>>> response) {
-                if(response.code()==200){
-                    if(response.body()!=null){
-                     travelRequestDataMvpView.getTravelRequestData();
-                    }
+            public void onResponse(Call<TravelRequestGetRootModel> call, Response<TravelRequestGetRootModel> response) {
+                if(response.code()==200&&response.body()!=null){
+                    travelRequestDataMvpView.getTravelRequestData(response.body().getMobileTravelResult().getTravelRequestGetModel());
                 }
             }
 
             @Override
-            public void onFailure(Call<Response<List<TravelRequestResponseData>>> call, Throwable t) {
-                  travelRequestDataMvpView.errorMessage(t.getMessage());
+            public void onFailure(Call<TravelRequestGetRootModel> call, Throwable t) {
+                travelRequestDataMvpView.errorMessage(t.getMessage());
             }
         });
 

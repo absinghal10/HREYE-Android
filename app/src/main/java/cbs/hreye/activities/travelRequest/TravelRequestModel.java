@@ -5,71 +5,80 @@ import com.google.gson.annotations.SerializedName;
 import java.io.Serializable;
 
 public class TravelRequestModel implements Serializable {
-    @SerializedName("srNo")
+
+
+
+    @SerializedName("SR_NO")
     String srNo;
+    // Same as Serial Number
+    @SerializedName("MODE")
+    String mode;
     @SerializedName("transactionNo")
     String transactionNo;
-    @SerializedName("typeOfEmpolyee")
+    @SerializedName("TYPE_OF_EMPLOYEE")
     String typeOfEmpolyee;
-    @SerializedName("associateCode")
+    @SerializedName("ASSO_CODE")
     String associateCode;
-    @SerializedName("associateName")
+    @SerializedName("ASSO_NAME")
     String associateName;
-    @SerializedName("nameAsPerGovtDoc")
+    @SerializedName("DOCOMENTRY_NAME")
     String nameAsPerGovtDoc;
-    @SerializedName("age")
+    @SerializedName("AGE")
     String age;
-    @SerializedName("customer")
+    @SerializedName("CUSTOMER_NAME")
     String customer;
-    @SerializedName("trip")
+    @SerializedName("TRIP")
     String trip;
-    @SerializedName("travelData")
+    @SerializedName("DATE")
     String travelData;
-    @SerializedName("returnDate")
+    @SerializedName("To_date")
     String returnDate;
-    @SerializedName("travelMode")
+    @SerializedName("TRAVEL_MODE")
     String travelMode;
-    @SerializedName("reasonForTravel")
+    @SerializedName("TRAVEL_REASON")
     String reasonForTravel;
-    @SerializedName("hotelRequired")
+    @SerializedName("HOTEL_REQUIRED")
     String hotelRequired;
-    @SerializedName("hotelfrom")
+    @SerializedName("HOTEL_FROM_DATE")
     String 	hotelfrom;
-    @SerializedName("hotelto")
+    @SerializedName("HOTEL_TO_DATE")
     String hotelto;
-    @SerializedName("fromLocation")
+    @SerializedName("TRAVEL_FROM")
     String fromLocation;
-    @SerializedName("ToLocation")
+    @SerializedName("TRAVEL_TO")
     String ToLocation;
-    @SerializedName("passport")
+    @SerializedName("PASSPORT")
     String passport;
-    @SerializedName("validity")
+    @SerializedName("VALIDITY")
     String validity;
 
+    @SerializedName("STATUS")
+    String status;
 
-        public TravelRequestModel(String srNo, String transactionNo, String typeOfEmpolyee, String associateCode, String associateName, String nameAsPerGovtDoc, String age, String customer, String trip, String travelData, String returnDate, String travelMode, String reasonForTravel, String hotelRequired, String hotelfrom, String hotelto, String fromLocation, String toLocation, String passport, String validity) {
-            this.srNo = srNo;
-            this.transactionNo = transactionNo;
-            this.typeOfEmpolyee = typeOfEmpolyee;
-            this.associateCode = associateCode;
-            this.associateName = associateName;
-            this.nameAsPerGovtDoc = nameAsPerGovtDoc;
-            this.age = age;
-            this.customer = customer;
-            this.trip = trip;
-            this.travelData = travelData;
-            this.returnDate = returnDate;
-            this.travelMode = travelMode;
-            this.reasonForTravel = reasonForTravel;
-            this.hotelRequired = hotelRequired;
-            this.hotelfrom = hotelfrom;
-            this.hotelto = hotelto;
-            this.fromLocation = fromLocation;
-            ToLocation = toLocation;
-            this.passport = passport;
-            this.validity = validity;
-        }
-
+    public TravelRequestModel(String srNo, String mode, String transactionNo, String typeOfEmpolyee, String associateCode, String associateName, String nameAsPerGovtDoc, String age, String customer, String trip, String travelData, String returnDate, String travelMode, String reasonForTravel, String hotelRequired, String hotelfrom, String hotelto, String fromLocation, String toLocation, String passport, String validity,String status) {
+        this.srNo = srNo;
+        this.mode = mode;
+        this.transactionNo = transactionNo;
+        this.typeOfEmpolyee = typeOfEmpolyee;
+        this.associateCode = associateCode;
+        this.associateName = associateName;
+        this.nameAsPerGovtDoc = nameAsPerGovtDoc;
+        this.age = age;
+        this.customer = customer;
+        this.trip = trip;
+        this.travelData = travelData;
+        this.returnDate = returnDate;
+        this.travelMode = travelMode;
+        this.reasonForTravel = reasonForTravel;
+        this.hotelRequired = hotelRequired;
+        this.hotelfrom = hotelfrom;
+        this.hotelto = hotelto;
+        this.fromLocation = fromLocation;
+        ToLocation = toLocation;
+        this.passport = passport;
+        this.validity = validity;
+        this.status = status;
+    }
 
     public String getSrNo() {
         return srNo;
@@ -229,5 +238,21 @@ public class TravelRequestModel implements Serializable {
 
     public void setValidity(String validity) {
         this.validity = validity;
+    }
+
+    public String getMode() {
+        return mode;
+    }
+
+    public void setMode(String mode) {
+        this.mode = mode;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

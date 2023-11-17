@@ -4,20 +4,24 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import cbs.hreye.R;
-import cbs.hreye.activities.travelRequest.TravelRequestResponseData;
+import cbs.hreye.activities.travelRequest.TravelRequestModel;
 
 public class TravelRequestDataDetailAdapter extends RecyclerView.Adapter<TravelRequestDataDetailAdapter.MyViewHolder> {
     private Context context;
-    private ArrayList<TravelRequestResponseData> travelRequestDataList;
+    private ArrayList<TravelRequestModel> travelRequestDataList;
 
-    public TravelRequestDataDetailAdapter(Context context,  ArrayList<TravelRequestResponseData> travelRequestResponseData) {
+    private  OnTravelRequestDetailItemClickListener onTravelRequestDetailItemClickListener;
+
+    public TravelRequestDataDetailAdapter(Context context, ArrayList<TravelRequestModel> travelRequestResponseData,OnTravelRequestDetailItemClickListener onTravelRequestDetailItemClickListener) {
         this.context = context;
         this.travelRequestDataList = travelRequestResponseData;
+        this.onTravelRequestDetailItemClickListener=onTravelRequestDetailItemClickListener;
     }
 
     @NonNull
@@ -29,23 +33,44 @@ public class TravelRequestDataDetailAdapter extends RecyclerView.Adapter<TravelR
 
     @Override
     public void onBindViewHolder(@NonNull TravelRequestDataDetailAdapter.MyViewHolder holder, int position) {
-        TravelRequestResponseData data = travelRequestDataList.get(position);
+        TravelRequestModel data = travelRequestDataList.get(position);
 
-        holder.srNoTextView.setText("S.No :"+data.getSrNo());
+        holder.srNoTextView.setText("S.No :"+(position+1));
+        holder.employeeTypeTextView.setText(data.getTypeOfEmpolyee().equalsIgnoreCase("0")?"Employee":"Non-Employee");
+        holder.ageTextView.setText(data.getAge());
+        holder.customerNameTextView.setText(data.getCustomer());
         holder.associateCodeTextView.setText(data.getAssociateCode());
-        holder.nameTextView.setText(data.getName());
+        holder.documentyTextView.setText(data.getNameAsPerGovtDoc());
+        holder.nameTextView.setText(data.getAssociateName());
+        holder.tripTextView.setText(data.getTrip());
+        holder.reasonForTravelTextView.setText(data.getReasonForTravel());
         holder.tranNoTextView.setText(data.getTransactionNo());
         holder.travelModeTextView.setText(data.getTravelMode());
-        holder.fromDateTextView.setText(data.getFromDate());
-        holder.toDateTextView.setText(data.getToDate());
+        holder.fromDateTextView.setText(data.getTravelData());
+        holder.toDateTextView.setText(data.getReturnDate());
         holder.hotelRequiredTextView.setText(data.getHotelRequired());
-        holder.hotelFromDateTextView.setText(data.getHotelFromDate());
-        holder.hotelToDateTextView.setText(data.getHotelToDate());
-        holder.travelFromTextView.setText(data.getTravelFrom());
-        holder.travelToTextView.setText(data.getTravelTo());
-        holder.grRemarksTextView.setText(data.getGrantOrRejectRemarks());
-        holder.deskRemarksTextView.setText(data.getDeskRemarks());
+        holder.hotelFromDateTextView.setText(data.getHotelfrom());
+        holder.hotelToDateTextView.setText(data.getHotelto());
+        holder.travelFromTextView.setText(data.getFromLocation());
+        holder.travelToTextView.setText(data.getToLocation());
+        holder.passportTextView.setText(data.getPassport());
+        holder.validityTextView.setText(data.getValidity());
         holder.statusTextView.setText(data.getStatus());
+
+        if(data.getStatus().equalsIgnoreCase("F")){
+            holder.deleteDataImageView.setVisibility(View.VISIBLE);
+        }else{
+            holder.deleteDataImageView.setVisibility(View.GONE);
+        }
+
+        holder.deleteDataImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onTravelRequestDetailItemClickListener.onDeleteItem(position);
+            }
+        });
+
+
     }
 
     @Override
@@ -53,13 +78,32 @@ public class TravelRequestDataDetailAdapter extends RecyclerView.Adapter<TravelR
         return travelRequestDataList.size();
     }
 
+    public void replaceData(ArrayList<TravelRequestModel> travelRequestModelArrayList) {
+
+        // Create a new list to avoid modifying the original list
+        ArrayList<TravelRequestModel> newList = new ArrayList<>();
+
+        if (travelRequestModelArrayList != null) {
+            newList.addAll(travelRequestModelArrayList);
+        }
+
+        travelRequestDataList.clear();
+        travelRequestDataList.addAll(newList);
+        notifyDataSetChanged();
+    }
+
     public static class MyViewHolder extends RecyclerView.ViewHolder {
 
         TextView srNoTextView;
+        TextView documentyTextView;
+        TextView employeeTypeTextView;
         TextView associateCodeTextView;
         TextView nameTextView;
+        TextView ageTextView;
+        TextView customerNameTextView;
         TextView tranNoTextView;
         TextView travelModeTextView;
+        TextView tripTextView;
         TextView fromDateTextView;
         TextView toDateTextView;
         TextView hotelRequiredTextView;
@@ -67,18 +111,26 @@ public class TravelRequestDataDetailAdapter extends RecyclerView.Adapter<TravelR
         TextView hotelToDateTextView;
         TextView travelFromTextView;
         TextView travelToTextView;
-        TextView grRemarksTextView;
-        TextView deskRemarksTextView;
+        TextView validityTextView;
+        TextView passportTextView;
         TextView statusTextView;
-
+        TextView reasonForTravelTextView;
+        ImageView editDataImageView;
+        ImageView deleteDataImageView;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             srNoTextView = itemView.findViewById(R.id.travel_request_detail_sr_no);
             associateCodeTextView = itemView.findViewById(R.id.travel_request_detail_associate_code);
             nameTextView = itemView.findViewById(R.id.travel_request_detail_name);
+            employeeTypeTextView = itemView.findViewById(R.id.travel_request_detail_employee_type);
+            documentyTextView = itemView.findViewById(R.id.travel_request_detail_documentry_name);
+            ageTextView = itemView.findViewById(R.id.travel_request_detail_age);
+            customerNameTextView = itemView.findViewById(R.id.travel_request_detail_customer_name);
             tranNoTextView = itemView.findViewById(R.id.travel_request_detail_tran_no);
             travelModeTextView = itemView.findViewById(R.id.travel_request_detail_travel_mode);
+            tripTextView = itemView.findViewById(R.id.travel_request_detail_trip);
+            reasonForTravelTextView = itemView.findViewById(R.id.travel_request_detail_reason_for_travel);
             fromDateTextView = itemView.findViewById(R.id.travel_request_detail_from_date);
             toDateTextView = itemView.findViewById(R.id.travel_request_detail_to_date);
             hotelRequiredTextView = itemView.findViewById(R.id.travel_request_detail_hotel_required);
@@ -86,9 +138,11 @@ public class TravelRequestDataDetailAdapter extends RecyclerView.Adapter<TravelR
             hotelToDateTextView = itemView.findViewById(R.id.travel_request_detail_hotel_to_date);
             travelFromTextView = itemView.findViewById(R.id.travel_request_detail_travel_from);
             travelToTextView = itemView.findViewById(R.id.travel_request_detail_travel_to);
-            grRemarksTextView = itemView.findViewById(R.id.travel_request_detail_gr_remarks);
-            deskRemarksTextView = itemView.findViewById(R.id.travel_request_detail_desk_remarks);
+            validityTextView = itemView.findViewById(R.id.travel_request_detail_validity);
+            passportTextView = itemView.findViewById(R.id.travel_request_detail_passport);
             statusTextView = itemView.findViewById(R.id.travel_request_detail_status);
+            editDataImageView = itemView.findViewById(R.id.travel_request_detail_edit_imageview);
+            deleteDataImageView = itemView.findViewById(R.id.travel_request_detail_delete_imageview);
         }
     }
 }

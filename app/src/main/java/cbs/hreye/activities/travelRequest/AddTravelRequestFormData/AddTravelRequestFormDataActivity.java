@@ -76,7 +76,7 @@ public class AddTravelRequestFormDataActivity extends AppCompatActivity implemen
     String[] tripSpinnerData = {"Select", "Single trip", "Round trip"};
     String[] typeOfEmployeeSpinnerData = {"Select","Employee", "Non-Employee",};
     String[] travelModeSpinnerData = {"Select","Bus", "Train","Flight"};
-    String[] travelReasonSpinnerData = {"Select","Sales", "Client Visit","Relocation","SAP Meeting","Others"};
+    String[] travelReasonSpinnerData = {"Select","Sales","Presales","Client Visit","Relocation","SAP Meeting","Others"};
     String[] hotelRequiredSpinnerData = {"Select","Yes","No"};
 
 
@@ -163,10 +163,33 @@ public class AddTravelRequestFormDataActivity extends AppCompatActivity implemen
                 nameAsPerDocEditText.setText(editDataModel.getNameAsPerGovtDoc());
                 ageEditText.setText(editDataModel.getAge());
                 customerDataEditText.setText(editDataModel.getCustomer());
-                travelDateEditText.setText(editDataModel.getTravelData());
-                travelReturnDateEditText.setText(editDataModel.getReturnDate());
-                hotelFromEditText.setText(editDataModel.getHotelfrom());
-                hotelToEditText.setText(editDataModel.getHotelfrom());
+
+                // Reset Date in dd/MM/yyyy format
+                if(TextUtils.isEmpty(editDataModel.getTravelData())){
+                    travelDateEditText.setText(editDataModel.getTravelData());
+                }else{
+                    travelDateEditText.setText(CommonMethods.changeDateFromyyyyMMdd(editDataModel.getTravelData()));
+                }
+
+                if(TextUtils.isEmpty(editDataModel.getReturnDate())){
+                    travelReturnDateEditText.setText(editDataModel.getReturnDate());
+                }else{
+                    travelReturnDateEditText.setText(CommonMethods.changeDateFromyyyyMMdd(editDataModel.getReturnDate()));
+                }
+
+                if(TextUtils.isEmpty(editDataModel.getHotelfrom())){
+                    hotelFromEditText.setText(editDataModel.getHotelfrom());
+                }else{
+                    hotelFromEditText.setText(CommonMethods.changeDateFromyyyyMMdd(editDataModel.getHotelfrom()));
+                }
+
+                if(TextUtils.isEmpty(editDataModel.getHotelto())){
+                    hotelToEditText.setText(editDataModel.getHotelto());
+                }else{
+                    hotelToEditText.setText(CommonMethods.changeDateFromyyyyMMdd(editDataModel.getHotelto()));
+                }
+
+
                 fromLocationEditText.setText(editDataModel.getFromLocation());
                 toLocationEditText.setText(editDataModel.getToLocation());
                 if(travelTypeValue.equalsIgnoreCase("International")){
@@ -174,73 +197,27 @@ public class AddTravelRequestFormDataActivity extends AppCompatActivity implemen
                     validityEditText.setText(editDataModel.getValidity());
                 }
 
-
-
-                // Find the position of the selected value in your Spinner array
-                int position = Arrays.asList(travelModeSpinnerData).indexOf(editDataModel.getTravelMode());
-                if (position >= 0) {
-                    // Set the Spinner's selection to the position if the value exists in the array
-                    travelModeSpinner.setSelection(position);
-                } else {
-                    // The selected value doesn't exist in the array, so you can set a default selection, e.g., "Select"
-                    travelModeSpinner.setSelection(0); // 0 corresponds to "Select" in your array
-                }
-
-                // Find the position of the selected value in your Spinner array
-                int position1 = Arrays.asList(typeOfEmployeeSpinnerData).indexOf(editDataModel.getTypeOfEmpolyee());
-                if (position1 >= 0) {
-                    // Set the Spinner's selection to the position if the value exists in the array
-                    typeOfEmployeeSpinner.setSelection(position1);
-                } else {
-                    // The selected value doesn't exist in the array, so you can set a default selection, e.g., "Select"
-                    typeOfEmployeeSpinner.setSelection(0); // 0 corresponds to "Select" in your array
-                }
-
-                // Find the position of the selected value in your Spinner array
-                int position2 = Arrays.asList(tripSpinnerData).indexOf(editDataModel.getTrip());
-                if (position2 >= 0) {
-                    // Set the Spinner's selection to the position if the value exists in the array
-                    tripSpinner.setSelection(position2);
-                } else {
-                    // The selected value doesn't exist in the array, so you can set a default selection, e.g., "Select"
-                    tripSpinner.setSelection(0); // 0 corresponds to "Select" in your array
-                }
-
-
-                // Find the position of the selected value in your Spinner array
-                int position3 = Arrays.asList(travelModeSpinnerData).indexOf(editDataModel.getTravelMode());
-                if (position3 >= 0) {
-                    // Set the Spinner's selection to the position if the value exists in the array
-                    travelModeSpinner.setSelection(position3);
-                } else {
-                    // The selected value doesn't exist in the array, so you can set a default selection, e.g., "Select"
-                    travelModeSpinner.setSelection(0); // 0 corresponds to "Select" in your array
-                }
-
-                // Find the position of the selected value in your Spinner array
-                int position4 = Arrays.asList(travelReasonSpinnerData).indexOf(editDataModel.getReasonForTravel());
-                if (position4 >= 0) {
-                    // Set the Spinner's selection to the position if the value exists in the array
-                    travelReasonSpinner.setSelection(position4);
-                } else {
-                    // The selected value doesn't exist in the array, so you can set a default selection, e.g., "Select"
-                    travelReasonSpinner.setSelection(0); // 0 corresponds to "Select" in your array
-                }
-
-
-                // Find the position of the selected value in your Spinner array
-                int position5 = Arrays.asList(hotelRequiredSpinnerData).indexOf(editDataModel.getHotelRequired());
-                if (position5 >= 0) {
-                    // Set the Spinner's selection to the position if the value exists in the array
-                    hotelRequiredSpinner.setSelection(position5);
-                } else {
-                    // The selected value doesn't exist in the array, so you can set a default selection, e.g., "Select"
-                    hotelRequiredSpinner.setSelection(0); // 0 corresponds to "Select" in your array
-                }
+                setSpinnerPosition(editDataModel.getTravelMode(),travelModeSpinnerData,travelModeSpinner);
+                setSpinnerPosition(editDataModel.getTypeOfEmpolyee(),typeOfEmployeeSpinnerData,typeOfEmployeeSpinner);
+                setSpinnerPosition(editDataModel.getTrip(),tripSpinnerData,tripSpinner);
+                setSpinnerPosition(editDataModel.getReasonForTravel(),travelReasonSpinnerData,travelReasonSpinner);
+                setSpinnerPosition(editDataModel.getHotelRequired(),hotelRequiredSpinnerData,hotelRequiredSpinner);
 
             }
         }
 
+    }
+
+    private void setSpinnerPosition(String selectedValue,String []data,Spinner spinner) {
+        // Find the position of the selected value in your Spinner array
+        int position = Arrays.asList(data).indexOf(selectedValue);
+        if (position >= 0) {
+            // Set the Spinner's selection to the position if the value exists in the array
+            spinner.setSelection(position);
+        } else {
+            // The selected value doesn't exist in the array, so you can set a default selection, e.g., "Select"
+            spinner.setSelection(0); // 0 corresponds to "Select" in your array
+        }
     }
 
     private void passportAndValidityEdittextValidation(String value,EditText editText) {
@@ -263,20 +240,68 @@ public class AddTravelRequestFormDataActivity extends AppCompatActivity implemen
         String nameAsPerDoc = nameAsPerDocEditText.getText().toString();
         String age = ageEditText.getText().toString();
         String customerData = customerDataEditText.getText().toString();
-        String travelDate = travelDateEditText.getText().toString();
-        String travelReturnDate = travelReturnDateEditText.getText().toString();
-        String hotelFrom = hotelFromEditText.getText().toString();
-        String hotelTo = hotelToEditText.getText().toString();
+
+        String travelDate="";
+        if(TextUtils.isEmpty(travelDateEditText.getText().toString())){
+            travelDate = travelDateEditText.getText().toString();
+        }else{
+            travelDate = CommonMethods.changeDateTOyyyyMMdd(travelDateEditText.getText().toString());
+        }
+
+        String travelReturnDate="";
+        if(TextUtils.isEmpty(travelReturnDateEditText.getText().toString())){
+            travelReturnDate = travelReturnDateEditText.getText().toString();
+        }else{
+            travelReturnDate = CommonMethods.changeDateTOyyyyMMdd(travelReturnDateEditText.getText().toString());
+        }
+
+        String hotelFrom="";
+        if(TextUtils.isEmpty(hotelFromEditText.getText().toString())){
+            hotelFrom = hotelFromEditText.getText().toString();
+        }else{
+            hotelFrom = CommonMethods.changeDateTOyyyyMMdd(hotelFromEditText.getText().toString());
+        }
+
+
+        String hotelTo="";
+        if(TextUtils.isEmpty(hotelToEditText.getText().toString())){
+            hotelTo = hotelToEditText.getText().toString();
+        }else{
+            hotelTo = CommonMethods.changeDateTOyyyyMMdd(hotelToEditText.getText().toString());
+        }
+
+
         String fromLocation = fromLocationEditText.getText().toString();
         String toLocation = toLocationEditText.getText().toString();
         String passport = passportEditText.getText().toString();
         String validity = validityEditText.getText().toString();
 
+
+        String selectedTravelReason="";
+
+
+        String[] travelReasonSpinnerData = {"Select","Sales","Presales","Client Visit","Relocation","SAP Meeting","Others"};
+
+        if(travelReasonSpinner.getSelectedItem().toString().equalsIgnoreCase(travelReasonSpinnerData[1])){
+            selectedTravelReason="C1";
+        }else if(travelReasonSpinner.getSelectedItem().toString().equalsIgnoreCase(travelReasonSpinnerData[2])){
+            selectedTravelReason="C2";
+        }else if(travelReasonSpinner.getSelectedItem().toString().equalsIgnoreCase(travelReasonSpinnerData[3])){
+            selectedTravelReason="C3";
+        }else if(travelReasonSpinner.getSelectedItem().toString().equalsIgnoreCase(travelReasonSpinnerData[4])){
+            selectedTravelReason="C4";
+        }else if(travelReasonSpinner.getSelectedItem().toString().equalsIgnoreCase(travelReasonSpinnerData[5])){
+            selectedTravelReason="C5";
+        }else if(travelReasonSpinner.getSelectedItem().toString().equalsIgnoreCase(travelReasonSpinnerData[6])){
+            selectedTravelReason="C6";
+        }
+
         // Create a TravelRequestModel instance by passing the values
         TravelRequestModel requestModel = new TravelRequestModel(
+                "1",
+                "1",
                 "",
-                "",
-                typeOfEmployeeSpinner.getSelectedItem().toString(), // Get the selected value from the typeOfEmployeeSpinner
+                typeOfEmployeeSpinner.getSelectedItem().toString().equalsIgnoreCase("Employee")?"0":"1", // Get the selected value from the typeOfEmployeeSpinner
                 associateCode,
                 associateName,
                 nameAsPerDoc,
@@ -285,22 +310,37 @@ public class AddTravelRequestFormDataActivity extends AppCompatActivity implemen
                 tripSpinner.getSelectedItem().toString(), // Get the selected value from the tripSpinner
                 travelDate,
                 travelReturnDate,
-                travelModeSpinner.getSelectedItem().toString(), // Get the selected value from the travelModeSpinner
-                travelReasonSpinner.getSelectedItem().toString(), // Get the selected value from the travelReasonSpinner
+                travelModeSpinner.getSelectedItem().toString(),// Get the selected value from the travelModeSpinner
+                selectedTravelReason, // Get the selected value from the travelReasonSpinner
                 hotelRequiredSpinner.getSelectedItem().toString(), // Get the selected value from the hotelRequiredSpinner
                 hotelFrom,
                 hotelTo,
                 fromLocation,
                 toLocation,
                 passport,
-                validity
+                validity,
+                "F"
         );
 
 
-        Intent intent = new Intent();
-        intent.putExtra("inputRequest",requestModel);
-        setResult(RESULT_OK, intent);
-        finish();
+        if(isNavigate.equalsIgnoreCase("FromEdit")){
+            Intent intent = new Intent();
+            intent.putExtra("inputRequest",requestModel);
+            intent.putExtra("position",position);
+            setResult(RESULT_OK, intent);
+            finish();
+        } else if (isNavigate.equalsIgnoreCase("FromGetData")){
+            Intent intent = new Intent();
+            intent.putExtra("inputRequest",requestModel);
+            setResult(RESULT_OK, intent);
+            finish();
+        }else{
+            Intent intent = new Intent();
+            intent.putExtra("inputRequest",requestModel);
+            setResult(RESULT_OK, intent);
+            finish();
+        }
+
     }
 
 
@@ -754,9 +794,9 @@ public class AddTravelRequestFormDataActivity extends AppCompatActivity implemen
                                             long id) {
 
                         if (iLength != 0) {
-                            customerDataEditText.setText(CustomerDetailsAdapter.filters.get(position).getCUSTOMER_ID().replaceAll("\\s+", ""));
+                            customerDataEditText.setText(CustomerDetailsAdapter.filters.get(position).getCUSTOMER_NAME());
                         } else {
-                            customerDataEditText.setText(customerAndProjectList.get(position).getCUSTOMER_ID().replaceAll("\\s+", ""));
+                            customerDataEditText.setText(customerAndProjectList.get(position).getCUSTOMER_NAME());
                         }
 
                         iLength = 0;
@@ -795,4 +835,6 @@ public class AddTravelRequestFormDataActivity extends AppCompatActivity implemen
     public void errorMessage(String msg) {
         Toast.makeText(this,msg,Toast.LENGTH_SHORT).show();
     }
+
+
 }

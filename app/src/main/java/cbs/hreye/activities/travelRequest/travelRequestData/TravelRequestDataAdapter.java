@@ -15,14 +15,15 @@ import java.util.ArrayList;
 import cbs.hreye.R;
 import cbs.hreye.activities.travelRequest.TravelRequestDetailData.TravelRequestDataDetailActivity;
 import cbs.hreye.activities.travelRequest.TravelRequestResponseData;
+import cbs.hreye.pojo.TravelRequestGetModel;
 
 public class TravelRequestDataAdapter extends RecyclerView.Adapter<TravelRequestDataAdapter.MyViewHolder> implements Filterable {
     private Context context;
-    private ArrayList<TravelRequestResponseData> travelRequestDataList;
+    private ArrayList<TravelRequestGetModel> travelRequestDataList;
 
-    ArrayList<TravelRequestResponseData> filterList;
+    ArrayList<TravelRequestGetModel> filterList;
     TravelRequestDataAdapter.CustomFilter filter;
-    public static ArrayList<TravelRequestResponseData> filters;
+    public static ArrayList<TravelRequestGetModel> filters;
 
     public TravelRequestDataAdapter(Context context, ArrayList travelRequestDataList) {
         this.context = context;
@@ -48,7 +49,11 @@ public class TravelRequestDataAdapter extends RecyclerView.Adapter<TravelRequest
             public void onClick(View v) {
                 Intent travelRequestintent=new Intent(context, TravelRequestDataDetailActivity.class);
                 Bundle bundle = new Bundle();
-                bundle.putSerializable("travelRequestData",travelRequestDataList);
+                bundle.putString("transactionNo",travelRequestDataList.get(position).getTransactionNo());
+                bundle.putString("transactionDate",travelRequestDataList.get(position).getTransactionDate());
+                bundle.putString("status",travelRequestDataList.get(position).getStatus());
+                bundle.putString("remark",travelRequestDataList.get(position).getTravelRequestRemark());
+                bundle.putString("travelType",travelRequestDataList.get(position).getTravelTypeValue());
                 travelRequestintent.putExtras(bundle);
                 context.startActivity(travelRequestintent);
             }
@@ -111,7 +116,7 @@ public class TravelRequestDataAdapter extends RecyclerView.Adapter<TravelRequest
 
         @Override
         protected void publishResults(CharSequence constraint, FilterResults results) {
-            travelRequestDataList = (ArrayList<TravelRequestResponseData>) results.values;
+            travelRequestDataList = (ArrayList<TravelRequestGetModel>) results.values;
             notifyDataSetChanged();
         }
     }

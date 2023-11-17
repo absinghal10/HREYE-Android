@@ -12,13 +12,89 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
+
+    <LinearLayout
+        android:id="@+id/remark_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/toolbar_header_layout"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:orientation="horizontal">
+
+        <cbs.hreye.utilities.CustomTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="start"
+            android:text="Remark"
+            android:textColor="@color/DarkBlue"
+            android:textSize="@dimen/normal_text" />
+
+        <EditText
+            android:id="@+id/remark_textview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_top"
+            android:layout_weight="1"
+            android:background="@drawable/rounded_layout"
+            android:gravity="center"
+            android:maxLines="1"
+            android:padding="@dimen/margin_top"
+            android:textColor="@color/black"
+            android:textSize="@dimen/normal_text" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/travel_selection_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:layout_below="@+id/remark_layout"
+        android:orientation="horizontal">
+
+        <cbs.hreye.utilities.CustomTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="start"
+            android:text="Travel"
+            android:textColor="@color/DarkBlue"
+            android:textSize="@dimen/normal_text" />
+
+
+        <Spinner
+            android:id="@+id/travel_type_spinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_top"
+            android:layout_weight="1" />
+
+    </LinearLayout>
+
+
+    <View
+        android:id="@+id/bottom_horizontal_line_view"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_below="@+id/travel_selection_layout"
+        android:layout_marginLeft="@dimen/margin"
+        android:layout_marginRight="@dimen/margin"
+        android:background="@color/colorPrimary" />
+
+
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/travel_request_detail_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="@dimen/padding_10"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        android:layout_below="@+id/toolbar_header_layout"
+        android:layout_below="@+id/bottom_horizontal_line_view"
         tools:listitem="@layout/item_travel_request_row_layout" />
 
 

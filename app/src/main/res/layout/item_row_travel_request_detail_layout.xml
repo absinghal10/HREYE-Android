@@ -58,6 +58,31 @@
             android:orientation="vertical"
             android:padding="@dimen/margin_top">
 
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <cbs.hreye.utilities.CustomTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.5"
+                    android:gravity="start|top"
+                    android:text="Employee Type"
+                    android:textColor="@color/DarkBlue"
+                    android:textSize="@dimen/normal_text" />
+
+                <TextView
+                    android:id="@+id/travel_request_detail_employee_type"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="start|top"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/normal_text" />
+            </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -107,6 +132,84 @@
                     android:textSize="@dimen/normal_text" />
             </LinearLayout>
 
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_top"
+                android:orientation="horizontal">
+
+                <cbs.hreye.utilities.CustomTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.5"
+                    android:gravity="start|top"
+                    android:text="Documentry Name"
+                    android:textColor="@color/DarkBlue"
+                    android:textSize="@dimen/normal_text" />
+
+                <TextView
+                    android:id="@+id/travel_request_detail_documentry_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="start|top"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/normal_text" />
+            </LinearLayout>
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_top"
+                android:orientation="horizontal">
+
+                <cbs.hreye.utilities.CustomTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.5"
+                    android:gravity="start|top"
+                    android:text="Age"
+                    android:textColor="@color/DarkBlue"
+                    android:textSize="@dimen/normal_text" />
+
+                <TextView
+                    android:id="@+id/travel_request_detail_age"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="start|top"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/normal_text" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_top"
+                android:orientation="horizontal">
+
+                <cbs.hreye.utilities.CustomTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.5"
+                    android:gravity="start|top"
+                    android:text="Customer Name"
+                    android:textColor="@color/DarkBlue"
+                    android:textSize="@dimen/normal_text" />
+
+                <TextView
+                    android:id="@+id/travel_request_detail_customer_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="start|top"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/normal_text" />
+            </LinearLayout>
 
 
             <LinearLayout
@@ -159,6 +262,59 @@
                     android:textColor="@color/black"
                     android:textSize="@dimen/normal_text" />
             </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_top"
+                android:orientation="horizontal">
+
+                <cbs.hreye.utilities.CustomTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.5"
+                    android:gravity="start|top"
+                    android:text="Reason for travel"
+                    android:textColor="@color/DarkBlue"
+                    android:textSize="@dimen/normal_text" />
+
+                <TextView
+                    android:id="@+id/travel_request_detail_reason_for_travel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="start|top"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/normal_text" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_top"
+                android:orientation="horizontal">
+
+                <cbs.hreye.utilities.CustomTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.5"
+                    android:gravity="start|top"
+                    android:text="Trip"
+                    android:textColor="@color/DarkBlue"
+                    android:textSize="@dimen/normal_text" />
+
+                <TextView
+                    android:id="@+id/travel_request_detail_trip"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="start|top"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/normal_text" />
+            </LinearLayout>
+
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -346,12 +502,12 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1.5"
                     android:gravity="start|top"
-                    android:text="@string/travel_request_detail_gr_remarks"
+                    android:text="Passport"
                     android:textColor="@color/DarkBlue"
                     android:textSize="@dimen/normal_text" />
 
                 <TextView
-                    android:id="@+id/travel_request_detail_gr_remarks"
+                    android:id="@+id/travel_request_detail_passport"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -371,12 +527,12 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1.5"
                     android:gravity="start|top"
-                    android:text="@string/travel_request_detail_desk_remarks"
+                    android:text="Validity"
                     android:textColor="@color/DarkBlue"
                     android:textSize="@dimen/normal_text" />
 
                 <TextView
-                    android:id="@+id/travel_request_detail_desk_remarks"
+                    android:id="@+id/travel_request_detail_validity"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"

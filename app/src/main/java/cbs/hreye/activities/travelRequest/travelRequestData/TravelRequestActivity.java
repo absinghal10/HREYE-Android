@@ -1,11 +1,14 @@
 package cbs.hreye.activities.travelRequest.travelRequestData;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -15,12 +18,17 @@ import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.facebook.shimmer.ShimmerFrameLayout;
+
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 import cbs.hreye.R;
 import cbs.hreye.activities.travelRequest.TravelRequestAddData.AddTravelRequestActivity;
 import cbs.hreye.activities.travelRequest.TravelRequestResponseData;
+import cbs.hreye.pojo.TravelRequestGetModel;
+import cbs.hreye.pojo.TravelRequestGetResponseModel;
 import cbs.hreye.utilities.CommonMethods;
 import cbs.hreye.utilities.CustomTextView;
 
@@ -29,7 +37,7 @@ public class TravelRequestActivity extends AppCompatActivity implements TravelRe
     private TextView toolBarHeaderTextView;
     private ImageView backButtonImageView;
     private ImageView addNewTravelRequestFloatingImageView;
-    private ArrayList<TravelRequestResponseData> travelrequestResponseDataList;
+    private List<TravelRequestGetModel> travelrequestResponseDataList;
     private TravelRequestDataAdapter travelRequestDataAdapter;
     private RecyclerView travelRequestDataRecyclerView;
     private EditText searchEditText;
@@ -43,9 +51,12 @@ public class TravelRequestActivity extends AppCompatActivity implements TravelRe
 
     private int filterLength = 0;
 
+    private int REQUEST_CODE_ADD_TRAVEL_REQUEST=1295;
+
 
     private  TravelRequestDataPresenter travelRequestDataPresenter;
 
+    private ShimmerFrameLayout shimmerFrameLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,34 +69,16 @@ public class TravelRequestActivity extends AppCompatActivity implements TravelRe
         openDatePickerDialog();
         clearSearchView();
 
+        shimmerFrameLayout.setVisibility(View.VISIBLE);
         travelRequestDataPresenter.fetchTravelRequestData();
 
 
         addNewTravelRequestFloatingImageView.setOnClickListener(v -> {
-            startActivity(new Intent(this, AddTravelRequestActivity.class));
+            Intent intent=new Intent(this,AddTravelRequestActivity.class);
+            startActivityForResult(intent,REQUEST_CODE_ADD_TRAVEL_REQUEST);
             overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_left);
         });
 
-        travelrequestResponseDataList =new ArrayList<>();
-        // Add dummy data to the ArrayList
-        travelrequestResponseDataList.add(new TravelRequestResponseData("1", "ABC123", "Abhishek","TR123", "01/10/2023", "Air", "2023-11-01", "2023-11-10", "Yes", "2023-11-01", "2023-11-10", "City A", "City B", "Approved", "Great trip!", "Approved"));
-        travelrequestResponseDataList.add(new TravelRequestResponseData("2", "XYZ456","Abhishek", "TR124", "02/10/2023", "Train", "2023-12-01", "2023-12-15", "No", "", "", "City X", "City Y", "Pending", "Review needed", "Pending"));
-        travelrequestResponseDataList.add(new TravelRequestResponseData("3", "DEF789","Abhishek", "TR125", "03/11/2023", "Car", "2023-12-20", "2023-12-27", "Yes", "2023-12-20", "2023-12-27", "City C", "City D", "Rejected", "Not enough information", "Rejected"));
-        travelrequestResponseDataList.add(new TravelRequestResponseData("4", "GHI012", "Abhishek","TR126", "01/12/2023", "Bus", "2023-11-15", "2023-11-20", "No", "", "", "City P", "City Q", "Approved", "Approved without remarks", "Approved"));
-        travelrequestResponseDataList.add(new TravelRequestResponseData("5", "JKL345","Abhishek", "TR127", "14/08/2023", "Air", "2023-11-05", "2023-11-12", "Yes", "2023-11-05", "2023-11-12", "City M", "City N", "Pending", "Pending review", "Pending"));
-        travelrequestResponseDataList.add(new TravelRequestResponseData("6", "MNO678", "Abhishek","TR128", "03/10/2023", "Train", "2023-12-05", "2023-12-12", "No", "", "", "City E", "City F", "Pending", "Waiting for approval", "Pending"));
-        travelrequestResponseDataList.add(new TravelRequestResponseData("7", "PQR901","Abhishek", "TR129", "01/10/2023", "Car", "2023-11-10", "2023-11-15", "No", "", "", "City G", "City H", "Approved", "Approved with remarks", "Approved"));
-        travelrequestResponseDataList.add(new TravelRequestResponseData("8", "STU234","Abhishek", "TR130", "05/10/2023", "Air", "2023-11-20", "2023-11-27", "Yes", "2023-11-20", "2023-11-27", "City I", "City J", "Rejected", "Insufficient funds", "Rejected"));
-        travelrequestResponseDataList.add(new TravelRequestResponseData("9", "VWX567", "Abhishek","TR131", "01/10/2023", "Bus", "2023-12-01", "2023-12-10", "No", "", "", "City K", "City L", "Pending", "Pending review", "Pending"));
-        travelrequestResponseDataList.add(new TravelRequestResponseData("10", "YZA890", "Abhishek","TR132", "20/10/2023", "Train", "2023-11-25", "2023-12-02", "Yes", "2023-11-25", "2023-12-02", "City O", "City P", "Approved", "Approved without remarks", "Approved"));
-        travelrequestResponseDataList.add(new TravelRequestResponseData("11", "BCD123","Abhishek", "TR133", "01/12/2023", "Air", "2023-12-05", "2023-12-15", "Yes", "2023-12-05", "2023-12-15", "City R", "City S", "Pending", "Pending review", "Pending"));
-        travelrequestResponseDataList.add(new TravelRequestResponseData("12", "EFG456","Abhishek", "TR134", "12/04/2023", "Bus", "2023-11-15", "2023-11-20", "No", "", "", "City U", "City V", "Rejected", "Rejected due to late submission", "Rejected"));
-        travelrequestResponseDataList.add(new TravelRequestResponseData("13", "HIJ789", "Abhishek","TR135", "15/10/2023", "Car", "2023-12-20", "2023-12-27", "Yes", "2023-12-20", "2023-12-27", "City X", "City Y", "Approved", "Approved with remarks", "Approved"));
-        travelrequestResponseDataList.add(new TravelRequestResponseData("14", "KLM012","Abhishek", "TR136", "28/10/2023", "Train", "2023-11-30", "2023-12-05", "Yes", "2023-11-30", "2023-12-05", "City Z", "City AA", "Pending", "Pending review", "Pending"));
-        travelrequestResponseDataList.add(new TravelRequestResponseData("15", "NOP345", "Abhishek","TR137", "21/09/2023", "Bus", "2023-11-10", "2023-11-15", "No", "2023-11-30", "2023-11-30", "City AB", "City AC", "Approved", "Approved without remarks", "Approved"));
-
-        travelRequestDataAdapter=new TravelRequestDataAdapter(TravelRequestActivity.this,travelrequestResponseDataList);
-        travelRequestDataRecyclerView.setAdapter(travelRequestDataAdapter);
 
     }
 
@@ -97,7 +90,7 @@ public class TravelRequestActivity extends AppCompatActivity implements TravelRe
                     CommonMethods.setSnackBar(searchEditText, "Date is not entered");
                 } else {
                     searchEditText.setText("");
-                    travelRequestDataAdapter = new TravelRequestDataAdapter(TravelRequestActivity.this, travelrequestResponseDataList);
+                    travelRequestDataAdapter = new TravelRequestDataAdapter(TravelRequestActivity.this,(ArrayList)travelrequestResponseDataList);
                     travelRequestDataRecyclerView.setAdapter(travelRequestDataAdapter);
                     travelRequestDataAdapter.notifyDataSetChanged();
                 }
@@ -164,6 +157,7 @@ public class TravelRequestActivity extends AppCompatActivity implements TravelRe
         searchEditText=findViewById(R.id.et_search);
         clearTextView=findViewById(R.id.txt_clear);
         searchView=findViewById(R.id.search_view);
+        shimmerFrameLayout = findViewById(R.id.shimmer_view_container);
 
     }
 
@@ -175,12 +169,37 @@ public class TravelRequestActivity extends AppCompatActivity implements TravelRe
     }
 
     @Override
-    public void getTravelRequestData() {
+    public void getTravelRequestData(List<TravelRequestGetModel> travelRequestGetResponseModelList) {
+
+        shimmerFrameLayout.setVisibility(View.GONE);
+
+        if(travelRequestGetResponseModelList!=null) {
+            travelrequestResponseDataList = travelRequestGetResponseModelList;
+            // Create a LinearLayoutManager
+            LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+            // Set reverseLayout to true to reverse the layout
+            layoutManager.setReverseLayout(true);
+            layoutManager.setStackFromEnd(true);
+            travelRequestDataRecyclerView.setLayoutManager(layoutManager);
+            travelRequestDataAdapter = new TravelRequestDataAdapter(TravelRequestActivity.this, (ArrayList) travelrequestResponseDataList);
+            travelRequestDataRecyclerView.setAdapter(travelRequestDataAdapter);
+        }
 
     }
 
     @Override
     public void errorMessage(String msg) {
-        Toast.makeText(this,msg.toString(),Toast.LENGTH_SHORT).show();
+        shimmerFrameLayout.setVisibility(View.GONE);
+        Toast.makeText(this,msg,Toast.LENGTH_SHORT).show();
+    }
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode==REQUEST_CODE_ADD_TRAVEL_REQUEST){
+            travelRequestDataPresenter.fetchTravelRequestData();
+        }
+
     }
 }
