@@ -20,6 +20,9 @@ public class TravelRequestAddDataAdapter extends RecyclerView.Adapter<TravelRequ
     private Context context;
     private ArrayList<TravelRequestModel> travelRequestDataList;
 
+    String[] travelReasonSpinnerData = {"Select","Sales","Presales","Client Visit","Relocation","SAP Meeting","Others"};
+
+
     private OnTravelRequestItemClickListener onTravelRequestItemClickListener;
     public TravelRequestAddDataAdapter(Context context,  ArrayList<TravelRequestModel> travelRequestResponseData, OnTravelRequestItemClickListener onTravelRequestItemClickListener) {
         this.context = context;
@@ -52,7 +55,12 @@ public class TravelRequestAddDataAdapter extends RecyclerView.Adapter<TravelRequ
     public void onBindViewHolder(@NonNull TravelRequestAddDataAdapter.MyViewHolder holder, int position) {
         TravelRequestModel data = travelRequestDataList.get(position);
 
-        holder.typeOfEmpolyee.setText(data.getTypeOfEmpolyee());
+        if(data.getTypeOfEmpolyee().equalsIgnoreCase("0")){
+            holder.typeOfEmpolyee.setText("Employee");
+        }else{
+            holder.typeOfEmpolyee.setText("Non-Employee");
+        }
+
         holder.srNoTextView.setText("S.No :"+data.getSrNo());
         holder.associateCodeTextView.setText(data.getAssociateCode());
         holder.associateNameTextView.setText(data.getAssociateName());
@@ -60,7 +68,26 @@ public class TravelRequestAddDataAdapter extends RecyclerView.Adapter<TravelRequ
         holder.ageTextView.setText(data.getAge());
         holder.customerTextView.setText(data.getCustomer());
         holder.tripTextView.setText(data.getTrip());
-        holder.travelReasonTextView.setText(data.getReasonForTravel());
+
+
+        String selectedTravelReason="";
+
+        if(data.getReasonForTravel().equalsIgnoreCase("C1")){
+            selectedTravelReason=travelReasonSpinnerData[1];
+        }else if(data.getReasonForTravel().equalsIgnoreCase("C2")){
+            selectedTravelReason=travelReasonSpinnerData[2];
+        }if(data.getReasonForTravel().equalsIgnoreCase("C3")){
+            selectedTravelReason=travelReasonSpinnerData[3];
+        }if(data.getReasonForTravel().equalsIgnoreCase("C4")){
+            selectedTravelReason=travelReasonSpinnerData[4];
+        }if(data.getReasonForTravel().equalsIgnoreCase("C5")){
+            selectedTravelReason=travelReasonSpinnerData[5];
+        }if(data.getReasonForTravel().equalsIgnoreCase("C6")){
+            selectedTravelReason=travelReasonSpinnerData[6];
+        }
+
+
+        holder.travelReasonTextView.setText(selectedTravelReason);
         holder.travelModeTextView.setText(data.getTravelMode());
         holder.fromDateTextView.setText(data.getTravelData());
         holder.toDateTextView.setText(data.getReturnDate());

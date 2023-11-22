@@ -75,7 +75,6 @@ public class AddTravelRequestActivity extends AppCompatActivity implements OnTra
         setUpTravelTypeSpinner(travelTypeSpinner,travelType);
 
         transactionDateTextView.setText(CommonMethods.changeDateFromyyyyMMdd(CommonMethods.mobileCurrentDate()));
-        openDatePickerDialog(transactionDateTextView);
 
         travelRequestPostList =new ArrayList<>();
         travelRequestAddDataPresenter=new TravelRequestAddDataPresenter(this,AddTravelRequestActivity.this);
@@ -139,7 +138,7 @@ public class AddTravelRequestActivity extends AppCompatActivity implements OnTra
                 travelRequestPostDataModel.setTravelRequestList(travelRequestPostList);
                 travelRequestPostDataModel.setTran_No("");
                 travelRequestPostDataModel.setTransMode("1");
-                travelRequestPostDataModel.setStatus("Fresh");
+                travelRequestPostDataModel.setStatus("F");
                 travelRequestPostDataModel.setCompanyNo(companyName);
                 travelRequestPostDataModel.setLocationNo(locationNo);
                 travelRequestPostDataModel.setTravel(travelTypeSpinner.getSelectedItem().toString());
@@ -272,28 +271,4 @@ public class AddTravelRequestActivity extends AppCompatActivity implements OnTra
         Toast.makeText(this,msg,Toast.LENGTH_SHORT).show();
     }
 
-
-    private void openDatePickerDialog(TextView textView) {
-        textView.setFocusable(false);
-        textView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Calendar mcurrentDate = Calendar.getInstance();
-                mYear = mcurrentDate.get(Calendar.YEAR);
-                mMonth = mcurrentDate.get(Calendar.MONTH);
-                mDay = mcurrentDate.get(Calendar.DAY_OF_MONTH);
-                DatePickerDialog mDatePicker = new DatePickerDialog(AddTravelRequestActivity.this, new DatePickerDialog.OnDateSetListener() {
-                    public void onDateSet(DatePicker datepicker, int selectedyear, int selectedmonth, int selectedday) {
-                        Calendar c = Calendar.getInstance();
-                        c.set(selectedyear, selectedmonth, selectedday);
-                        trasactionDate = CommonMethods.pad(selectedday) + "/" + CommonMethods.pad(selectedmonth + 1) +
-                                "/" + CommonMethods.pad(selectedyear);
-                        textView.setText(trasactionDate);
-                    }
-                }, mYear, mMonth, mDay);
-                mDatePicker.getDatePicker().setCalendarViewShown(false);
-                mDatePicker.show();
-            }
-        });
-    }
 }

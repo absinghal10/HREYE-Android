@@ -4,18 +4,17 @@ import android.content.Context;
 import android.text.TextUtils;
 import android.widget.Toast;
 
-import java.util.List;
-
 import cbs.hreye.R;
-import cbs.hreye.activities.travelRequest.TravelRequestResponseData;
 import cbs.hreye.network.RetrofitClient;
 import cbs.hreye.pojo.TravelPostAuthroziedResponseDataModel;
-import cbs.hreye.pojo.TravelPostRequestResponseDataModel;
+import cbs.hreye.pojo.TravelPostCancelResponseDataModel;
+import cbs.hreye.pojo.TravelPostModifiedResponseDataModel;
 import cbs.hreye.pojo.TravelRequestGetRootDetailDataModel;
 import cbs.hreye.pojo.TravelRequestPostDataModel;
 import cbs.hreye.utilities.CommonMethods;
 import cbs.hreye.utilities.CustomProgressbar;
 import cbs.hreye.utilities.PrefrenceKey;
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -59,7 +58,7 @@ public class TravelRequestDataDetailPresenter {
 
     }
 
-    public  void postTravelAuthrorizedRequestData(TravelRequestPostDataModel travelRequestPostDataModel){
+    public  void postTravelAuthrorizedRequestData(TravelRequestPostDataModel travelRequestPostDataModel,String requestType){
 
         if (!CommonMethods.isOnline(context)) {
             Toast.makeText(context,context.getString(R.string.net),Toast.LENGTH_SHORT).show();
@@ -69,63 +68,122 @@ public class TravelRequestDataDetailPresenter {
         for(int i=0;i<travelRequestPostDataModel.getTravelRequestList().size();i++){
             travelRequestPostDataModel.getTravelRequestList().get(i).setSrNo(String.valueOf((i+1)));
             travelRequestPostDataModel.getTravelRequestList().get(i).setMode(String.valueOf((i+1)));
-            if(TextUtils.isEmpty(travelRequestPostDataModel.getTravelRequestList().get(i).getTravelData())){
 
-            }else{
+            if(!TextUtils.isEmpty(travelRequestPostDataModel.getTravelRequestList().get(i).getTravelData())){
                 String dateStr=travelRequestPostDataModel.getTravelRequestList().get(i).getTravelData();
-                String convertedDateString=CommonMethods.changeDateTOyyyyMMdd(dateStr);
+                String convertedDateString=CommonMethods.convertVariousDateFormatsToYYYYMMDD(dateStr);
                 travelRequestPostDataModel.getTravelRequestList().get(i).setTravelData(convertedDateString);
             }
 
-            if(TextUtils.isEmpty(travelRequestPostDataModel.getTravelRequestList().get(i).getReturnDate())){
+            if(!TextUtils.isEmpty(travelRequestPostDataModel.getTravelRequestList().get(i).getReturnDate())){
+                String dateStr=travelRequestPostDataModel.getTravelRequestList().get(i).getReturnDate();
+                String convertedDateString=CommonMethods.convertVariousDateFormatsToYYYYMMDD(dateStr);
+                travelRequestPostDataModel.getTravelRequestList().get(i).setReturnDate(convertedDateString);
+            }
 
-            }else{
-                travelRequestPostDataModel.getTravelRequestList().get(i).setReturnDate(CommonMethods.changeDateTOyyyyMMdd(travelRequestPostDataModel.getTravelRequestList().get(i).getReturnDate()));
+            if(!TextUtils.isEmpty(travelRequestPostDataModel.getTravelRequestList().get(i).getHotelfrom())){
+                String dateStr=travelRequestPostDataModel.getTravelRequestList().get(i).getHotelfrom();
+                String convertedDateString=CommonMethods.convertVariousDateFormatsToYYYYMMDD(dateStr);
+                travelRequestPostDataModel.getTravelRequestList().get(i).setHotelfrom(convertedDateString);
             }
 
 
-            if(TextUtils.isEmpty(travelRequestPostDataModel.getTravelRequestList().get(i).getHotelfrom())){
-
-            }else{
-                travelRequestPostDataModel.getTravelRequestList().get(i).setHotelfrom(CommonMethods.changeDateTOyyyyMMdd(travelRequestPostDataModel.getTravelRequestList().get(i).getHotelfrom()));
-            }
-            if(TextUtils.isEmpty(travelRequestPostDataModel.getTravelRequestList().get(i).getHotelto())){
-
-            }else{
-                travelRequestPostDataModel.getTravelRequestList().get(i).setHotelto(CommonMethods.changeDateTOyyyyMMdd(travelRequestPostDataModel.getTravelRequestList().get(i).getHotelto()));
+            if(!TextUtils.isEmpty(travelRequestPostDataModel.getTravelRequestList().get(i).getHotelto())){
+                String dateStr=travelRequestPostDataModel.getTravelRequestList().get(i).getHotelto();
+                String convertedDateString=CommonMethods.convertVariousDateFormatsToYYYYMMDD(dateStr);
+                travelRequestPostDataModel.getTravelRequestList().get(i).setHotelto(convertedDateString);
             }
 
         }
 
-        CustomProgressbar.showProgressBar(context,false);
+        // Authorized Case
+        if(requestType.equalsIgnoreCase("A")){
+            CustomProgressbar.showProgressBar(context,false);
 
-        RetrofitClient.getInstance(context).getMyApi().postAuthroziedTravelRequestData(travelRequestPostDataModel).enqueue(new Callback<TravelPostAuthroziedResponseDataModel>() {
-            @Override
-            public void onResponse(Call<TravelPostAuthroziedResponseDataModel> call, Response<TravelPostAuthroziedResponseDataModel> response) {
-                CustomProgressbar.hideProgressBar();
+            RetrofitClient.getInstance(context).getMyApi().postAuthroziedTravelRequestData(travelRequestPostDataModel).enqueue(new Callback<TravelPostAuthroziedResponseDataModel>() {
+                @Override
+                public void onResponse(Call<TravelPostAuthroziedResponseDataModel> call, Response<TravelPostAuthroziedResponseDataModel> response) {
+                    CustomProgressbar.hideProgressBar();
 
-                if(response.code()==200&& response.body()!=null){
+                    if(response.code()==200&& response.body()!=null){
 
-                    if(response.body().getPostTravelrequestauthorizedResult().getMessageModel()!=null){
-                        if (response.body().getPostTravelrequestauthorizedResult().getMessageModel().getSuccess()) {
-                            travelRequestDataMvpView.postTravelRequestDataStatus(response.body().getPostTravelrequestauthorizedResult().getMessageModel().getErrorMsg());
-                        } else {
-                            travelRequestDataMvpView.errorMessage(response.body().getPostTravelrequestauthorizedResult().getMessageModel().getErrorMsg());
+                        if(response.body().getPostTravelrequestauthorizedResult().getMessageModel()!=null){
+                            if (response.body().getPostTravelrequestauthorizedResult().getMessageModel().getSuccess()) {
+                                travelRequestDataMvpView.postTravelRequestDataStatus(response.body().getPostTravelrequestauthorizedResult().getMessageModel().getErrorMsg());
+                            } else {
+                                travelRequestDataMvpView.errorMessage(response.body().getPostTravelrequestauthorizedResult().getMessageModel().getErrorMsg());
+                            }
                         }
+
                     }
-
                 }
-            }
-            @Override
-            public void onFailure(Call<TravelPostAuthroziedResponseDataModel> call, Throwable t) {
-                CustomProgressbar.hideProgressBar();
-                Toast.makeText(context, t.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-        });
+                @Override
+                public void onFailure(Call<TravelPostAuthroziedResponseDataModel> call, Throwable t) {
+                    CustomProgressbar.hideProgressBar();
+                    Toast.makeText(context, t.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            });
+
+        }else if(requestType.equalsIgnoreCase("M")){
+            // Modify Case Call
+
+            CustomProgressbar.showProgressBar(context,false);
+
+            RetrofitClient.getInstance(context).getMyApi().postModifyTravelRequestData(travelRequestPostDataModel).enqueue(new Callback<TravelPostModifiedResponseDataModel>() {
+                @Override
+                public void onResponse(Call<TravelPostModifiedResponseDataModel> call, Response<TravelPostModifiedResponseDataModel> response) {
+                    CustomProgressbar.hideProgressBar();
+
+                    if(response.code()==200&& response.body()!=null){
+
+                        if(response.body().getPostTravelrequestmodifyResult().getMessageModel()!=null){
+                            if (response.body().getPostTravelrequestmodifyResult().getMessageModel().getSuccess()) {
+                                travelRequestDataMvpView.postTravelRequestDataStatus(response.body().getPostTravelrequestmodifyResult().getMessageModel().getErrorMsg());
+                            } else {
+                                travelRequestDataMvpView.errorMessage(response.body().getPostTravelrequestmodifyResult().getMessageModel().getErrorMsg());
+                            }
+                        }
+
+                    }
+                }
+                @Override
+                public void onFailure(Call<TravelPostModifiedResponseDataModel> call, Throwable t) {
+                    CustomProgressbar.hideProgressBar();
+                    Toast.makeText(context, t.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            });
+
+
+        }else if(requestType.equalsIgnoreCase("C")){
+            // Cancel Case Call
+            CustomProgressbar.showProgressBar(context,false);
+            RetrofitClient.getInstance(context).getMyApi().postCancelTravelRequestData(travelRequestPostDataModel).enqueue(new Callback<TravelPostCancelResponseDataModel>() {
+                @Override
+                public void onResponse(Call<TravelPostCancelResponseDataModel> call, Response<TravelPostCancelResponseDataModel> response) {
+                    CustomProgressbar.hideProgressBar();
+
+                    if(response.code()==200&& response.body()!=null){
+
+                        if(response.body().getPostTravelrequestcancelResult().getMessageModel()!=null){
+                            if (response.body().getPostTravelrequestcancelResult().getMessageModel().getSuccess()) {
+                                travelRequestDataMvpView.postTravelRequestDataStatus(response.body().getPostTravelrequestcancelResult().getMessageModel().getErrorMsg());
+                            } else {
+                                travelRequestDataMvpView.errorMessage(response.body().getPostTravelrequestcancelResult().getMessageModel().getErrorMsg());
+                            }
+                        }
+
+                    }
+                }
+                @Override
+                public void onFailure(Call<TravelPostCancelResponseDataModel> call, Throwable t) {
+                    CustomProgressbar.hideProgressBar();
+                    Toast.makeText(context, t.getMessage(),Toast.LENGTH_SHORT).show();
+                }
+            });
+
+        }
+
     }
-
-
-
 
 
 }

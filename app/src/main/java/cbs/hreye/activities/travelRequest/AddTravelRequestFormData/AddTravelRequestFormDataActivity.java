@@ -144,10 +144,7 @@ public class AddTravelRequestFormDataActivity extends AppCompatActivity implemen
             @Override
             public void onClick(View v) {
                 if (inputFieldValidation() && validateSpinners()) {
-                    Toast.makeText(AddTravelRequestFormDataActivity.this,"Validate",Toast.LENGTH_SHORT).show();
                     bindDataToModel();
-                }else{
-                    Toast.makeText(AddTravelRequestFormDataActivity.this,"Not Validate",Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -278,9 +275,6 @@ public class AddTravelRequestFormDataActivity extends AppCompatActivity implemen
 
 
         String selectedTravelReason="";
-
-
-        String[] travelReasonSpinnerData = {"Select","Sales","Presales","Client Visit","Relocation","SAP Meeting","Others"};
 
         if(travelReasonSpinner.getSelectedItem().toString().equalsIgnoreCase(travelReasonSpinnerData[1])){
             selectedTravelReason="C1";

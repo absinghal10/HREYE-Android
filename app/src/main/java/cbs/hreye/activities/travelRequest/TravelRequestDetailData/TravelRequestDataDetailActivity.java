@@ -17,6 +17,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -26,6 +27,8 @@ import java.util.Arrays;
 import java.util.List;
 
 import cbs.hreye.R;
+import cbs.hreye.activities.AuthorizeLeave;
+import cbs.hreye.activities.LeaveList;
 import cbs.hreye.activities.travelRequest.AddTravelRequestFormData.AddTravelRequestFormDataActivity;
 import cbs.hreye.activities.travelRequest.TravelRequestAddData.AddTravelRequestActivity;
 import cbs.hreye.activities.travelRequest.TravelRequestModel;
@@ -39,12 +42,9 @@ public class TravelRequestDataDetailActivity extends AppCompatActivity implement
 
     private TextView toolBarHeaderTextView;
     private ImageView backButtonImageView;
-
     private ImageView rightImageView, addImageView;
-
     private LinearLayout rightAddRowLinearLayout;
     private RecyclerView travelRequestDetailDataRecyclerView;
-
     private String transactionNo="";
     private String transactionDate="";
     private String remark="";
@@ -52,12 +52,11 @@ public class TravelRequestDataDetailActivity extends AppCompatActivity implement
     private String status="";
     private TravelRequestDataDetailAdapter travelRequestDataDetailAdapter;
     private TravelRequestDataDetailPresenter travelRequestDataDetailPresenter;
-    private LinearLayout showSnakbarLayout;
+    private RelativeLayout showSnakbarLayout;
     private Spinner travelTypeSpinner;
     private TextView remarkTextView;
     String travelType[]={"Select","Domestic","International"};
     ArrayList<TravelRequestModel> travelRequestModelArrayList;
-    private String travelTypeValue="";
 
     private int REQUEST_CODE_ADD_TRAVEL_REQUEST_FORM=1295;
 
@@ -107,7 +106,15 @@ public class TravelRequestDataDetailActivity extends AppCompatActivity implement
 
     private void setToolBarTitle() {
         toolBarHeaderTextView = findViewById(R.id.header_text);
-        toolBarHeaderTextView.setText("Authorized Request");
+
+        if(status.equalsIgnoreCase("A")){
+            toolBarHeaderTextView.setText("Authorized Request");
+        }else if(status.equalsIgnoreCase("C")){
+            toolBarHeaderTextView.setText("Cancel Request");
+        }else{
+            toolBarHeaderTextView.setText("Fresh Request");
+        }
+
         backButtonImageView = findViewById(R.id.header_back);
         backButtonImageView.setOnClickListener(v -> onBackPressed());
 
@@ -115,17 +122,15 @@ public class TravelRequestDataDetailActivity extends AppCompatActivity implement
         rightImageView =findViewById(R.id.header_grant);
         addImageView = findViewById(R.id.header_reject);
         addImageView.setImageResource(R.drawable.add_row);
-        showSnakbarLayout=findViewById(R.id.ll_root);
+        showSnakbarLayout=findViewById(R.id.snakbar_root_layout);
 
-        if(status.equalsIgnoreCase("A")){
+        if(status.equalsIgnoreCase("A")||status.equalsIgnoreCase("C")){
             rightAddRowLinearLayout.setVisibility(View.GONE);
             addImageView.setVisibility(View.GONE);
         }else{
             rightAddRowLinearLayout.setVisibility(View.VISIBLE);
             addImageView.setVisibility(View.VISIBLE);
         }
-
-
 
 
         rightImageView.setOnClickListener(new View.OnClickListener() {
@@ -135,23 +140,19 @@ public class TravelRequestDataDetailActivity extends AppCompatActivity implement
             }
         });
 
-
         addImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(travelTypeSpinner.getSelectedItem().toString().equalsIgnoreCase("Select")){
                     Toast.makeText(TravelRequestDataDetailActivity.this,"Please select travel type",Toast.LENGTH_SHORT).show();
-                    return;
                 }else{
                     Intent intent=new Intent(TravelRequestDataDetailActivity.this, AddTravelRequestFormDataActivity.class);
-                    intent.putExtra("travelTypeValue",travelTypeValue);
+                    intent.putExtra("travelTypeValue",travelTypeValueData);
                     intent.putExtra("isNavigate","FromGetData");
                     startActivityForResult(intent,REQUEST_CODE_ADD_TRAVEL_REQUEST_FORM);
                 }
             }
         });
-
-
 
     }
 
@@ -180,75 +181,143 @@ public class TravelRequestDataDetailActivity extends AppCompatActivity implement
 
 
     private void authorizeModifyDialog() {
-        final Dialog cDialog = new Dialog(this);
-        cDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        cDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        cDialog.setCancelable(true);
-        cDialog.setContentView(R.layout.logout);
-        TextView txtMsg = cDialog.findViewById(R.id.dlg_msg);
-        txtMsg.setText(R.string.want_auth_modify);
-        Button modify = cDialog.findViewById(R.id.cancel);
-        modify.setText(getString(R.string.modify));
-        Button Authorize = cDialog.findViewById(R.id.yes);
-        Authorize.setText(getString(R.string.authorize));
-        Authorize.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (travelRequestDataDetailAdapter.getItemCount() == 0){
-                    CommonMethods.setSnackBar(showSnakbarLayout,getString(R.string.enter_minimum_record));
-                }else {
-                    if (CommonMethods.isOnline(TravelRequestDataDetailActivity.this)) {
 
-                        if(travelRequestModelArrayList!=null && travelRequestModelArrayList.size()>0){
+        String companyNo=CommonMethods.getPrefsData(TravelRequestDataDetailActivity.this, PrefrenceKey.COMPANY_NO, "");
+        String locationNo=CommonMethods.getPrefsData(TravelRequestDataDetailActivity.this, PrefrenceKey.LOCATION_NO, "");
+        String userID=CommonMethods.getPrefsData(TravelRequestDataDetailActivity.this, PrefrenceKey.USER_ID, "");
 
-                            String companyNo=CommonMethods.getPrefsData(TravelRequestDataDetailActivity.this, PrefrenceKey.COMPANY_NO, "");
-                            String locationNo=CommonMethods.getPrefsData(TravelRequestDataDetailActivity.this, PrefrenceKey.LOCATION_NO, "");
-                            String userID=CommonMethods.getPrefsData(TravelRequestDataDetailActivity.this, PrefrenceKey.USER_ID, "");
+        if (travelRequestDataDetailAdapter.getItemCount() == 0){
+            CommonMethods.setSnackBar(showSnakbarLayout,getString(R.string.enter_minimum_record));
+            return;
+        }
 
-                            TravelRequestPostDataModel travelRequestPostDataModel=new TravelRequestPostDataModel();
-                            travelRequestPostDataModel.setTravelRequestList(travelRequestModelArrayList);
-                            travelRequestPostDataModel.setTran_No(transactionNo);
-                            travelRequestPostDataModel.setTransactionDate(CommonMethods.changeDateTOyyyyMMdd(transactionDate));
-                            travelRequestPostDataModel.setTravel(travelTypeValueData);
-                            travelRequestPostDataModel.setCompanyNo(companyNo);
-                            travelRequestPostDataModel.setLocationNo(locationNo);
-                            travelRequestPostDataModel.setRemarks("");
-                            travelRequestPostDataModel.setUserID(userID);
-                            travelRequestPostDataModel.setStatus("Authorized");
-                            travelRequestPostDataModel.setTransMode("3");
-                            travelRequestDataDetailPresenter.postTravelAuthrorizedRequestData(travelRequestPostDataModel);
 
+            final Dialog dialog = new Dialog(TravelRequestDataDetailActivity.this);
+            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+            dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+            dialog.setContentView(R.layout.leave_dialog);
+
+            final TextView txtMsg = dialog.findViewById(R.id.dlg_msg);
+            txtMsg.setText(R.string.choose_action);
+            Button lv_mod = dialog.findViewById(R.id.lv_mod);
+            Button lv_auth = dialog.findViewById(R.id.lv_auth);
+            Button lv_can = dialog.findViewById(R.id.lv_can);
+
+            lv_mod.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                        if (CommonMethods.isOnline(TravelRequestDataDetailActivity.this)) {
+                            // Modify Data
+                            if (travelRequestDataDetailAdapter.getItemCount() == 0){
+                                CommonMethods.setSnackBar(showSnakbarLayout,getString(R.string.enter_minimum_record));
+                            }else {
+                                if (CommonMethods.isOnline(TravelRequestDataDetailActivity.this)) {
+                                    if(travelRequestModelArrayList!=null && travelRequestModelArrayList.size()>0){
+                                        TravelRequestPostDataModel travelRequestPostDataModel=new TravelRequestPostDataModel();
+                                        travelRequestPostDataModel.setTravelRequestList(travelRequestModelArrayList);
+                                        travelRequestPostDataModel.setTran_No(transactionNo);
+                                        travelRequestPostDataModel.setTransactionDate(CommonMethods.mobileCurrentDate());
+                                        travelRequestPostDataModel.setTravel(travelTypeValueData);
+                                        travelRequestPostDataModel.setCompanyNo(companyNo);
+                                        travelRequestPostDataModel.setLocationNo(locationNo);
+                                        travelRequestPostDataModel.setRemarks(remarkTextView.getText().toString());
+                                        travelRequestPostDataModel.setUserID(userID);
+                                        travelRequestPostDataModel.setStatus("F");
+                                        travelRequestPostDataModel.setTransMode("2");
+                                        travelRequestDataDetailPresenter.postTravelAuthrorizedRequestData(travelRequestPostDataModel,"M");
+                                    }
+                                } else {
+                                    CommonMethods.setSnackBar(showSnakbarLayout, getString(R.string.net));
+                                }
+                            }
+                        } else {
+                            CommonMethods.setSnackBar(showSnakbarLayout, getString(R.string.net));
                         }
-
-
-                    } else {
-                        CommonMethods.setSnackBar(showSnakbarLayout, getString(R.string.net));
-                    }
+                    dialog.dismiss();
                 }
-                cDialog.dismiss();
-            }
-        });
+            });
 
-        modify.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (travelRequestDataDetailAdapter.getItemCount() == 0){
-                    CommonMethods.setSnackBar(showSnakbarLayout,getString(R.string.enter_minimum_record));
-                }else {
-                    if (CommonMethods.isOnline(TravelRequestDataDetailActivity.this)) {
-                        // Modify Data
+            lv_auth.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                        if (CommonMethods.isOnline(TravelRequestDataDetailActivity.this)) {
 
+                            if(travelRequestModelArrayList!=null && travelRequestModelArrayList.size()>0){
+                                TravelRequestPostDataModel travelRequestPostDataModel=new TravelRequestPostDataModel();
+                                travelRequestPostDataModel.setTravelRequestList(travelRequestModelArrayList);
+                                travelRequestPostDataModel.setTran_No(transactionNo);
+                                travelRequestPostDataModel.setTransactionDate(CommonMethods.mobileCurrentDate());
+                                travelRequestPostDataModel.setTravel(travelTypeValueData);
+                                travelRequestPostDataModel.setCompanyNo(companyNo);
+                                travelRequestPostDataModel.setLocationNo(locationNo);
+                                travelRequestPostDataModel.setRemarks(remarkTextView.getText().toString());
+                                travelRequestPostDataModel.setUserID(userID);
+                                travelRequestPostDataModel.setStatus("A");
+                                travelRequestPostDataModel.setTransMode("3");
+                                travelRequestDataDetailPresenter.postTravelAuthrorizedRequestData(travelRequestPostDataModel,"A");
+                            }
 
-
-                    } else {
-                        CommonMethods.setSnackBar(showSnakbarLayout, getString(R.string.net));
-                    }
+                        } else {
+                            CommonMethods.setSnackBar(showSnakbarLayout, getString(R.string.net));
+                        }
+                    dialog.dismiss();
                 }
-                cDialog.dismiss();
-            }
-        });
+            });
 
-        cDialog.show();
+            lv_can.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    dialog.dismiss();
+                    final Dialog cDialog = new Dialog(TravelRequestDataDetailActivity.this);
+                    cDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                    cDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                    cDialog.setCancelable(false);
+                    cDialog.setContentView(R.layout.logout);
+                    TextView txtMsg = cDialog.findViewById(R.id.dlg_msg);
+                    txtMsg.setText("Sure to cancel travel request?");
+                    Button cancel = cDialog.findViewById(R.id.cancel);
+                    cancel.setText(getString(R.string.no));
+                    Button yes = cDialog.findViewById(R.id.yes);
+                    yes.setText(getString(R.string.yes));
+                    yes.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                                if (CommonMethods.isOnline(TravelRequestDataDetailActivity.this)) {
+
+                                    if(travelRequestModelArrayList!=null && travelRequestModelArrayList.size()>0){
+                                        TravelRequestPostDataModel travelRequestPostDataModel=new TravelRequestPostDataModel();
+                                        travelRequestPostDataModel.setTravelRequestList(travelRequestModelArrayList);
+                                        travelRequestPostDataModel.setTran_No(transactionNo);
+                                        travelRequestPostDataModel.setTransactionDate(CommonMethods.mobileCurrentDate());
+                                        travelRequestPostDataModel.setTravel(travelTypeValueData);
+                                        travelRequestPostDataModel.setCompanyNo(companyNo);
+                                        travelRequestPostDataModel.setLocationNo(locationNo);
+                                        travelRequestPostDataModel.setRemarks(remarkTextView.getText().toString());
+                                        travelRequestPostDataModel.setUserID(userID);
+                                        travelRequestPostDataModel.setStatus("C");
+                                        travelRequestPostDataModel.setTransMode("4");
+                                        travelRequestDataDetailPresenter.postTravelAuthrorizedRequestData(travelRequestPostDataModel,"C");
+                                    }
+
+                                } else {
+                                    CommonMethods.setSnackBar(showSnakbarLayout, getString(R.string.net));
+                                }
+                            dialog.dismiss();
+                            cDialog.dismiss();
+                        }
+                    });
+                    cancel.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            cDialog.dismiss();
+                        }
+                    });
+                    cDialog.show();
+                }
+            });
+
+            dialog.show();
+
     }
 
 
@@ -267,7 +336,7 @@ public class TravelRequestDataDetailActivity extends AppCompatActivity implement
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
                 // Handle the selected item
-                travelTypeValue = (String) parentView.getItemAtPosition(position);
+                travelTypeValueData = (String) parentView.getItemAtPosition(position);
             }
 
             @Override

@@ -77,7 +77,7 @@ public class TravelRequestModel implements Serializable {
         ToLocation = toLocation;
         this.passport = passport;
         this.validity = validity;
-        this.status = status;
+        this.status=status;
     }
 
     public String getSrNo() {

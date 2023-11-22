@@ -15,7 +15,7 @@ import cbs.hreye.activities.travelRequest.TravelRequestModel;
 public class TravelRequestDataDetailAdapter extends RecyclerView.Adapter<TravelRequestDataDetailAdapter.MyViewHolder> {
     private Context context;
     private ArrayList<TravelRequestModel> travelRequestDataList;
-
+    String[] travelReasonSpinnerData = {"Select","Sales","Presales","Client Visit","Relocation","SAP Meeting","Others"};
     private  OnTravelRequestDetailItemClickListener onTravelRequestDetailItemClickListener;
 
     public TravelRequestDataDetailAdapter(Context context, ArrayList<TravelRequestModel> travelRequestResponseData,OnTravelRequestDetailItemClickListener onTravelRequestDetailItemClickListener) {
@@ -43,7 +43,26 @@ public class TravelRequestDataDetailAdapter extends RecyclerView.Adapter<TravelR
         holder.documentyTextView.setText(data.getNameAsPerGovtDoc());
         holder.nameTextView.setText(data.getAssociateName());
         holder.tripTextView.setText(data.getTrip());
-        holder.reasonForTravelTextView.setText(data.getReasonForTravel());
+
+        String selectedTravelReason="";
+
+        if(data.getReasonForTravel().equalsIgnoreCase("C1")){
+            selectedTravelReason=travelReasonSpinnerData[1];
+        }else if(data.getReasonForTravel().equalsIgnoreCase("C2")){
+            selectedTravelReason=travelReasonSpinnerData[2];
+        }if(data.getReasonForTravel().equalsIgnoreCase("C3")){
+            selectedTravelReason=travelReasonSpinnerData[3];
+        }if(data.getReasonForTravel().equalsIgnoreCase("C4")){
+            selectedTravelReason=travelReasonSpinnerData[4];
+        }if(data.getReasonForTravel().equalsIgnoreCase("C5")){
+            selectedTravelReason=travelReasonSpinnerData[5];
+        }if(data.getReasonForTravel().equalsIgnoreCase("C6")){
+            selectedTravelReason=travelReasonSpinnerData[6];
+        }
+
+        holder.reasonForTravelTextView.setText(selectedTravelReason);
+
+
         holder.tranNoTextView.setText(data.getTransactionNo());
         holder.travelModeTextView.setText(data.getTravelMode());
         holder.fromDateTextView.setText(data.getTravelData());
@@ -55,7 +74,8 @@ public class TravelRequestDataDetailAdapter extends RecyclerView.Adapter<TravelR
         holder.travelToTextView.setText(data.getToLocation());
         holder.passportTextView.setText(data.getPassport());
         holder.validityTextView.setText(data.getValidity());
-        holder.statusTextView.setText(data.getStatus());
+
+//        holder.statusTextView.setText(data.getStatus());
 
         if(data.getStatus().equalsIgnoreCase("F")){
             holder.deleteDataImageView.setVisibility(View.VISIBLE);

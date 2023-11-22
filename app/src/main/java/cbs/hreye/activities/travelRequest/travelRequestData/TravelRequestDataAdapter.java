@@ -2,6 +2,7 @@ package cbs.hreye.activities.travelRequest.travelRequestData;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,10 +26,13 @@ public class TravelRequestDataAdapter extends RecyclerView.Adapter<TravelRequest
     TravelRequestDataAdapter.CustomFilter filter;
     public static ArrayList<TravelRequestGetModel> filters;
 
-    public TravelRequestDataAdapter(Context context, ArrayList travelRequestDataList) {
+   private OnTravelDataItemClickListener onTravelDataItemClickListener;
+
+    public TravelRequestDataAdapter(Context context, OnTravelDataItemClickListener onTravelDataItemClickListener,ArrayList travelRequestDataList) {
         this.context = context;
         this.travelRequestDataList = travelRequestDataList;
         this.filterList=travelRequestDataList;
+        this.onTravelDataItemClickListener=onTravelDataItemClickListener;
     }
 
     @NonNull
@@ -40,22 +44,32 @@ public class TravelRequestDataAdapter extends RecyclerView.Adapter<TravelRequest
 
     @Override
     public void onBindViewHolder(@NonNull TravelRequestDataAdapter.MyViewHolder holder, int position) {
-        holder.statusTextview.setText(travelRequestDataList.get(position).getStatus());
+
+
+        if(travelRequestDataList.get(position).getStatus().equalsIgnoreCase("A")){
+            holder.statusTextview.setText(R.string.authorized);
+            holder.itemView.setBackgroundColor(Color.parseColor("#FFFFFF"));
+        }else if (travelRequestDataList.get(position).getStatus().equalsIgnoreCase("C")){
+            holder.statusTextview.setText("Cancel");
+            holder.itemView.setBackgroundColor(Color.parseColor("#FFFFFF"));
+        }else{
+            holder.itemView.setBackgroundColor(Color.parseColor("#A1D4BA"));
+            holder.statusTextview.setText(R.string.fresh);
+        }
+
         holder.transactionDateTextview.setText(travelRequestDataList.get(position).getTransactionDate());
         holder.transactionNoTextview.setText(travelRequestDataList.get(position).getTransactionNo());
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent travelRequestintent=new Intent(context, TravelRequestDataDetailActivity.class);
                 Bundle bundle = new Bundle();
                 bundle.putString("transactionNo",travelRequestDataList.get(position).getTransactionNo());
                 bundle.putString("transactionDate",travelRequestDataList.get(position).getTransactionDate());
                 bundle.putString("status",travelRequestDataList.get(position).getStatus());
                 bundle.putString("remark",travelRequestDataList.get(position).getTravelRequestRemark());
-                bundle.putString("travelType",travelRequestDataList.get(position).getTravelTypeValue());
-                travelRequestintent.putExtras(bundle);
-                context.startActivity(travelRequestintent);
+                bundle.putString("travelType",travelRequestDataList.get(position).getTravelType());
+                onTravelDataItemClickListener.travelRequestGetData(bundle);
             }
         });
 

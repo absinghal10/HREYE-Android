@@ -9,6 +9,8 @@ import cbs.hreye.pojo.CustomerResult;
 import cbs.hreye.pojo.ProjectPojo;
 import cbs.hreye.pojo.ProjectResponseRootDataModel;
 import cbs.hreye.pojo.TravelPostAuthroziedResponseDataModel;
+import cbs.hreye.pojo.TravelPostCancelResponseDataModel;
+import cbs.hreye.pojo.TravelPostModifiedResponseDataModel;
 import cbs.hreye.pojo.TravelPostRequestResponseDataModel;
 import cbs.hreye.pojo.TravelRequestGetResponseModel;
 import cbs.hreye.pojo.TravelRequestGetRootDetailDataModel;
@@ -39,6 +41,7 @@ public interface ApiService {
     // Authorized Data
     String POST_AUTHROZIED_TRAVEL_REQUEST_DATA="/AttendanceService/AttendanceService.svc/PostTravelrequestauthorized";
     String POST_MODIFY_TRAVEL_REQUEST_DATA="/AttendanceService/AttendanceService.svc/PostTravelrequestmodify";
+    String POST_CANCEL_TRAVEL_REQUEST_DATA="/AttendanceService/AttendanceService.svc/PostTravelrequestcancel";
 
 
 
@@ -77,11 +80,13 @@ public interface ApiService {
     @POST(POST_AUTHROZIED_TRAVEL_REQUEST_DATA)
     Call<TravelPostAuthroziedResponseDataModel> postAuthroziedTravelRequestData(@Body TravelRequestPostDataModel travelRequestPostDataModel);
 
-
-
-    // Authrorized Travel Request Data Call
+    // Modify Travel Request Data Call
     @POST(POST_MODIFY_TRAVEL_REQUEST_DATA)
-    Call<ResponseBody> postModifyTravelRequestData(@Body TravelRequestPostDataModel travelRequestPostDataModel);
+    Call<TravelPostModifiedResponseDataModel> postModifyTravelRequestData(@Body TravelRequestPostDataModel travelRequestPostDataModel);
+
+    // Cancel Request
+    @POST(POST_CANCEL_TRAVEL_REQUEST_DATA)
+    Call<TravelPostCancelResponseDataModel> postCancelTravelRequestData(@Body TravelRequestPostDataModel travelRequestPostDataModel);
 
 
     // Get Travel Request Data Call

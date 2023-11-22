@@ -26,13 +26,14 @@ import java.util.List;
 
 import cbs.hreye.R;
 import cbs.hreye.activities.travelRequest.TravelRequestAddData.AddTravelRequestActivity;
+import cbs.hreye.activities.travelRequest.TravelRequestDetailData.TravelRequestDataDetailActivity;
 import cbs.hreye.activities.travelRequest.TravelRequestResponseData;
 import cbs.hreye.pojo.TravelRequestGetModel;
 import cbs.hreye.pojo.TravelRequestGetResponseModel;
 import cbs.hreye.utilities.CommonMethods;
 import cbs.hreye.utilities.CustomTextView;
 
-public class TravelRequestActivity extends AppCompatActivity implements TravelRequestDataMvpView{
+public class TravelRequestActivity extends AppCompatActivity implements TravelRequestDataMvpView,OnTravelDataItemClickListener{
 
     private TextView toolBarHeaderTextView;
     private ImageView backButtonImageView;
@@ -52,6 +53,7 @@ public class TravelRequestActivity extends AppCompatActivity implements TravelRe
     private int filterLength = 0;
 
     private int REQUEST_CODE_ADD_TRAVEL_REQUEST=1295;
+    private int REQUEST_CODE_DETAIL_DATA_TRAVEL_REQUEST=1219;
 
 
     private  TravelRequestDataPresenter travelRequestDataPresenter;
@@ -90,7 +92,7 @@ public class TravelRequestActivity extends AppCompatActivity implements TravelRe
                     CommonMethods.setSnackBar(searchEditText, "Date is not entered");
                 } else {
                     searchEditText.setText("");
-                    travelRequestDataAdapter = new TravelRequestDataAdapter(TravelRequestActivity.this,(ArrayList)travelrequestResponseDataList);
+                    travelRequestDataAdapter = new TravelRequestDataAdapter(TravelRequestActivity.this,TravelRequestActivity.this,(ArrayList)travelrequestResponseDataList);
                     travelRequestDataRecyclerView.setAdapter(travelRequestDataAdapter);
                     travelRequestDataAdapter.notifyDataSetChanged();
                 }
@@ -181,7 +183,7 @@ public class TravelRequestActivity extends AppCompatActivity implements TravelRe
             layoutManager.setReverseLayout(true);
             layoutManager.setStackFromEnd(true);
             travelRequestDataRecyclerView.setLayoutManager(layoutManager);
-            travelRequestDataAdapter = new TravelRequestDataAdapter(TravelRequestActivity.this, (ArrayList) travelrequestResponseDataList);
+            travelRequestDataAdapter = new TravelRequestDataAdapter(TravelRequestActivity.this,TravelRequestActivity.this, (ArrayList) travelrequestResponseDataList);
             travelRequestDataRecyclerView.setAdapter(travelRequestDataAdapter);
         }
 
@@ -200,6 +202,18 @@ public class TravelRequestActivity extends AppCompatActivity implements TravelRe
         if(requestCode==REQUEST_CODE_ADD_TRAVEL_REQUEST){
             travelRequestDataPresenter.fetchTravelRequestData();
         }
+        if(requestCode==REQUEST_CODE_DETAIL_DATA_TRAVEL_REQUEST){
+            travelRequestDataPresenter.fetchTravelRequestData();
+        }
+
+    }
+
+    @Override
+    public void travelRequestGetData(Bundle bundle) {
+        Intent travelRequestintent=new Intent(TravelRequestActivity.this, TravelRequestDataDetailActivity.class);
+        travelRequestintent.putExtras(bundle);
+        travelRequestintent.putExtras(bundle);
+        startActivityForResult(travelRequestintent,REQUEST_CODE_DETAIL_DATA_TRAVEL_REQUEST);
 
     }
 }
