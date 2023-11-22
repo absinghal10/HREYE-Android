@@ -123,6 +123,8 @@ public class AddTravelRequestFormDataActivity extends AppCompatActivity implemen
 
         // edit case if it come from edit button
 
+        validityTextValidation(travelTypeValue);
+
 
         editTravelRequestForm();
 
@@ -187,11 +189,25 @@ public class AddTravelRequestFormDataActivity extends AppCompatActivity implemen
                 }
 
 
+                if(TextUtils.isEmpty(editDataModel.getValidity())){
+                    validityEditText.setText(editDataModel.getValidity());
+                }else{
+                    validityEditText.setText(CommonMethods.changeDateFromyyyyMMdd(editDataModel.getValidity()));
+                }
+
+
                 fromLocationEditText.setText(editDataModel.getFromLocation());
                 toLocationEditText.setText(editDataModel.getToLocation());
+
                 if(travelTypeValue.equalsIgnoreCase("International")){
                     passportEditText.setText(editDataModel.getPassport());
                     validityEditText.setText(editDataModel.getValidity());
+                }
+
+                if(editDataModel.getTrip().equalsIgnoreCase("S")){
+                    editDataModel.setTrip("Single trip");
+                }else{
+                    editDataModel.setTrip("Round trip");
                 }
 
                 setSpinnerPosition(editDataModel.getTravelMode(),travelModeSpinnerData,travelModeSpinner);
@@ -271,7 +287,14 @@ public class AddTravelRequestFormDataActivity extends AppCompatActivity implemen
         String fromLocation = fromLocationEditText.getText().toString();
         String toLocation = toLocationEditText.getText().toString();
         String passport = passportEditText.getText().toString();
-        String validity = validityEditText.getText().toString();
+
+        String validity="";
+        if(TextUtils.isEmpty(validityEditText.getText().toString())){
+            validity = validityEditText.getText().toString();
+        }else{
+            validity = CommonMethods.changeDateTOyyyyMMdd(validityEditText.getText().toString());
+        }
+
 
 
         String selectedTravelReason="";
@@ -301,7 +324,7 @@ public class AddTravelRequestFormDataActivity extends AppCompatActivity implemen
                 nameAsPerDoc,
                 age,
                 customerData,
-                tripSpinner.getSelectedItem().toString(), // Get the selected value from the tripSpinner
+                tripSpinner.getSelectedItem().toString().equalsIgnoreCase("Single trip")?"S":"R", // Get the selected value from the tripSpinner
                 travelDate,
                 travelReturnDate,
                 travelModeSpinner.getSelectedItem().toString(),// Get the selected value from the travelModeSpinner
@@ -385,7 +408,6 @@ public class AddTravelRequestFormDataActivity extends AppCompatActivity implemen
         String toLocation = toLocationEditText.getText().toString();
         String passport = passportEditText.getText().toString();
         String validity = validityEditText.getText().toString();
-
 
 
         if(TextUtils.isEmpty(associateCode)&& typeOfEmployeeSpinner.getSelectedItem().toString().equalsIgnoreCase("Employee")){
@@ -527,6 +549,25 @@ public class AddTravelRequestFormDataActivity extends AppCompatActivity implemen
            travelReturnDateEditText.setClickable(true);
            openDatePickerDialog(travelReturnDateEditText);
        }
+    }
+
+
+    private void validityTextValidation(String str){
+        if(str.equalsIgnoreCase("Domestic")){
+            validityEditText.setFocusable(false);
+            validityEditText.setCursorVisible(false);
+            validityEditText.setAlpha(0.6f);
+            validityEditText.setText("");
+            validityEditText.setClickable(false);
+            validityEditText.setOnClickListener(null);
+        }else{
+            validityEditText.setFocusable(true);
+            validityEditText.setCursorVisible(true);
+            validityEditText.setAlpha(1.0f);
+            validityEditText.setClickable(true);
+            openDatePickerDialog(validityEditText);
+        }
+
     }
 
     private void associateValidation() {

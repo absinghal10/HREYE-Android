@@ -94,6 +94,18 @@ public class TravelRequestDataDetailPresenter {
                 travelRequestPostDataModel.getTravelRequestList().get(i).setHotelto(convertedDateString);
             }
 
+            if(!TextUtils.isEmpty(travelRequestPostDataModel.getTravelRequestList().get(i).getValidity())){
+                String dateStr=travelRequestPostDataModel.getTravelRequestList().get(i).getValidity();
+                String convertedDateString=CommonMethods.convertVariousDateFormatsToYYYYMMDD(dateStr);
+                travelRequestPostDataModel.getTravelRequestList().get(i).setValidity(convertedDateString);
+            }
+
+            if(travelRequestPostDataModel.getTravelRequestList().get(i).getTrip().equalsIgnoreCase("Single trip")){
+                travelRequestPostDataModel.getTravelRequestList().get(i).setTrip("S");
+            }else if(travelRequestPostDataModel.getTravelRequestList().get(i).getTrip().equalsIgnoreCase("Round trip")){
+                travelRequestPostDataModel.getTravelRequestList().get(i).setTrip("R");
+            }
+
         }
 
         // Authorized Case

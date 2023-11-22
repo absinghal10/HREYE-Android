@@ -67,8 +67,8 @@ public class TravelRequestAddDataAdapter extends RecyclerView.Adapter<TravelRequ
         holder.nameTextView.setText(data.getNameAsPerGovtDoc());
         holder.ageTextView.setText(data.getAge());
         holder.customerTextView.setText(data.getCustomer());
-        holder.tripTextView.setText(data.getTrip());
 
+        holder.tripTextView.setText(data.getTrip().equalsIgnoreCase("S")?"Single trip":"Round trip");
 
         String selectedTravelReason="";
 
