@@ -36,6 +36,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import cbs.hreye.R;
+import cbs.hreye.activities.travelRejectGrant.TravelRejectGrant;
 import cbs.hreye.activities.travelRequest.travelRequestData.TravelRequestActivity;
 import cbs.hreye.databinding.ActivityDashboardBinding;
 import cbs.hreye.utilities.CommonMethods;
@@ -193,8 +194,8 @@ public class DashBoardMain extends AppCompatActivity implements ActivityCompat.O
         activityDashboardBinding.dashboardItem.travelGrantedOrRejectedRootLinearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                startActivity(new Intent(context, PaySlipActivity.class));
-//                overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_left);
+                startActivity(new Intent(context, TravelRejectGrant.class));
+                overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_left);
             }
         });
 

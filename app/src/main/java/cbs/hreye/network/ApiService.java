@@ -8,6 +8,10 @@ import cbs.hreye.pojo.AssociateRootDataModel;
 import cbs.hreye.pojo.CustomerResult;
 import cbs.hreye.pojo.ProjectPojo;
 import cbs.hreye.pojo.ProjectResponseRootDataModel;
+import cbs.hreye.pojo.TravelGetModel.TravelGrandRejectDetails;
+import cbs.hreye.pojo.TravelGrantRejectPostModel.TravelGrandPostDetails;
+import cbs.hreye.pojo.TravelGrantRejectPostModel.TravelGrandResponse;
+import cbs.hreye.pojo.TravelGrantRejectPostModel.TravelRejectResponse;
 import cbs.hreye.pojo.TravelPostAuthroziedResponseDataModel;
 import cbs.hreye.pojo.TravelPostCancelResponseDataModel;
 import cbs.hreye.pojo.TravelPostModifiedResponseDataModel;
@@ -42,6 +46,10 @@ public interface ApiService {
     String POST_AUTHROZIED_TRAVEL_REQUEST_DATA="/AttendanceService/AttendanceService.svc/PostTravelrequestauthorized";
     String POST_MODIFY_TRAVEL_REQUEST_DATA="/AttendanceService/AttendanceService.svc/PostTravelrequestmodify";
     String POST_CANCEL_TRAVEL_REQUEST_DATA="/AttendanceService/AttendanceService.svc/PostTravelrequestcancel";
+
+    String GET_TRAVEL_GRAND_DATA = "AttendanceService/AttendanceService.svc/GrantReject?";
+    String POST_TRAVEL_GRAND_DATA = "AttendanceService/AttendanceService.svc/PostTravelGrant";
+    String POST_TRAVEL_REJECT_DATA = "AttendanceService/AttendanceService.svc/PostTravelReject";
 
 
 
@@ -98,5 +106,16 @@ public interface ApiService {
     @GET(GET_TRAVEL_REQUEST_DETAIL_DATA_END_POINT)
     Call<TravelRequestGetRootDetailDataModel>  getTravelRequestDetailData(@Query("COMPANY_NO") String companyNo, @Query("LOCATION_NO") String locationNO, @Query("TRAN_NO") String transactionNo, @Query("ASSO_CODE") String associateCode);
 
+
+    @GET(GET_TRAVEL_GRAND_DATA)
+    Call<TravelGrandRejectDetails> getTravelGrantRejectList(
+            @Query("COMPANY_NO") String companyNo,
+            @Query("LOCATION_NO") String locationNO);
+
+    @POST(POST_TRAVEL_GRAND_DATA)
+    Call<TravelGrandResponse> getPostTravelGrand(@Body TravelGrandPostDetails travelGrandPostDetails);
+
+    @POST(POST_TRAVEL_REJECT_DATA)
+    Call<TravelRejectResponse> getPostTravelReject(@Body TravelGrandPostDetails travelGrandPostDetails);
 
 }
