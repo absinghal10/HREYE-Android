@@ -81,6 +81,34 @@ public class DashBoardMain extends AppCompatActivity implements ActivityCompat.O
         }
 
 
+        // Hide the Travel Request if associated code is "cogni"
+        if (!CommonMethods.getPrefsData(context, PrefrenceKey.COMPANY_NO, "").equalsIgnoreCase("cogni")) {
+            activityDashboardBinding.dashboardItem.travelRequestRootLinearLayout.setVisibility(View.GONE);
+            activityDashboardBinding.dashboardItem.travelRequestBottomView.setVisibility(View.GONE);
+        } else {
+            activityDashboardBinding.dashboardItem.travelRequestRootLinearLayout.setVisibility(View.VISIBLE);
+            activityDashboardBinding.dashboardItem.travelRequestBottomView.setVisibility(View.VISIBLE);
+        }
+
+
+        // Hide the Travel Grant/Reject if PrefrenceKey.FLAG_PERSON is "0" && associated code is "cogni"
+
+        if (CommonMethods.getPrefsData(context, PrefrenceKey.COMPANY_NO, "").equalsIgnoreCase("cogni")) {
+
+            if(!CommonMethods.getPrefsData(context, PrefrenceKey.FLAG_PERSON, "").equals("0")){
+                activityDashboardBinding.dashboardItem.travelGrantedOrRejectedRootLinearLayout.setVisibility(View.GONE);
+                activityDashboardBinding.dashboardItem.travelGrantedOrRejectedBottomView.setVisibility(View.GONE);
+            }else{
+                activityDashboardBinding.dashboardItem.travelGrantedOrRejectedRootLinearLayout.setVisibility(View.VISIBLE);
+                activityDashboardBinding.dashboardItem.travelGrantedOrRejectedBottomView.setVisibility(View.VISIBLE);
+            }
+        }else {
+            activityDashboardBinding.dashboardItem.travelGrantedOrRejectedRootLinearLayout.setVisibility(View.GONE);
+            activityDashboardBinding.dashboardItem.travelGrantedOrRejectedBottomView.setVisibility(View.GONE);
+        }
+
+
+
         activityDashboardBinding.dashboardItem.llPro.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -428,4 +456,6 @@ public class DashBoardMain extends AppCompatActivity implements ActivityCompat.O
             mDialog.dismiss();
         }
     }
+
+
 }

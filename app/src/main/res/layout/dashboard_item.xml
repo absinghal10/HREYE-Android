@@ -654,7 +654,7 @@
                     <de.hdodenhof.circleimageview.CircleImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@mipmap/pay_slip" />
+                        android:src="@drawable/ic_travel" />
 
                     <cbs.hreye.utilities.CustomTextView
                         android:layout_width="0dp"
@@ -677,6 +677,7 @@
             </LinearLayout>
 
             <View
+                android:id="@+id/travel_request_bottom_view"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:background="@color/gray" />
@@ -699,7 +700,7 @@
                     <de.hdodenhof.circleimageview.CircleImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@mipmap/pay_slip" />
+                        android:src="@drawable/ic_luggage" />
 
                     <cbs.hreye.utilities.CustomTextView
                         android:layout_width="0dp"
@@ -722,6 +723,7 @@
             </LinearLayout>
 
             <View
+                android:id="@+id/travel_granted_or_rejected_bottom_view"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:background="@color/gray" />

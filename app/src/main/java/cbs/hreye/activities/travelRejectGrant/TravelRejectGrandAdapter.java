@@ -57,7 +57,7 @@ public class TravelRejectGrandAdapter extends RecyclerView.Adapter<TravelRejectG
         holder.tvName.setText(model.getAssoName());
         holder.tvAssCode.setText(model.getAssoCode());
         holder.tvTransNo.setText(model.getTranNo());
-        holder.tvStatus.setText(model.getStatusDesc().substring(0, 4));
+        holder.tvStatus.setText(model.getStatusDesc());
         holder.tvAsPerDocName.setText(model.getDocomentryName());
         holder.tvTransDate.setText(model.getTranDate());
         holder.tvTrip.setText(model.getTrip());

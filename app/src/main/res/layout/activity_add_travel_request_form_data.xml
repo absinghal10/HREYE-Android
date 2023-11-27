@@ -535,7 +535,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="start"
-                        android:imeOptions="actionNext"
+                        android:imeOptions="actionDone"
                         android:inputType="text"
                         android:textSize="@dimen/normal_text" />
                 </LinearLayout>
@@ -560,7 +560,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="start"
-                        android:imeOptions="actionNext"
+                        android:imeOptions="actionDone"
                         android:inputType="text"
                         android:textSize="@dimen/normal_text" />
                 </LinearLayout>

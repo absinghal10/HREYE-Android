@@ -68,7 +68,13 @@ public class TravelRequestDataAdapter extends RecyclerView.Adapter<TravelRequest
                 bundle.putString("transactionDate",travelRequestDataList.get(position).getTransactionDate());
                 bundle.putString("status",travelRequestDataList.get(position).getStatus());
                 bundle.putString("remark",travelRequestDataList.get(position).getTravelRequestRemark());
-                bundle.putString("travelType",travelRequestDataList.get(position).getTravelType());
+                if(travelRequestDataList.get(position).getTravelType().equalsIgnoreCase("D")) {
+                    bundle.putString("travelType",travelRequestDataList.get(position).getTravelTypeValue());
+                }else{
+
+                    bundle.putString("travelType","International");
+                }
+
                 onTravelDataItemClickListener.travelRequestGetData(bundle);
             }
         });

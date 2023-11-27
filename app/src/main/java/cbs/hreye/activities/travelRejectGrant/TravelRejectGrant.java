@@ -182,7 +182,7 @@ public class TravelRejectGrant extends AppCompatActivity implements TravelReject
             cDialog.setCancelable(true);
             cDialog.setContentView(R.layout.logout);
             TextView txtMsg = cDialog.findViewById(R.id.dlg_msg);
-            txtMsg.setText("Sure to Grand Travel Request ?");
+            txtMsg.setText("Sure to Grant Travel Request ?");
             Button cancel = cDialog.findViewById(R.id.cancel);
             cancel.setText(getString(R.string.no));
             Button YES = cDialog.findViewById(R.id.yes);

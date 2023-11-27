@@ -39,6 +39,12 @@ public class TravelRequestAddDataPresenter {
             return;
         }
 
+
+        for(int i=0;i<travelRequestPostDataModel.getTravelRequestList().size();i++){
+            String travelModeType= String.valueOf(travelRequestPostDataModel.getTravelRequestList().get(i).getTravelMode().charAt(0));
+            travelRequestPostDataModel.getTravelRequestList().get(i).setTravelMode(travelModeType);
+        }
+
         CustomProgressbar.showProgressBar(context,false);
 
         RetrofitClient.getInstance(context).getMyApi().postTravelRequestData(travelRequestPostDataModel).enqueue(new Callback<TravelPostRequestResponseDataModel>() {

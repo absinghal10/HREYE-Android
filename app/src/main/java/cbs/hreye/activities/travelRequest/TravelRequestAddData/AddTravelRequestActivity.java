@@ -30,6 +30,7 @@ import java.util.List;
 
 import cbs.hreye.R;
 import cbs.hreye.activities.travelRequest.AddTravelRequestFormData.AddTravelRequestFormDataActivity;
+import cbs.hreye.activities.travelRequest.TravelRequestDetailData.TravelRequestDataDetailActivity;
 import cbs.hreye.activities.travelRequest.TravelRequestModel;
 import cbs.hreye.activities.travelRequest.TravelRequestResponseData;
 import cbs.hreye.pojo.TravelRequestPostDataModel;
@@ -137,11 +138,13 @@ public class AddTravelRequestActivity extends AppCompatActivity implements OnTra
                 TravelRequestPostDataModel travelRequestPostDataModel=new TravelRequestPostDataModel();
                 travelRequestPostDataModel.setTravelRequestList(travelRequestPostList);
                 travelRequestPostDataModel.setTran_No("");
+                String userID=CommonMethods.getPrefsData(AddTravelRequestActivity.this, PrefrenceKey.USER_ID, "");
+                travelRequestPostDataModel.setUserID(userID);
                 travelRequestPostDataModel.setTransMode("1");
                 travelRequestPostDataModel.setStatus("F");
                 travelRequestPostDataModel.setCompanyNo(companyName);
                 travelRequestPostDataModel.setLocationNo(locationNo);
-                travelRequestPostDataModel.setTravel(travelTypeSpinner.getSelectedItem().toString());
+                travelRequestPostDataModel.setTravel(travelTypeSpinner.getSelectedItem().toString().equalsIgnoreCase("Domestic")?"D":"I");
                 travelRequestPostDataModel.setRemarks(remarkTextView.getText().toString());
                 travelRequestPostDataModel.setTransactionDate(CommonMethods.changeDateTOyyyyMMdd(transactionDateTextView.getText().toString()));
 
@@ -155,7 +158,7 @@ public class AddTravelRequestActivity extends AppCompatActivity implements OnTra
                     dialog.setCancelable(false);
                     dialog.setContentView(R.layout.logout);
                     TextView txtMsg = dialog.findViewById(R.id.dlg_msg);
-                    txtMsg.setText(R.string.add_to_activity);
+                    txtMsg.setText("Sure to add travel request?");
                     Button cancel = dialog.findViewById(R.id.cancel);
                     Button yes = dialog.findViewById(R.id.yes);
                     yes.setOnClickListener(new View.OnClickListener() {
@@ -268,7 +271,35 @@ public class AddTravelRequestActivity extends AppCompatActivity implements OnTra
 
     @Override
     public void errorMessage(String msg) {
-        Toast.makeText(this,msg,Toast.LENGTH_SHORT).show();
+        // Check null condition
+        if (msg != null) {
+            showMessageDialog(msg);
+        }else {
+            showMessageDialog("Something went wrong,please try again later.");
+        }
+    }
+
+    private void showMessageDialog(String msg) {
+        Dialog dialog = new Dialog(this);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setCancelable(false);
+        dialog.setContentView(R.layout.logout);
+        TextView txtMsg = dialog.findViewById(R.id.dlg_msg);
+        Button okay = dialog.findViewById(R.id.cancel);
+        Button yes = dialog.findViewById(R.id.yes);
+        yes.setVisibility(View.GONE);
+        okay.setText(getString(R.string.okay));
+        txtMsg.setText(msg);
+
+        okay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+        dialog.show();
+
     }
 
 }

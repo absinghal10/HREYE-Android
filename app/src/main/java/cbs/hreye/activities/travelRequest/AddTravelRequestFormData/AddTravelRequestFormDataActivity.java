@@ -192,7 +192,8 @@ public class AddTravelRequestFormDataActivity extends AppCompatActivity implemen
                 if(TextUtils.isEmpty(editDataModel.getValidity())){
                     validityEditText.setText(editDataModel.getValidity());
                 }else{
-                    validityEditText.setText(CommonMethods.changeDateFromyyyyMMdd(editDataModel.getValidity()));
+                    String validityDate=CommonMethods.changeDateFromyyyyMMdd(editDataModel.getValidity());
+                    validityEditText.setText(validityDate);
                 }
 
 
@@ -201,7 +202,10 @@ public class AddTravelRequestFormDataActivity extends AppCompatActivity implemen
 
                 if(travelTypeValue.equalsIgnoreCase("International")){
                     passportEditText.setText(editDataModel.getPassport());
-                    validityEditText.setText(editDataModel.getValidity());
+//                    validityEditText.setText(editDataModel.getValidity());
+                }else{
+                    passportEditText.setText("");
+                    validityEditText.setText("");
                 }
 
                 if(editDataModel.getTrip().equalsIgnoreCase("S")){
@@ -209,6 +213,40 @@ public class AddTravelRequestFormDataActivity extends AppCompatActivity implemen
                 }else{
                     editDataModel.setTrip("Round trip");
                 }
+
+
+                if(editDataModel.getReasonForTravel().equalsIgnoreCase("C1")){
+                    editDataModel.setReasonForTravel("Sales");
+                }else if(editDataModel.getReasonForTravel().equalsIgnoreCase("C2")){
+                    editDataModel.setReasonForTravel("Presales");
+                }else if(editDataModel.getReasonForTravel().equalsIgnoreCase("C3")){
+                    editDataModel.setReasonForTravel("Client Visit");
+                }else if(editDataModel.getReasonForTravel().equalsIgnoreCase("C4")){
+                    editDataModel.setReasonForTravel("Relocation");
+                }else if(editDataModel.getReasonForTravel().equalsIgnoreCase("C5")){
+                    editDataModel.setReasonForTravel("SAP Meeting");
+                }else if(editDataModel.getReasonForTravel().equalsIgnoreCase("C6")){
+                    editDataModel.setReasonForTravel("Others");
+                }
+
+                // tye of employee CONDITION
+                if (editDataModel.getTypeOfEmpolyee().equalsIgnoreCase("0")) {
+                    editDataModel.setTypeOfEmpolyee("Employee");
+                } else if (editDataModel.getTypeOfEmpolyee().equalsIgnoreCase("1")) {
+                    editDataModel.setTypeOfEmpolyee("Non-Employee");
+                }
+
+
+                if(editDataModel.getTravelMode().length()==1){
+                    if(editDataModel.getTravelMode().equalsIgnoreCase("T")){
+                        editDataModel.setTravelMode("Train");
+                    }else if(editDataModel.getTravelMode().equalsIgnoreCase("B")){
+                        editDataModel.setTravelMode("Bus");
+                    }else if(editDataModel.getTravelMode().equalsIgnoreCase("F")){
+                        editDataModel.setTravelMode("Flight");
+                    }
+                }
+
 
                 setSpinnerPosition(editDataModel.getTravelMode(),travelModeSpinnerData,travelModeSpinner);
                 setSpinnerPosition(editDataModel.getTypeOfEmpolyee(),typeOfEmployeeSpinnerData,typeOfEmployeeSpinner);
@@ -366,27 +404,27 @@ public class AddTravelRequestFormDataActivity extends AppCompatActivity implemen
 
 
         if (typeOfEmployeeSpinner.getSelectedItem().toString().equalsIgnoreCase(selectText)){
-            Toast.makeText(this, "Please select type of employee", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Please select your type of employee", Toast.LENGTH_SHORT).show();
             return false;
         }
 
         if (tripSpinner.getSelectedItem().toString().equalsIgnoreCase(selectText)){
-            Toast.makeText(this, "Please select your trip type", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Please select your trip", Toast.LENGTH_SHORT).show();
             return false;
         }
 
         if (travelModeSpinner.getSelectedItem().toString().equalsIgnoreCase(selectText)){
-            Toast.makeText(this, "Please select type of travel mode", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Please select your travel mode", Toast.LENGTH_SHORT).show();
             return false;
         }
 
         if (travelReasonSpinner.getSelectedItem().toString().equalsIgnoreCase(selectText)){
-            Toast.makeText(this, "Please select type of your travel reason", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Please select your reason for travel", Toast.LENGTH_SHORT).show();
             return false;
         }
 
         if (hotelRequiredSpinner.getSelectedItem().toString().equalsIgnoreCase(selectText)){
-            Toast.makeText(this, "Please select hotel required type", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Please select hotel required", Toast.LENGTH_SHORT).show();
             return false;
         }
 
@@ -411,31 +449,28 @@ public class AddTravelRequestFormDataActivity extends AppCompatActivity implemen
 
 
         if(TextUtils.isEmpty(associateCode)&& typeOfEmployeeSpinner.getSelectedItem().toString().equalsIgnoreCase("Employee")){
-            Toast.makeText(this,"Please select your associate code",Toast.LENGTH_SHORT).show();
+            Toast.makeText(this,"Please enter your associate code",Toast.LENGTH_SHORT).show();
             return false;
         }
 
         if(TextUtils.isEmpty(associateName)){
-            associateNameEditText.setError("Please enter your associate name");
-            associateNameEditText.requestFocus();
+            Toast.makeText(this,"Please enter your associate name",Toast.LENGTH_SHORT).show();
             return false;
         }
 
         if(TextUtils.isEmpty(nameAsPerDoc)){
-            nameAsPerDocEditText.setError("Please enter your name as per gov. doc");
-            nameAsPerDocEditText.requestFocus();
+            Toast.makeText(this,"Please enter your name as per gov. doc",Toast.LENGTH_SHORT).show();
             return false;
         }
 
         if(TextUtils.isEmpty(age)){
-            ageEditText.setError("Please enter your age");
-            ageEditText.requestFocus();
+            Toast.makeText(this,"Please enter your age",Toast.LENGTH_SHORT).show();
             return false;
         }
 
 
         if(TextUtils.isEmpty(customerData)){
-            Toast.makeText(this,"Please select your customer data",Toast.LENGTH_SHORT).show();
+            Toast.makeText(this,"Please select your customer",Toast.LENGTH_SHORT).show();
             return false;
         }
 
@@ -452,40 +487,35 @@ public class AddTravelRequestFormDataActivity extends AppCompatActivity implemen
 
 
         if(TextUtils.isEmpty(hotelFrom)&& hotelRequiredSpinner.getSelectedItem().toString().equalsIgnoreCase("Yes")){
-            Toast.makeText(this,"Please select your hotel from date",Toast.LENGTH_SHORT).show();
+            Toast.makeText(this,"Please select your hotel from",Toast.LENGTH_SHORT).show();
             return false;
         }
 
 
         if(TextUtils.isEmpty(hotelTo)&& hotelRequiredSpinner.getSelectedItem().toString().equalsIgnoreCase("Yes")){
-            Toast.makeText(this,"Please select your hotel to date",Toast.LENGTH_SHORT).show();
+            Toast.makeText(this,"Please select your hotel to",Toast.LENGTH_SHORT).show();
             return false;
         }
 
         if(TextUtils.isEmpty(fromLocation)){
-            fromLocationEditText.setError("Please enter location");
-            fromLocationEditText.requestFocus();
+            Toast.makeText(this,"Please enter your From location",Toast.LENGTH_SHORT).show();
             return false;
         }
 
         if(TextUtils.isEmpty(toLocation)){
-            toLocationEditText.setError("Please enter location");
-            toLocationEditText.requestFocus();
+            Toast.makeText(this,"Please enter your To location",Toast.LENGTH_SHORT).show();
             return false;
         }
 
 
         if(travelTypeValue.equalsIgnoreCase("International")){
             if(TextUtils.isEmpty(passport)){
-                passportEditText.setError("Please enter your passport number");
-                passportEditText.requestFocus();
+                Toast.makeText(this,"Please enter your passport number",Toast.LENGTH_SHORT).show();
                 return false;
             }
 
-
             if(TextUtils.isEmpty(validity)){
-                validityEditText.setError("Please enter your validity");
-                validityEditText.requestFocus();
+                Toast.makeText(this,"Please enter your validity",Toast.LENGTH_SHORT).show();
                 return false;
             }
         }

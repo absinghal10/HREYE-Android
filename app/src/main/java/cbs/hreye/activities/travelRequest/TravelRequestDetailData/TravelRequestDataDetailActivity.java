@@ -168,7 +168,35 @@ public class TravelRequestDataDetailActivity extends AppCompatActivity implement
 
     @Override
     public void errorMessage(String msg) {
-        Toast.makeText(this, msg,Toast.LENGTH_SHORT).show();
+        // Check null condition
+        if (msg != null) {
+            showMessageDialog(msg);
+        }else {
+            showMessageDialog("Something went wrong,please try again later.");
+        }
+    }
+
+    private void showMessageDialog(String msg) {
+        Dialog dialog = new Dialog(this);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setCancelable(false);
+        dialog.setContentView(R.layout.logout);
+        TextView txtMsg = dialog.findViewById(R.id.dlg_msg);
+        Button okay = dialog.findViewById(R.id.cancel);
+        Button yes = dialog.findViewById(R.id.yes);
+        yes.setVisibility(View.GONE);
+        okay.setText(getString(R.string.okay));
+        txtMsg.setText(msg);
+
+        okay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+        dialog.show();
+
     }
 
     @Override
@@ -217,7 +245,7 @@ public class TravelRequestDataDetailActivity extends AppCompatActivity implement
                                         travelRequestPostDataModel.setTravelRequestList(travelRequestModelArrayList);
                                         travelRequestPostDataModel.setTran_No(transactionNo);
                                         travelRequestPostDataModel.setTransactionDate(CommonMethods.mobileCurrentDate());
-                                        travelRequestPostDataModel.setTravel(travelTypeValueData);
+                                        travelRequestPostDataModel.setTravel(travelTypeValueData.equalsIgnoreCase("Domestic")?"D":"I");
                                         travelRequestPostDataModel.setCompanyNo(companyNo);
                                         travelRequestPostDataModel.setLocationNo(locationNo);
                                         travelRequestPostDataModel.setRemarks(remarkTextView.getText().toString());
@@ -247,7 +275,7 @@ public class TravelRequestDataDetailActivity extends AppCompatActivity implement
                                 travelRequestPostDataModel.setTravelRequestList(travelRequestModelArrayList);
                                 travelRequestPostDataModel.setTran_No(transactionNo);
                                 travelRequestPostDataModel.setTransactionDate(CommonMethods.mobileCurrentDate());
-                                travelRequestPostDataModel.setTravel(travelTypeValueData);
+                                travelRequestPostDataModel.setTravel(travelTypeValueData.equalsIgnoreCase("Domestic")?"D":"I");
                                 travelRequestPostDataModel.setCompanyNo(companyNo);
                                 travelRequestPostDataModel.setLocationNo(locationNo);
                                 travelRequestPostDataModel.setRemarks(remarkTextView.getText().toString());
@@ -289,7 +317,7 @@ public class TravelRequestDataDetailActivity extends AppCompatActivity implement
                                         travelRequestPostDataModel.setTravelRequestList(travelRequestModelArrayList);
                                         travelRequestPostDataModel.setTran_No(transactionNo);
                                         travelRequestPostDataModel.setTransactionDate(CommonMethods.mobileCurrentDate());
-                                        travelRequestPostDataModel.setTravel(travelTypeValueData);
+                                        travelRequestPostDataModel.setTravel(travelTypeValueData.equalsIgnoreCase("Domestic")?"D":"I");
                                         travelRequestPostDataModel.setCompanyNo(companyNo);
                                         travelRequestPostDataModel.setLocationNo(locationNo);
                                         travelRequestPostDataModel.setRemarks(remarkTextView.getText().toString());

@@ -69,6 +69,7 @@ public class TravelRequestDataDetailPresenter {
             travelRequestPostDataModel.getTravelRequestList().get(i).setSrNo(String.valueOf((i+1)));
             travelRequestPostDataModel.getTravelRequestList().get(i).setMode(String.valueOf((i+1)));
 
+
             if(!TextUtils.isEmpty(travelRequestPostDataModel.getTravelRequestList().get(i).getTravelData())){
                 String dateStr=travelRequestPostDataModel.getTravelRequestList().get(i).getTravelData();
                 String convertedDateString=CommonMethods.convertVariousDateFormatsToYYYYMMDD(dateStr);
@@ -105,6 +106,9 @@ public class TravelRequestDataDetailPresenter {
             }else if(travelRequestPostDataModel.getTravelRequestList().get(i).getTrip().equalsIgnoreCase("Round trip")){
                 travelRequestPostDataModel.getTravelRequestList().get(i).setTrip("R");
             }
+
+            String travelModeType= String.valueOf(travelRequestPostDataModel.getTravelRequestList().get(i).getTravelMode().charAt(0));
+            travelRequestPostDataModel.getTravelRequestList().get(i).setTravelMode(travelModeType);
 
         }
 
