@@ -52,7 +52,13 @@ public class TravelRequestDataAdapter extends RecyclerView.Adapter<TravelRequest
         }else if (travelRequestDataList.get(position).getStatus().equalsIgnoreCase("C")){
             holder.statusTextview.setText("Cancel");
             holder.itemView.setBackgroundColor(Color.parseColor("#FFFFFF"));
-        }else{
+        }else if (travelRequestDataList.get(position).getStatus().equalsIgnoreCase("R")){
+            holder.statusTextview.setText("Rejected");
+            holder.itemView.setBackgroundColor(Color.parseColor("#FFFFFF"));
+        }else if (travelRequestDataList.get(position).getStatus().equalsIgnoreCase("G")) {
+            holder.statusTextview.setText("Granted");
+            holder.itemView.setBackgroundColor(Color.parseColor("#FFFFFF"));
+        } else{
             holder.itemView.setBackgroundColor(Color.parseColor("#A1D4BA"));
             holder.statusTextview.setText(R.string.fresh);
         }

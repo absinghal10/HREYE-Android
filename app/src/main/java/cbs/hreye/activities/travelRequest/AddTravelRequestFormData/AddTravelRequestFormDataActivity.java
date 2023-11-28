@@ -145,7 +145,7 @@ public class AddTravelRequestFormDataActivity extends AppCompatActivity implemen
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (inputFieldValidation() && validateSpinners()) {
+                if (inputFieldValidation()) {
                     bindDataToModel();
                 }
             }
@@ -398,39 +398,6 @@ public class AddTravelRequestFormDataActivity extends AppCompatActivity implemen
 
     }
 
-
-    private boolean validateSpinners() {
-        String selectText = "Select"; // The string to compare with
-
-
-        if (typeOfEmployeeSpinner.getSelectedItem().toString().equalsIgnoreCase(selectText)){
-            Toast.makeText(this, "Please select your type of employee", Toast.LENGTH_SHORT).show();
-            return false;
-        }
-
-        if (tripSpinner.getSelectedItem().toString().equalsIgnoreCase(selectText)){
-            Toast.makeText(this, "Please select your trip", Toast.LENGTH_SHORT).show();
-            return false;
-        }
-
-        if (travelModeSpinner.getSelectedItem().toString().equalsIgnoreCase(selectText)){
-            Toast.makeText(this, "Please select your travel mode", Toast.LENGTH_SHORT).show();
-            return false;
-        }
-
-        if (travelReasonSpinner.getSelectedItem().toString().equalsIgnoreCase(selectText)){
-            Toast.makeText(this, "Please select your reason for travel", Toast.LENGTH_SHORT).show();
-            return false;
-        }
-
-        if (hotelRequiredSpinner.getSelectedItem().toString().equalsIgnoreCase(selectText)){
-            Toast.makeText(this, "Please select hotel required", Toast.LENGTH_SHORT).show();
-            return false;
-        }
-
-        return true; // All spinners have valid selections
-    }
-
     private boolean inputFieldValidation() {
         // Get the values from the EditText fields
         String associateCode = associateCodeEditText.getText().toString();
@@ -446,6 +413,16 @@ public class AddTravelRequestFormDataActivity extends AppCompatActivity implemen
         String toLocation = toLocationEditText.getText().toString();
         String passport = passportEditText.getText().toString();
         String validity = validityEditText.getText().toString();
+
+
+
+        String selectText = "Select"; // The string to compare with
+
+
+        if (typeOfEmployeeSpinner.getSelectedItem().toString().equalsIgnoreCase(selectText)){
+            Toast.makeText(this, "Please select type of employee", Toast.LENGTH_SHORT).show();
+            return false;
+        }
 
 
         if(TextUtils.isEmpty(associateCode)&& typeOfEmployeeSpinner.getSelectedItem().toString().equalsIgnoreCase("Employee")){
@@ -474,6 +451,11 @@ public class AddTravelRequestFormDataActivity extends AppCompatActivity implemen
             return false;
         }
 
+        if (tripSpinner.getSelectedItem().toString().equalsIgnoreCase(selectText)){
+            Toast.makeText(this, "Please select your trip", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
         if(TextUtils.isEmpty(travelDate)){
             Toast.makeText(this,"Please select your travel date",Toast.LENGTH_SHORT).show();
             return false;
@@ -485,6 +467,22 @@ public class AddTravelRequestFormDataActivity extends AppCompatActivity implemen
             return false;
         }
 
+
+        if (travelModeSpinner.getSelectedItem().toString().equalsIgnoreCase(selectText)){
+            Toast.makeText(this, "Please select your travel mode", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+
+        if (travelReasonSpinner.getSelectedItem().toString().equalsIgnoreCase(selectText)){
+            Toast.makeText(this, "Please select your reason for travel", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        if (hotelRequiredSpinner.getSelectedItem().toString().equalsIgnoreCase(selectText)){
+            Toast.makeText(this, "Please select hotel required", Toast.LENGTH_SHORT).show();
+            return false;
+        }
 
         if(TextUtils.isEmpty(hotelFrom)&& hotelRequiredSpinner.getSelectedItem().toString().equalsIgnoreCase("Yes")){
             Toast.makeText(this,"Please select your hotel from",Toast.LENGTH_SHORT).show();

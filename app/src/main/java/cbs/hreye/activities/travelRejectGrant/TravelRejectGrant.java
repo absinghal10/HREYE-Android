@@ -196,7 +196,8 @@ public class TravelRejectGrant extends AppCompatActivity implements TravelReject
                         tgr.setCompanyNo(CommonMethods.getPrefsData(mContext, PrefrenceKey.COMPANY_NO, ""));
                         tgr.setLocationNo(CommonMethods.getPrefsData(mContext, PrefrenceKey.LOCATION_NO, ""));
                         tgr.setLiNo(alGrantRejectList.get(i).getLiNo());
-                        tgr.setTrip(alGrantRejectList.get(i).getTrip());
+                        String trip = String.valueOf(alGrantRejectList.get(i).getTrip().charAt(0));
+                        tgr.setTrip(trip);
                         tgr.setTransactionMode("0");
                         tgr.setAssoCode(alGrantRejectList.get(i).getAssoCode());
                         tgr.setAssoName(alGrantRejectList.get(i).getAssoName());
@@ -229,7 +230,7 @@ public class TravelRejectGrant extends AppCompatActivity implements TravelReject
                         tgr.setHotelRequired(alGrantRejectList.get(i).getHotelRequired());
                         tgr.setReason(alGrantRejectList.get(i).getReason());
                         tgr.setRemarks(alGrantRejectList.get(i).getRemarks());
-                        tgr.setStatus(alGrantRejectList.get(i).getStatus());
+                        tgr.setStatus("G");
                         travelPostDetails.add(tgr);
                     }
                     travelGrandPostDetails.setTgr(travelPostDetails);
@@ -320,8 +321,9 @@ public class TravelRejectGrant extends AppCompatActivity implements TravelReject
                         tgr.setCompanyNo(CommonMethods.getPrefsData(mContext, PrefrenceKey.COMPANY_NO, ""));
                         tgr.setLocationNo(CommonMethods.getPrefsData(mContext, PrefrenceKey.LOCATION_NO, ""));
                         tgr.setLiNo(alGrantRejectList.get(i).getLiNo());
-                        tgr.setTrip(alGrantRejectList.get(i).getTrip());
-                        tgr.setTransactionMode("0");
+                        String trip = String.valueOf(alGrantRejectList.get(i).getTrip().charAt(0));
+                        tgr.setTrip(trip);
+                        tgr.setTransactionMode("1");
                         tgr.setAssoCode(alGrantRejectList.get(i).getAssoCode());
                         tgr.setAssoName(alGrantRejectList.get(i).getAssoName());
                         tgr.setTravelMode(alGrantRejectList.get(i).getTravelMode());
@@ -352,7 +354,7 @@ public class TravelRejectGrant extends AppCompatActivity implements TravelReject
                         tgr.setHotelRequired(alGrantRejectList.get(i).getHotelRequired());
                         tgr.setReason(alGrantRejectList.get(i).getReason());
                         tgr.setRemarks(alGrantRejectList.get(i).getRemarks());
-                        tgr.setStatus(alGrantRejectList.get(i).getStatus());
+                        tgr.setStatus("R");
                         travelPostDetails.add(tgr);
                     }
                     travelGrandPostDetails.setTgr(travelPostDetails);

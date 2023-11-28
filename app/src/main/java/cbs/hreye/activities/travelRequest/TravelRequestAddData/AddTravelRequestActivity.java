@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.Window;
 import android.widget.AdapterView;
@@ -131,6 +132,12 @@ public class AddTravelRequestActivity extends AppCompatActivity implements OnTra
         toolbarUploadDataImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                // Check remark field is empty or not using TextUtils Class.
+                if(TextUtils.isEmpty(remarkTextView.getText().toString().trim())){
+                    Toast.makeText(AddTravelRequestActivity.this, "Please enter remark", Toast.LENGTH_SHORT).show();
+                    return;
+                }
 
                 String companyName=CommonMethods.getPrefsData(AddTravelRequestActivity.this, PrefrenceKey.COMPANY_NO, "");
                 String locationNo=CommonMethods.getPrefsData(AddTravelRequestActivity.this, PrefrenceKey.LOCATION_NO, "");

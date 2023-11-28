@@ -111,7 +111,11 @@ public class TravelRequestDataDetailActivity extends AppCompatActivity implement
             toolBarHeaderTextView.setText("Authorized Request");
         }else if(status.equalsIgnoreCase("C")){
             toolBarHeaderTextView.setText("Cancel Request");
-        }else{
+        }else if(status.equalsIgnoreCase("R")){
+            toolBarHeaderTextView.setText("Reject Request");
+        }else if(status.equalsIgnoreCase("G")){
+            toolBarHeaderTextView.setText("Grant Request");
+        } else{
             toolBarHeaderTextView.setText("Fresh Request");
         }
 
@@ -124,7 +128,7 @@ public class TravelRequestDataDetailActivity extends AppCompatActivity implement
         addImageView.setImageResource(R.drawable.add_row);
         showSnakbarLayout=findViewById(R.id.snakbar_root_layout);
 
-        if(status.equalsIgnoreCase("A")||status.equalsIgnoreCase("C")){
+        if(status.equalsIgnoreCase("A")||status.equalsIgnoreCase("C")||status.equalsIgnoreCase("R")||status.equalsIgnoreCase("G")){
             rightAddRowLinearLayout.setVisibility(View.GONE);
             addImageView.setVisibility(View.GONE);
         }else{
@@ -213,6 +217,13 @@ public class TravelRequestDataDetailActivity extends AppCompatActivity implement
         String companyNo=CommonMethods.getPrefsData(TravelRequestDataDetailActivity.this, PrefrenceKey.COMPANY_NO, "");
         String locationNo=CommonMethods.getPrefsData(TravelRequestDataDetailActivity.this, PrefrenceKey.LOCATION_NO, "");
         String userID=CommonMethods.getPrefsData(TravelRequestDataDetailActivity.this, PrefrenceKey.USER_ID, "");
+
+        // Check remark field is empty or not using TextUtils Class.
+        if(TextUtils.isEmpty(remarkTextView.getText().toString().trim())){
+            Toast.makeText(TravelRequestDataDetailActivity.this, "Please enter remark", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
 
         if (travelRequestDataDetailAdapter.getItemCount() == 0){
             CommonMethods.setSnackBar(showSnakbarLayout,getString(R.string.enter_minimum_record));
