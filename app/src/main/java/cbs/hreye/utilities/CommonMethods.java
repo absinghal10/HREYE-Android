@@ -841,4 +841,45 @@ public class CommonMethods {
     }
 
 
+    // Date Format convertor
+
+    public static String convertVariousDateFormatsToYYYYMMDD(String inputDate) {
+        try {
+            // Define the input date formats to be attempted for parsing
+            SimpleDateFormat[] inputDateFormats = {
+                    new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()),
+                    new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()),
+                    new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()),
+                    new SimpleDateFormat("yyyy/MM/dd", Locale.getDefault())
+            };
+
+            // Define the output date format
+            SimpleDateFormat outputDateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+
+            // Loop through different input date formats and attempt to parse
+            for (SimpleDateFormat inputDateFormat : inputDateFormats) {
+                try {
+                    // Set lenient mode to false to avoid misinterpretation of dates like "13-09-2023"
+                    inputDateFormat.setLenient(false);
+
+                    // Parse the input date string into a Date object
+                    Date date = inputDateFormat.parse(inputDate);
+
+                    // Format the parsed date into "yyyy-MM-dd" format
+                    return outputDateFormat.format(date);
+                } catch (ParseException ignored) {
+                    // If parsing fails with the current format, try the next one
+                }
+            }
+
+            // Return null if unable to parse with any format
+            return null;
+        } catch (Exception e) {
+            e.printStackTrace();
+            // Handle the exception according to your requirements
+            return null;
+        }
+    }
+
+
 }

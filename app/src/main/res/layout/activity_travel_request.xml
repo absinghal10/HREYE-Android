@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".activities.travelRequest.travelRequestData.TravelRequestActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <include
+            android:id="@+id/toolbar_header_layout"
+            layout="@layout/toolbar_header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <LinearLayout
+            android:id="@+id/search_view_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/toolbar_header_layout"
+            android:layout_marginTop="@dimen/margin_top"
+            android:layout_marginLeft="@dimen/margin"
+            android:layout_marginRight="@dimen/margin"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/et_search"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/rounded_layout"
+                android:gravity="center"
+                android:hint="@string/search_travel_request"
+                android:padding="@dimen/margin_top"
+                android:textSize="@dimen/normal_text" />
+
+            <cbs.hreye.utilities.CustomTextView
+                android:id="@+id/txt_clear"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="@dimen/margin"
+                android:layout_weight="1.5"
+                android:background="@drawable/custom_button"
+                android:gravity="center"
+                android:padding="@dimen/margin_top"
+                android:text="@string/clear"
+                android:textColor="@color/white"
+                android:textSize="@dimen/normal_text" />
+
+        </LinearLayout>
+
+        <SearchView
+            android:id="@+id/search_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin_top"
+            android:layout_marginRight="@dimen/margin_top"
+            android:queryHint="Search Daily Activity"
+            android:visibility="gone" />
+
+
+        <View
+            android:id="@+id/bottom_horizontal_line_view"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="@dimen/margin_top"
+            android:layout_below="@+id/search_view_layout"
+            android:background="@color/view_color" />
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/travel_request_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/padding_10"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            android:layout_below="@+id/bottom_horizontal_line_view"
+            tools:listitem="@layout/item_travel_request_row_layout" />
+
+        <com.facebook.shimmer.ShimmerFrameLayout
+            android:id="@+id/shimmer_view_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:orientation="vertical"
+            android:layout_below="@+id/bottom_horizontal_line_view"
+            android:visibility="visible">
+
+            <!-- Adding 7 rows of placeholders -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+                <include layout="@layout/placeholder_layout_activity_list" />
+                <include layout="@layout/placeholder_layout_activity_list" />
+                <include layout="@layout/placeholder_layout_activity_list" />
+                <include layout="@layout/placeholder_layout_activity_list" />
+                <include layout="@layout/placeholder_layout_activity_list" />
+                <include layout="@layout/placeholder_layout_activity_list" />
+                <include layout="@layout/placeholder_layout_activity_list" />
+                <include layout="@layout/placeholder_layout_activity_list" />
+                <include layout="@layout/placeholder_layout_activity_list" />
+                <include layout="@layout/placeholder_layout_activity_list" />
+                <include layout="@layout/placeholder_layout_activity_list" />
+                <include layout="@layout/placeholder_layout_activity_list" />
+                <include layout="@layout/placeholder_layout_activity_list" />
+                <include layout="@layout/placeholder_layout_activity_list" />
+                <include layout="@layout/placeholder_layout_activity_list" />
+                <include layout="@layout/placeholder_layout_activity_list" />
+
+            </LinearLayout>
+
+        </com.facebook.shimmer.ShimmerFrameLayout>
+
+
+
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/add_travel_request_data_floating_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_marginBottom="@dimen/margin_plus"
+        android:layout_marginEnd="@dimen/margin_plus"
+        android:background="@mipmap/blue_plus"
+        android:contentDescription="@string/add"
+        android:visibility="visible" />
+
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

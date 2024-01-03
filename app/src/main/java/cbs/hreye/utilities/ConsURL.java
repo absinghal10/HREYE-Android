@@ -4,8 +4,6 @@ import android.content.Context;
 
 /**
  * Created by Administrator on 6/6/2017.
- *  Faisla Jo Kuch Bhi Ho Manzoor Hona Chahiye
- *  Jang Ho Ya Ishq Ho Bharpoor Hona Chahiye
  */
 public class ConsURL {
     public static String LOCAL_BASE_URL = "http://103.75.33.98:86/";   //for local test

@@ -36,6 +36,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import cbs.hreye.R;
+import cbs.hreye.activities.travelRejectGrant.TravelRejectGrant;
+import cbs.hreye.activities.travelRequest.travelRequestData.TravelRequestActivity;
 import cbs.hreye.databinding.ActivityDashboardBinding;
 import cbs.hreye.utilities.CommonMethods;
 import cbs.hreye.utilities.ConsURL;
@@ -77,6 +79,34 @@ public class DashBoardMain extends AppCompatActivity implements ActivityCompat.O
             activityDashboardBinding.dashboardItem.llGrantReject.setVisibility(View.VISIBLE);
             activityDashboardBinding.dashboardItem.viewLs.setVisibility(View.VISIBLE);
         }
+
+
+        // Hide the Travel Request if associated code is "cogni"
+        if (!CommonMethods.getPrefsData(context, PrefrenceKey.COMPANY_NO, "").equalsIgnoreCase("cogni")) {
+            activityDashboardBinding.dashboardItem.travelRequestRootLinearLayout.setVisibility(View.GONE);
+            activityDashboardBinding.dashboardItem.travelRequestBottomView.setVisibility(View.GONE);
+        } else {
+            activityDashboardBinding.dashboardItem.travelRequestRootLinearLayout.setVisibility(View.VISIBLE);
+            activityDashboardBinding.dashboardItem.travelRequestBottomView.setVisibility(View.VISIBLE);
+        }
+
+
+        // Hide the Travel Grant/Reject if PrefrenceKey.FLAG_PERSON is "0" && associated code is "cogni"
+
+        if (CommonMethods.getPrefsData(context, PrefrenceKey.COMPANY_NO, "").equalsIgnoreCase("cogni")) {
+
+            if(!CommonMethods.getPrefsData(context, PrefrenceKey.FLAG_PERSON, "").equals("0")){
+                activityDashboardBinding.dashboardItem.travelGrantedOrRejectedRootLinearLayout.setVisibility(View.GONE);
+                activityDashboardBinding.dashboardItem.travelGrantedOrRejectedBottomView.setVisibility(View.GONE);
+            }else{
+                activityDashboardBinding.dashboardItem.travelGrantedOrRejectedRootLinearLayout.setVisibility(View.VISIBLE);
+                activityDashboardBinding.dashboardItem.travelGrantedOrRejectedBottomView.setVisibility(View.VISIBLE);
+            }
+        }else {
+            activityDashboardBinding.dashboardItem.travelGrantedOrRejectedRootLinearLayout.setVisibility(View.GONE);
+            activityDashboardBinding.dashboardItem.travelGrantedOrRejectedBottomView.setVisibility(View.GONE);
+        }
+
 
 
         activityDashboardBinding.dashboardItem.llPro.setOnClickListener(new View.OnClickListener() {
@@ -178,6 +208,25 @@ public class DashBoardMain extends AppCompatActivity implements ActivityCompat.O
                 overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_left);
             }
         });
+
+        // Add Two New Field Travel Request and travel Granted/Rejected
+        activityDashboardBinding.dashboardItem.travelRequestRootLinearLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(context, TravelRequestActivity.class));
+                overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_left);
+            }
+        });
+
+
+        activityDashboardBinding.dashboardItem.travelGrantedOrRejectedRootLinearLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(context, TravelRejectGrant.class));
+                overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_left);
+            }
+        });
+
     }
 
     private void hrNewsApi() {
@@ -407,4 +456,6 @@ public class DashBoardMain extends AppCompatActivity implements ActivityCompat.O
             mDialog.dismiss();
         }
     }
+
+
 }
