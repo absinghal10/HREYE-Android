@@ -42,7 +42,8 @@ public class TravelRequestDataDetailAdapter extends RecyclerView.Adapter<TravelR
         holder.associateCodeTextView.setText(data.getAssociateCode());
         holder.documentyTextView.setText(data.getNameAsPerGovtDoc());
         holder.nameTextView.setText(data.getAssociateName());
-        holder.tripTextView.setText(data.getTrip().equalsIgnoreCase("S")?"Single trip":"Round trip");
+        holder.tripTextView.setText(data.getTrip().startsWith("S")?"Single trip":"Round trip");
+
 
 
         String selectedTravelReason="";

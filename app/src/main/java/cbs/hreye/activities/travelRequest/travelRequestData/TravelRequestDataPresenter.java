@@ -31,9 +31,10 @@ public class TravelRequestDataPresenter {
 
         String companyName= CommonMethods.getPrefsData(context, PrefrenceKey.COMPANY_NO, "");
         String locationNo=CommonMethods.getPrefsData(context, PrefrenceKey.LOCATION_NO, "");
+        String userId=CommonMethods.getPrefsData(context, PrefrenceKey.USER_ID, "");
 
 
-        RetrofitClient.getInstance(context).getMyApi().getTravelRequestData(companyName,locationNo).enqueue(new Callback<TravelRequestGetRootModel>() {
+        RetrofitClient.getInstance(context).getMyApi().getTravelRequestData(companyName,locationNo,userId).enqueue(new Callback<TravelRequestGetRootModel>() {
             @Override
             public void onResponse(Call<TravelRequestGetRootModel> call, Response<TravelRequestGetRootModel> response) {
                 if(response.code()==200&&response.body()!=null){

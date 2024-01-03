@@ -22,9 +22,9 @@ public class RetrofitClient {
 
 
         OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
-        httpClient.connectTimeout(30, TimeUnit.SECONDS); // Set connection timeout
-        httpClient.readTimeout(30, TimeUnit.SECONDS); // Set read timeout
-        httpClient.writeTimeout(30, TimeUnit.SECONDS); // Set write timeout
+        httpClient.connectTimeout(60, TimeUnit.SECONDS); // Set connection timeout
+        httpClient.readTimeout(60, TimeUnit.SECONDS); // Set read timeout
+        httpClient.writeTimeout(60, TimeUnit.SECONDS); // Set write timeout
 
 
         Retrofit retrofit = new Retrofit.Builder()

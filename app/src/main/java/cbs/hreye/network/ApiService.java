@@ -99,7 +99,7 @@ public interface ApiService {
 
     // Get Travel Request Data Call
     @GET(GET_TRAVEL_REQUEST_DATA_END_POINT)
-    Call<TravelRequestGetRootModel>  getTravelRequestData(@Query("COMPANY_NO") String companyNo, @Query("LOCATION_NO") String locationNO);
+    Call<TravelRequestGetRootModel>  getTravelRequestData(@Query("COMPANY_NO") String companyNo, @Query("LOCATION_NO") String locationNO,@Query("user_id") String userID);
 
 
     // Get Travel Request Detail Data Call
